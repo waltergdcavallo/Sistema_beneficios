@@ -1,3 +1,4 @@
-body{
-    background-color: $fondo-verde;
+@use "../abstracts/variables";
+.body{
+    background-color: variables.$fondo-verde;
 }

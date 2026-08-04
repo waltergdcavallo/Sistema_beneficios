@@ -1,0 +1,4 @@
+@use "../abstracts/variables";
+nav{
+    background-color: variables.$fondo-verde;
+}

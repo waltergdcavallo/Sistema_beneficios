@@ -1,0 +1,5 @@
+@use "../abstracts/variables";
+.section{
+    background-color: variables.$fondo-azul;
+}
+

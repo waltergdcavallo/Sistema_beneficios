@@ -1,3 +1,4 @@
+@use "../abstracts/variables";
 input{
-    background-color: $fondo-azul;
+    background-color: variables.$fondo-azul;
 }
