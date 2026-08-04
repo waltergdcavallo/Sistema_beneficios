@@ -116,7 +116,7 @@
                                                 <?php 
                                                 $sql2="select * from historial where id_beneficio=? and id_usuario=?";
                                                 $stmt2=$conex->prepare($sql2);
-                                                $stmt2->bind_param("ii", $_SESSION['id_usuario'], $fila['id_beneficio']);
+                                                $stmt2->bind_param("ii", $fila['id_beneficio'], $_SESSION['id_usuario']);
                                                 $stmt2->execute();
                                                 $resultado2=$stmt2->get_result();
                                                 if($resultado2->num_rows>0){
