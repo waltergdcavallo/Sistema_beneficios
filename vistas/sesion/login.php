@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse me-2" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                        <a class="nav-link active button-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
                     </li>
                 </ul>
                 <a href="http://localhost/sistema_beneficios/vistas/usuarios/form.php" class="btn btn-dark ms-auto">Registrarse</a>
@@ -45,13 +45,13 @@
                     <div class="mt-5 text-center"><h3>Inicio de Sesión</h3></div>
                     <form action="../../publico/acciones/sesion/acceso.php" method="post">
                     <div class="mb-3">
-                      <label for="dni" class="form-label"> Email:</label>
-                      <input type="text" class="form-control" name="email" id="email" placeholder="ejemplo@gmail.com" required>
+                      <label for="email" class="form-label"> Email:</label>
+                      <input type="text" class="form-control input" name="email" id="email" placeholder="ejemplo@gmail.com" required>
                     </div>
 
                     <div class="mb-3">
                       <label for="clave" class="form-label">Contraseña:</label>
-                      <input type="password" class="form-control" name="password_hash" id="password_hash" minlength="8" placeholder="Ingresa la contraseña" required>
+                      <input type="password" class="form-control input" name="password_hash" id="password_hash" minlength="8" placeholder="Ingresa la contraseña" required>
                     </div>
 
                     <div class="text-center mt-5 pt-5"><button type="submit" class="btn button-cancel" name="btn_ingresar" id="btn_ingresar">Ingresar</button></div>

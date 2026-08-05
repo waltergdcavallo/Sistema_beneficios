@@ -1,4 +1,23 @@
 @use "../abstracts/variables";
-input{
+.input{
     background-color: variables.$fondo-azul;
+    color: white;
+    
+    ::shadow{
+        color: variables.$fondo-azul-oscuro;
+    }
+
+    &::placeholder{
+        color: white;
+    }
+    
+    &:focus::placeholder{
+        color: white;
+    }
+
+    &:focus{
+        background-color: variables.$fondo-azul;
+        color: white;
+    }
 }
+
