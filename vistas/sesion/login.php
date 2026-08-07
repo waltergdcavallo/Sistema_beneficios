@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     if(isset($_SESSION["rol"]) && !empty($_SESSION['rol'])){
@@ -56,10 +55,7 @@
 
                     <div class="text-center mt-5 pt-5"><button type="submit" class="btn button-cancel" name="btn_ingresar" id="btn_ingresar">Ingresar</button></div>
                     </form>
-
-  
   <?php
-    
             if (isset($_SESSION["error"])){
 
                 echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".htmlspecialchars($_SESSION["error"])."</strong></div></div>"; 
@@ -74,7 +70,5 @@
     </section>
    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
 </body>
-
 </html>
