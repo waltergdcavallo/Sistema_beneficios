@@ -1,5 +1,6 @@
 @use "../abstracts/variables";
 nav{
-    background-color: variables.$fondo-beige;
+    background-color: variables.$fondo-verde;
     border-bottom: solid variables.$fondo-verde;
+    color: variables.$fondo-beige;
 }

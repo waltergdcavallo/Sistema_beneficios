@@ -1,0 +1,8 @@
+@use "../abstracts/variables";
+@use "../base/fonts";
+.div_form{
+    background-color: variables.$fondo-verde;
+    border-radius: 30px;
+    font-family: font;
+    color: white;
+}
