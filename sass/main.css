@@ -5,50 +5,62 @@
   border-width: 2px;
   color: white;
   transition: 0.5s;
+  opacity: 1;
 }
 .button-cancel:hover {
   background-color: #000B58;
   transition: 0.5s;
   color: white;
   border-color: white;
+  opacity: 1;
 }
 
 .button-confirm {
   background-color: #006A67;
+  opacity: 1;
 }
 
 .button-nav {
   background-color: #FFF4B7;
   border-radius: 30px;
   transition: 0.5s;
+  opacity: 1;
 }
 .button-nav:hover {
   background-color: #003161;
   transition: 0.5s;
   color: white;
+  opacity: 1;
 }
 
 .input {
-  background-color: #003161;
-  color: white;
-}
-.input ::shadow {
+  background-color: #FFF4B7;
   color: #000B58;
+  opacity: 1;
 }
 .input::-moz-placeholder {
-  color: white;
+  color: black;
+  opacity: 1;
 }
 .input::placeholder {
-  color: white;
+  color: black;
+  opacity: 1;
 }
 .input:focus::-moz-placeholder {
-  color: white;
+  color: black;
+  opacity: 1;
 }
 .input:focus::placeholder {
-  color: white;
+  color: black;
+  opacity: 1;
 }
 .input:focus {
-  background-color: #003161;
+  background-color: #FFF4B7;
+  color: black;
+  opacity: 1;
+}
+
+label {
   color: white;
 }
 
@@ -57,14 +69,15 @@
 }
 
 body {
-  background-color: #FFF4B7;
+  background-color: #003161;
 }
 
 nav {
   background-color: #FFF4B7;
   border-bottom: solid #006A67;
+  opacity: 1;
 }
 
 section {
-  background-color: #FFF4B7;
+  background-color: #003161;
 }/*# sourceMappingURL=main.css.map */

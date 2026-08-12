@@ -6,26 +6,31 @@
     border-width: 2px;
     color: white;
     transition: 0.5s;
+    opacity: 1;
     
     &:hover{
         background-color: variables.$fondo-azul-oscuro;
         transition: 0.5s;
         color: white;
         border-color: white;
+        opacity: 1;
     }
 }
 .button-confirm{
     background-color: variables.$fondo-verde;
+    opacity: 1;
 }
 
 .button-nav{
     background-color: variables.$fondo-beige;
     border-radius: 30px;
     transition: 0.5s;
+    opacity: 1;
 
     &:hover{
         background-color: variables.$fondo-azul;
         transition: 0.5s;
         color: white;
+        opacity: 1;
     }
 }
