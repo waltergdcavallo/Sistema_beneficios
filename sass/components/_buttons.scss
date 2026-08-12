@@ -1,8 +1,7 @@
 @use "../abstracts/variables";
-.button-cancel{
+.button-confirm{
     background-color: variables.$fondo-verde;
-    border-radius: 30px;
-    border-color: black;
+    border-radius: 10px;
     border-width: 2px;
     color: white;
     transition: 0.5s;
@@ -16,16 +15,16 @@
         opacity: 1;
     }
 }
-.button-confirm{
+.button-cancel{
     background-color: variables.$fondo-verde;
     opacity: 1;
 }
 
 .button-nav{
     background-color: variables.$fondo-beige;
-    border-radius: 30px;
+    border-radius: 5px;
     transition: 0.5s;
-    opacity: 1;
+    color: black;
 
     &:hover{
         background-color: variables.$fondo-azul;
