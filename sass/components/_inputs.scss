@@ -2,22 +2,18 @@
 .input{
     background-color: variables.$fondo-beige;
     color: variables.$fondo-azul-oscuro;
-    opacity: 1;
 
     &::placeholder{
         color: black;
-        opacity: 1;
     }
     
     &:focus::placeholder{
         color: black;
-        opacity: 1;
     }
 
     &:focus{
         background-color: variables.$fondo-beige;
         color: black;
-        opacity: 1;
     }
 }
 

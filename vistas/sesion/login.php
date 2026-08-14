@@ -21,7 +21,7 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="http://localhost/sistema_beneficios/vistas/inicio.php">Sistema de beneficios</a>
+            <a class="navbar-brand button-nav-title" href="http://localhost/sistema_beneficios/vistas/inicio.php">Sistema de beneficios</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,17 +40,17 @@
         <div class="container mt-3 mb-5">
             <div class="row">
                 <div class="col-12 col-md-2"></div>
-                <div class="col-12 col-md-8 div_form shadow">
-                    <div class="mt-5 text-center"><h3>Inicio de Sesión</h3></div>
+                <div class="col-12 col-md-8 div-form shadow">
+                    <div class="mt-5"><h3>Inicio de Sesión</h3></div>
                     <form action="../../publico/acciones/sesion/acceso.php" method="post">
                     <div class="mb-3">
                       <label for="email" class="form-label"> Email:</label>
-                      <input type="text" class="form-control input shadow" name="email" id="email" placeholder="ejemplo@gmail.com" required>
+                      <input type="text" class="form-control input shadow" name="email" id="email" placeholder="Ejemplo@gmail.com" required>
                     </div>
 
                     <div class="mb-3">
-                      <label for="clave" class="form-label">Contraseña:</label>
-                      <input type="password" class="form-control input shadow" name="password_hash" id="password_hash" minlength="8" placeholder="Ingresa la contraseña" required>
+                      <label for="password" class="form-label">Contraseña:</label>
+                      <input type="password" class="form-control input shadow" name="password_hash" id="password_hash" minlength="8" placeholder="Ingrese la contraseña" required>
                     </div>
 
                     <?php
@@ -64,7 +64,7 @@
                     <div class="col-12 col-md-2"></div>
                 </div>
             </div>
-            <div class="text-center mt-5 pt-5"><button type="submit" class="btn button-confirm" name="btn_ingresar" id="btn_ingresar">Ingresar</button></div>
+            <div class="text-center mt-5 pt-5"><button type="submit" class="btn button-confirm col-2" name="btn_ingresar" id="btn_ingresar">Ingresar</button></div>
             </form>
         </div>
     </section>

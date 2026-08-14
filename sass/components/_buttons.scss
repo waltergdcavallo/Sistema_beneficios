@@ -5,31 +5,53 @@
     border-width: 2px;
     color: white;
     transition: 0.5s;
-    opacity: 1;
     
     &:hover{
         background-color: variables.$fondo-azul-oscuro;
         transition: 0.5s;
         color: white;
         border-color: white;
-        opacity: 1;
+        scale: 110%;
+        
     }
 }
 .button-cancel{
-    background-color: variables.$fondo-verde;
-    opacity: 1;
+    background-color: variables.$fondo-rojo;
+    transition: 0.5s;
+    color: white;
+
+
+    &:hover{
+        transition: 0.5s;
+        background-color: variables.$fondo-azul-oscuro;
+        color: white;
+        border-color: white;
+        scale: 110%;
+    }
 }
 
 .button-nav{
-    background-color: variables.$fondo-beige;
+    background-color: black;
     border-radius: 5px;
     transition: 0.5s;
-    color: black;
+    color: variables.$fondo-beige;
 
     &:hover{
-        background-color: variables.$fondo-azul;
+        background: variables.$gradient-body;
         transition: 0.5s;
         color: white;
-        opacity: 1;
+        scale: 110%;
+    }
+}
+
+.button-nav-title{
+    color: variables.$fondo-beige;
+    border-radius: 5px;
+    transition: 0.5s;
+
+    &:hover{
+        transition: 0.5s;
+        scale: 105%;
+        color: variables.$fondo-beige;
     }
 }

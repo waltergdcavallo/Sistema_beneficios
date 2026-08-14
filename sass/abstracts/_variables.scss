@@ -1,5 +1,7 @@
 $fondo-azul-oscuro:#000B58 !default;
 $fondo-azul: #003161 !default;
-$fondo-verde:#006A67 !default;
+$fondo-verde:#008e3b !default;
 $fondo-beige:#FFF4B7 !default;
 $fondo-rojo:#cc3a63 !default;
+
+$gradient-body: radial-gradient(circle, $fondo-azul 30%, $fondo-azul-oscuro 60%, $fondo-verde 90%);

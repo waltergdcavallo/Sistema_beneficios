@@ -1,8 +1,18 @@
 @use "../abstracts/variables";
 @use "../base/fonts";
-.div_form{
-    background-color: variables.$fondo-verde;
+.div-form{
     border-radius: 30px;
     font-family: font;
     color: white;
+    padding-bottom: 100px;
+    padding-top: 20px;
+    
+    h3{
+        color: variables.$fondo-beige;
+        padding: 20px;
+        letter-spacing: 5px;
+        font-size: 50px;
+        font-weight: 900;
+        margin-bottom: 30px;
+    }
 }
