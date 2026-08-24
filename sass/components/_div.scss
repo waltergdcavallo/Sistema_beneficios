@@ -2,17 +2,47 @@
 @use "../base/fonts";
 .div-form{
     border-radius: 30px;
-    font-family: font;
+    font-family: fonts.$font-body;
     color: white;
-    padding-bottom: 100px;
-    padding-top: 20px;
+    padding-bottom: 50px;
+    background-color: variables.$fondo-azul;
     
     h3{
         color: variables.$fondo-beige;
-        padding: 20px;
-        letter-spacing: 5px;
+        letter-spacing: 2px;
         font-size: 50px;
-        font-weight: 900;
-        margin-bottom: 30px;
+        font-weight: 500;
+        padding-top: 5%;
     }
+}
+
+.div-title{
+    font-family: fonts.$font-body;
+    width: 100%;
+    padding: 50px;
+    background-color: variables.$fondo-azul;
+    margin-top: 50px;
+    border-radius: 10px;
+    div{
+        width: 100%;
+        padding: 50px;
+        background-color: variables.$fondo-azul-oscuro;
+        color: variables.$fondo-beige;
+        border-radius: 10px;
+        h1{
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 50px;
+        }
+
+        p{
+            font-size: 20px;
+            margin-top: 50px;
+        }
+    }
+}
+
+.div-welcome{
+    font-family: fonts.$font-body;
+    
 }

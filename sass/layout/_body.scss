@@ -1,4 +1,6 @@
 @use "../abstracts/variables";
 body{
     background: variables.$gradient-body;
+    background-size: cover;
+    min-height: 100vh;
 }

@@ -36,35 +36,29 @@
         </div>
     </nav>
    
-    <section>
-        <div class="container mt-3 mb-5">
-            <div class="row">
-                <div class="col-12 col-md-2"></div>
-                <div class="col-12 col-md-8 div-form shadow">
-                    <div class="mt-5"><h3>Inicio de Sesión</h3></div>
-                    <form action="../../publico/acciones/sesion/acceso.php" method="post">
-                    <div class="mb-3">
-                      <label for="email" class="form-label"> Email:</label>
-                      <input type="text" class="form-control input shadow" name="email" id="email" placeholder="Ejemplo@gmail.com" required>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="password" class="form-label">Contraseña:</label>
-                      <input type="password" class="form-control input shadow" name="password_hash" id="password_hash" minlength="8" placeholder="Ingrese la contraseña" required>
-                    </div>
-
-                    <?php
-            if (isset($_SESSION["error"])){
-                
-                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".htmlspecialchars($_SESSION["error"])."</strong></div></div>"; 
-                
-                unset($_SESSION["error"]);
-                }
-                ?> 
-                    <div class="col-12 col-md-2"></div>
+    <section class="container mt-5">
+        <div class="div-form shadow">
+            <h3 class="ps-5">INICIO DE SESIÓN</h3>
+            <form action="../../publico/acciones/sesion/acceso.php" method="post" class="p-5">
+                <div class="mb-3">
+                    <label for="email" class="form-label"> Email:</label>
+                    <input type="text" class="form-control input shadow" name="email" id="email" placeholder="Ejemplo@gmail.com" required>
                 </div>
-            </div>
-            <div class="text-center mt-5 pt-5"><button type="submit" class="btn button-confirm col-2" name="btn_ingresar" id="btn_ingresar">Ingresar</button></div>
+
+                <div class="mb-5">
+                    <label for="password" class="form-label">Contraseña:</label>
+                    <input type="password" class="form-control input shadow" name="password_hash" id="password_hash" minlength="8" placeholder="Ingrese la contraseña" required>
+                </div>
+
+                <?php
+                    if (isset($_SESSION["error"])){
+                
+                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".htmlspecialchars($_SESSION["error"])."</strong></div></div>"; 
+                
+                        unset($_SESSION["error"]);
+                    }
+                ?> 
+                <button type="submit" class="btn button-confirm col-2" name="btn_ingresar" id="btn_ingresar">Ingresar</button>
             </form>
         </div>
     </section>

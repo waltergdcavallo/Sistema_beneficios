@@ -15,6 +15,7 @@
         
     }
 }
+
 .button-cancel{
     background-color: variables.$fondo-rojo;
     transition: 0.5s;
@@ -23,9 +24,9 @@
 
     &:hover{
         transition: 0.5s;
-        background-color: variables.$fondo-azul-oscuro;
-        color: white;
-        border-color: white;
+        background-color: variables.$fondo-beige;
+        color: black;
+        border-color: black;
         scale: 110%;
     }
 }
@@ -37,7 +38,7 @@
     color: variables.$fondo-beige;
 
     &:hover{
-        background: variables.$gradient-body;
+        background: linear-gradient(180deg,variables.$fondo-verde 0%, variables.$fondo-azul-oscuro 100%);
         transition: 0.5s;
         color: white;
         scale: 110%;

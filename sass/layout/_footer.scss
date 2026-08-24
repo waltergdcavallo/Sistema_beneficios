@@ -1,0 +1,92 @@
+@use "../abstracts/variables";
+@use "../base/fonts";
+
+footer{
+  background: linear-gradient(180deg, variables.$fondo-azul-oscuro 0%, darken(variables.$fondo-azul-oscuro, 5%) 100%);
+  border-top: 3px solid variables.$fondo-verde;
+  color: #ffffff;
+  padding: 3rem 1.5rem 1rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+
+  .div-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem;
+  }
+
+  .column {
+    .title {
+      color: variables.$fondo-beige;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: variables.$fondo-beige;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      border-left: 3px solid variables.$fondo-rojo;
+      padding-left: 0.5rem;
+    }
+
+    .text {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.85rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.4;
+
+        strong {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .contact {
+      display: inline-block;
+      background-color: variables.$fondo-rojo;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken(variables.$fondo-rojo, 10%);
+      }
+    }
+  }
+
+  .bottom {
+    max-width: 1200px;
+    margin: 2.5rem auto 0 auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+      margin: 0;
+    }
+  }
+}

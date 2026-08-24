@@ -277,12 +277,10 @@
                 </nav>
 
                 <section class="container mt-5">
-                    
                     <div class="shadow div-form">
-                        <h3>Registrarse</h3>
+                        <h3 class="ps-5">REGISTRARSE</h3>
                         <form action="../../publico/acciones/usuarios/crear.php" method="post" class="p-5 row">
 
-                            
                             <div class="mb-3 col-4">
                                 <label class="form-label">Nombre</label>
                                 <input type="text" class="form-control input" id="nombre" name="nombre" placeholder="Nombre" required>
@@ -333,7 +331,6 @@
                         }
                     }
                     ?>
-                    </div>
                 </section>
 <!-- // -->
 <?php
