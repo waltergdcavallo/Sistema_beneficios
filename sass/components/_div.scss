@@ -1,5 +1,7 @@
 @use "../abstracts/variables";
 @use "../base/fonts";
+
+
 .div-form{
     border-radius: 30px;
     font-family: fonts.$font-body;
@@ -13,6 +15,28 @@
         font-size: 50px;
         font-weight: 500;
         padding-top: 5%;
+    }
+
+    input{
+    background-color: variables.$fondo-beige;
+    color: variables.$fondo-azul-oscuro;
+
+    &::placeholder{
+        color: black;
+    }
+    
+    &:focus::placeholder{
+        color: black;
+    }
+
+    &:focus{
+        background-color: variables.$fondo-beige;
+        color: black;
+    }
+    }
+    
+    label{
+        color: white;
     }
 }
 

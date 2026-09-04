@@ -32,47 +32,56 @@
                 <!-- // -->
                 <?php include("../complementario/encabezado.php")?>
 
-                    <section class="text-center container p-5 my-5 section">
-                        <div class="row">
-                            <div class="div-form">
-                                <h3>Bienvendo <?php echo $_SESSION['nombreyapellido']?></h3>
-                            </div>
-                            <div>
-                                <h5>Listado de beneficios</h5>
-                            </div>
+                    <section class="text-center container p-5 my-5 section-cards">
+                        <div class="div-form mb-3">
+                            <h3>Bienvenido <?php echo $_SESSION['nombreyapellido']?></h3>
                         </div>
-                        <?php
-                                if($resultado->num_rows>0){
-                                    while($fila=$resultado->fetch_assoc()){?>
-                                        <div class="card card-list col-3">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Beneficio <?php echo $fila['nombre']?></h5>
-                                                <p>Activo</p>
+                        <div class="mb-4">
+                            <h5 class="h5">Listado de beneficios</h5>
+                        </div>
+                    
+                        <div class="row g-4 justify-content-center">
+                            <?php
+                            if ($resultado->num_rows > 0) {
+                                while ($fila = $resultado->fetch_assoc()) { ?>
+                                    
+                                    <div class="col-12 col-md-4">
+                                        <div class="card card-list h-100">
+                                            <div class="card-body d-flex flex-column justify-content-between">
+                                                <div>
+                                                    <h5 class="card-title">Beneficio <?php echo $fila['nombre']?></h5>
+                                                    <p>Activo</p>
+                                                </div>
+                    
                                                 <?php 
-                                                $sql2="select * from historial where id_beneficio=? and id_usuario=?";
-                                                $beneficio=$fila['id_beneficio'];
-                                                $usuario=$_SESSION['id_usuario'];
-                                                $stmt2=$conex->prepare($sql2);
+                                                $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
+                                                $beneficio = $fila['id_beneficio'];
+                                                $usuario = $_SESSION['id_usuario'];
+                                                $stmt2 = $conex->prepare($sql2);
                                                 $stmt2->bind_param("ii", $beneficio, $usuario);
                                                 $stmt2->execute();
-                                                $resultado2=$stmt2->get_result();
-                                                if($resultado2->num_rows>0){
-                                                    echo "<p>inscripto</p>";
-                                                }else{?> 
+                                                $resultado2 = $stmt2->get_result();
+                                                
+                                                if ($resultado2->num_rows > 0) {
+                                                    echo "<p class='text-success font-weight-bold'>inscripto</p>";
+                                                } else { ?> 
                                                     <form action="../publico/acciones/historial/crear.php" method="post">
-                                                        <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
-                                                        <input type="hidden" class="form-control" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
-                                                        <button type="submit" class="btn button-confirm">Anotarse al beneficio</button>
+                                                        <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                        <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
+                                                        <button type="submit" class="btn button-confirm w-100">Anotarse al beneficio</button>
                                                     </form> 
-                                                <?php }?>
+                                                <?php } ?>
                                             </div>
                                         </div>
-                            <?php 
-                                    }
-                                } else{
-                                    echo "No existen beneficios activos por el momento";
+                                    </div>
+                    
+                                <?php 
                                 }
+                            } else {
+                                echo "<p class='col-12'>No existen beneficios activos por el momento</p>";
+                            }
                             ?>
+                        </div>
                     </section>
 <!-- // -->
 <?php
@@ -97,42 +106,56 @@
 
                         <?php include("../complementario/encabezado.php")?>
 
-                        <section class="text-center container">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h1>Bienvendo <?php echo $_SESSION['nombreyapellido']?></h1>
-                                </div>
+                        <section class="text-center container p-5 my-5 section-cards">
+                            <div class="div-form mb-3">
+                                <h3>Bienvenido <?php echo $_SESSION['nombreyapellido']?></h3>
                             </div>
-                            <?php
-                                if($resultado->num_rows>0){
-                                    while($fila=$resultado->fetch_assoc()){?>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Beneficio <?php $fila['nombre']?></h5>
-                                                <p>Activo</p>
-                                                <?php 
-                                                $sql2="select * from historial where id_beneficio=? and id_usuario=?";
-                                                $stmt2=$conex->prepare($sql2);
-                                                $stmt2->bind_param("ii", $fila['id_beneficio'], $_SESSION['id_usuario']);
-                                                $stmt2->execute();
-                                                $resultado2=$stmt2->get_result();
-                                                if($resultado2->num_rows>0){
-                                                    echo "inscripto";
-                                                }else{?> 
-                                                    <form action="../publico/acciones/historial/crear.php" method="post">
-                                                        <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
-                                                        <input type="hidden" class="form-control" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
-                                                        <button type="submit" class="btn btn-primary">Anotarse al beneficio</button>
-                                                    </form> 
-                                                <?php }?>
+                            <div class="mb-4">
+                                <h5 class="h5">Listado de beneficios activos</h5>
+                            </div>
+                        
+                            <div class="row g-4 justify-content-center">
+                                <?php
+                                if ($resultado->num_rows > 0) {
+                                    while ($fila = $resultado->fetch_assoc()) { ?>
+                                        
+                                        <div class="col-12 col-md-4">
+                                            <div class="card card-list h-100">
+                                                <div class="card-body d-flex flex-column justify-content-between">
+                                                    <div>
+                                                        <h5 class="card-title">Beneficio <?php echo $fila['nombre']?></h5>
+                                                        <p>Activo</p>
+                                                    </div>
+                        
+                                                    <?php 
+                                                    $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
+                                                    $beneficio = $fila['id_beneficio'];
+                                                    $usuario = $_SESSION['id_usuario'];
+                                                    $stmt2 = $conex->prepare($sql2);
+                                                    $stmt2->bind_param("ii", $beneficio, $usuario);
+                                                    $stmt2->execute();
+                                                    $resultado2 = $stmt2->get_result();
+                                                    
+                                                    if ($resultado2->num_rows > 0) {
+                                                        echo "<p class='text-success font-weight-bold'>inscripto</p>";
+                                                    } else { ?> 
+                                                        <form action="../publico/acciones/historial/crear.php" method="post">
+                                                            <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                            <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
+                                                            <button type="submit" class="btn button-confirm w-100">Anotarse al beneficio</button>
+                                                        </form> 
+                                                    <?php } ?>
+                                                </div>
                                             </div>
                                         </div>
-                            <?php 
+                        
+                                    <?php 
                                     }
-                                } else{
-                                    echo "No existen beneficios activos por el momento";
+                                } else {
+                                    echo "<p class='col-12'>No existen beneficios activos por el momento</p>";
                                 }
-                            ?>
+                                ?>
+                            </div>
                         </section>
                 
 <!-- // -->
@@ -157,7 +180,7 @@
                         <section class="mt-5 text-center container">
                             <div class="row">
                                 <div class="col-12">
-                                    <h1>Bienvendo, espera a que un administrador de acceso a tu cuenta.</h1>
+                                    <h1 class="h5">Bienvendo, espera a que un administrador de acceso a tu cuenta.</h1>
                                 </div>
                             </div>
                         </section>

@@ -42,13 +42,12 @@
 
                     <?php include("../../complementario/encabezado.php") ?>
 
-                    <section class="container">
+                    <section class="container mt-5 mb-5">
+                        <div class="row div-form shadow">
 
-                        <div class="text-center my-5 text text-primary">
-                            <h3>Beneficio <?php echo $fila["nombrebene"]?></h3>
-                        </div>
-
-                        <div class="row">
+                            <div class="text-center my-5">
+                                <h3 class="ps-5">Beneficio <?php echo $fila["nombrebene"]?></h3>
+                            </div>
 
                             <div class="mb-3 col-6">
                                 <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
@@ -68,7 +67,7 @@
 
                             <div class="mb-3 col-6">
                                 <label for="exampleFormControlInput1" class="form-label">Estado</label>
-                                <input class="form-control" type="text" value="<?php if($fila['estado']>0)
+                                <input class="form-control input" type="text" value="<?php if($fila['estado']>0)
                                     { echo "Activo";
                                     } else { echo "Terminado";
                                     } ?>" aria-label="Disabled input example" disabled>
@@ -81,14 +80,14 @@
                                 <div class="d-sm-inline-block">
                                     <form action="form.php" method="post">
                                         <input type="hidden" name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                        <button class="btn btn-primary p-1" type="submit">Editar</button>
+                                        <button class="btn button-confirm p-1" type="submit">Editar</button>
                                     </form>
                                 </div>
     
                                 <div class="d-sm-inline-block">
                                     <form action="../../publico/acciones/beneficios/eliminar.php" method="post">
                                         <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                        <button class="btn btn-danger p-1" type="submit">Eliminar</button>
+                                        <button class="btn button-cancel p-1" type="submit">Eliminar</button>
                                     </form>
                                 </div>
                             </div>
@@ -98,6 +97,9 @@
                             ?>
                         </div>
                     </section>
+    <!-- // -->
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 <!-- // -->
 <?php 
@@ -113,8 +115,6 @@
     }
 ?>
 
-<?php include("../../complementario/pie.php") ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 

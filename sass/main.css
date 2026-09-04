@@ -65,6 +65,29 @@
   font-weight: 500;
   padding-top: 5%;
 }
+.div-form input {
+  background-color: #FFF4B7;
+  color: #000B58;
+}
+.div-form input::-moz-placeholder {
+  color: black;
+}
+.div-form input::placeholder {
+  color: black;
+}
+.div-form input:focus::-moz-placeholder {
+  color: black;
+}
+.div-form input:focus::placeholder {
+  color: black;
+}
+.div-form input:focus {
+  background-color: #FFF4B7;
+  color: black;
+}
+.div-form label {
+  color: white;
+}
 
 .div-title {
   font-family: "Cabin", sans-serif;
@@ -196,7 +219,6 @@ label {
 }
 .section-cards:hover p {
   font-size: 25px;
-  transition: 1s;
 }
 
 .card-list {
@@ -205,7 +227,6 @@ label {
   border-radius: 10px;
   border-width: 5px;
   font-family: "Cabin", sans-serif;
-  margin: 30px;
   padding: 40px;
   transition: 0.5s;
 }
@@ -223,6 +244,11 @@ label {
 .card-list:hover {
   scale: 110%;
   transition: 0.5s;
+}
+
+.h5 {
+  font-size: 50px;
+  margin: 30px;
 }
 
 body {
