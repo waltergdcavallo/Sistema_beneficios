@@ -342,4 +342,9 @@ nav {
 .section {
   background: linear-gradient(180deg, rgb(0, 49, 97) 0%, rgb(0, 4, 36) 55%);
   border-radius: 20px;
+}
+
+.section-dashboard {
+  margin-top: 100px;
+  margin-bottom: 100px;
 }/*# sourceMappingURL=main.css.map */
