@@ -120,30 +120,31 @@
                                 <h3>Crear Beneficio</h3>
                             </div>
 
-                            <div class="row">
+                                <form action="../../publico/acciones/beneficios/crear.php" method="post" class="row">
 
-                                <form action="../../publico/acciones/beneficios/crear.php" method="post">
-
-                                    <div class="col-6 mb-3">
+                                    <div class="col-6 mb-5">
                                         <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre">
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
-                                        <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio">
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Fecha de fin</label>
-                                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin">
+                                        <input type="text" class="form-control input" id="nombre" name="nombre">
                                     </div>
 
-                                    <div class="col-6 mb-3">
+                                    <div class="col-6 mb-5">
                                         <label for="exampleFormControlInput1" class="form-label">Descripción</label>
-                                        <input type="text" class="form-control" id="descripcion" name="descripcion">
+                                        <input type="text" class="form-control input" id="descripcion" name="descripcion">
+                                    </div>
+
+                                    <div class="col-6 mb-5">
+                                        <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
+                                        <input type="date" class="form-control input" id="fecha_inicio" name="fecha_inicio">
+                                    </div>
+
+                                    <div class="col-6 mb-5">
+                                        <label for="exampleFormControlInput1" class="form-label">Fecha de fin</label>
+                                        <input type="date" class="form-control input" id="fecha_fin" name="fecha_fin">
                                     </div>
 
                                     <div class="mb-5 col-12">
-                                        <select class="form-select" aria-label="Default select example" id="estado" name="estado">
+                                        <label for="exampleFormControlInput1" class="form-label">Estado</label>
+                                        <select class="form-select input" aria-label="Default select example" id="estado" name="estado">
                                         <option selected>Seleccione el estado</option>
                                         <option value="1">Activo</option>
                                         <option value="0">Terminado</option>
@@ -166,8 +167,7 @@
                                         echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Beneficio agregado</strong></div></div>";
                                     }
                                 }
-                                ?> 
-                            </div>
+                                ?>
                         </section>
                         
 <!-- // -->

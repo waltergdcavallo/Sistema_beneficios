@@ -43,52 +43,57 @@
                     <?php include("../../complementario/encabezado.php") ?>
 
                     <section class="container mt-5 mb-5">
-                        <div class="row div-form shadow">
+                        <div class="div-form shadow">
 
                             <div class="text-center my-5">
                                 <h3 class="ps-5">Beneficio <?php echo $fila["nombrebene"]?></h3>
                             </div>
-
-                            <div class="mb-3 col-6">
-                                <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
-                                <input class="form-control" type="text" value="<?php echo $fila['fecha_inicio'];?>" aria-label="Disabled input example" disabled>
-                            </div>
-
-                            <div class="mb-3 col-6">
-                                <label for="exampleFormControlInput1" class="form-label">fecha fin del beneficio</label>
-                                <input class="form-control" type="text" value="<?php echo $fila['fecha_fin'];?>" aria-label="Disabled input example" disabled>
-                            </div>
-
-
-                            <div class="mb-3 col-6">
-                                <label for="exampleFormControlInput1" class="form-label">Descripción</label>
-                                <input class="form-control" type="text" value="<?php echo $fila['descripcion'];?>" aria-label="Disabled input example" disabled>
-                            </div>
-
-                            <div class="mb-3 col-6">
-                                <label for="exampleFormControlInput1" class="form-label">Estado</label>
-                                <input class="form-control input" type="text" value="<?php if($fila['estado']>0)
-                                    { echo "Activo";
-                                    } else { echo "Terminado";
-                                    } ?>" aria-label="Disabled input example" disabled>
-                            </div>
-
-                            <!-- // -->
-                            <?php if($_SESSION['rol']=="admin"){ ?>
-
-                            <div class="tect-center">
-                                <div class="d-sm-inline-block">
-                                    <form action="form.php" method="post">
-                                        <input type="hidden" name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                        <button class="btn button-confirm p-1" type="submit">Editar</button>
-                                    </form>
+                            
+                            <div class="row">
+                                <div class="col-1"></div>
+                                
+                                <div class="mb-5 col-5">
+                                    <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
+                                    <input class="form-control" type="text" value="<?php echo $fila['fecha_inicio'];?>" aria-label="Disabled input example" disabled>
                                 </div>
     
-                                <div class="d-sm-inline-block">
-                                    <form action="../../publico/acciones/beneficios/eliminar.php" method="post">
-                                        <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                        <button class="btn button-cancel p-1" type="submit">Eliminar</button>
-                                    </form>
+                                <div class="mb-5 col-5">
+                                    <label for="exampleFormControlInput1" class="form-label">fecha fin del beneficio</label>
+                                    <input class="form-control" type="text" value="<?php echo $fila['fecha_fin'];?>" aria-label="Disabled input example" disabled>
+                                </div>
+                                
+                                <div class="col-1"></div>
+
+                                <div class="mb-5 col-5">
+                                    <label for="exampleFormControlInput1" class="form-label">Descripción</label>
+                                    <input class="form-control" type="text" value="<?php echo $fila['descripcion'];?>" aria-label="Disabled input example" disabled>
+                                </div>
+    
+                                <div class="mb-5 col-5">
+                                    <label for="exampleFormControlInput1" class="form-label">Estado</label>
+                                    <input class="form-control input" type="text" value="<?php if($fila['estado']>0)
+                                        { echo "Activo";
+                                        } else { echo "Terminado";
+                                        } ?>" aria-label="Disabled input example" disabled>
+                                </div>
+                                
+                                <!-- // -->
+                                <?php if($_SESSION['rol']=="admin"){ ?>
+    
+                                <div class="tect-center">
+                                    <div class="d-sm-inline-block">
+                                        <form action="form.php" method="post">
+                                            <input type="hidden" name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
+                                            <button class="btn button-confirm p-1" type="submit">Editar</button>
+                                        </form>
+                                    </div>
+        
+                                    <div class="d-sm-inline-block">
+                                        <form action="../../publico/acciones/beneficios/eliminar.php" method="post">
+                                            <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
+                                            <button class="btn button-cancel p-1" type="submit">Eliminar</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                             <!-- // -->
