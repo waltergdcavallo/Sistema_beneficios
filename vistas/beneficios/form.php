@@ -45,41 +45,38 @@
                         </div>
 
 
-                        <div class="row">  
-                            <form action="../../publico/acciones/beneficios/editar.php" method="post">
+                        <div class="div-form">  
+                            <form action="../../publico/acciones/beneficios/editar.php" method="post" class="p-5 row">
 
                                 <input type="hidden" class="form-control" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']; ?>">
 
                                 <div class="col-6 mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>">
+                                    <input type="text" class="form-control input shadow" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>">
                                 </div>
                                 <div class="col-6 mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
-                                    <input type="text" class="form-control" id="fecha_inicio" name="fecha_inicio" value="<?php echo $fila['fecha_inicio']; ?>">
+                                    <input type="text" class="form-control input shadow" id="fecha_inicio" name="fecha_inicio" value="<?php echo $fila['fecha_inicio']; ?>">
                                 </div>
                                 <div class="col-6 mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Fecha de fin</label>
-                                    <input type="text" class="form-control" id="fecha_fin" name="fecha_fin" value="<?php echo $fila['fecha_fin']; ?>">
+                                    <input type="text" class="form-control input shadow" id="fecha_fin" name="fecha_fin" value="<?php echo $fila['fecha_fin']; ?>">
                                 </div>
 
                                 <div class="col-6 mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Descripción</label>
-                                    <input type="text" class="form-control" id="descripcion" name="descripcion" value="<?php echo $fila['descripcion']; ?>">
+                                    <input type="text" class="form-control input shadow" id="descripcion" name="descripcion" value="<?php echo $fila['descripcion']; ?>">
                                 </div>
 
                                 <div class="mb-5 col-12">
-                                    <select class="form-select" aria-label="Default select example" id="estado" name="estado">
+                                    <select class="form-select input shadow" aria-label="Default select example" id="estado" name="estado">
                                     <option selected value="<?php echo $fila['estado']; ?>">Seleccione el estado</option>
                                     <option value="1">Activo</option>
                                     <option value="0">Terminado</option>
                                     </select>
                                 </div>
-
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success">Editar</button>
-                                    <button type="reset" class="btn btn-danger">Cancelar</button>
-                                </div>
+                                    <button type="submit" class="btn button-confirm col-2">Editar</button>
+                                    <a href="lista.php" class="btn button-cancel col-2 ms-auto">Cancelar</a>
                             </form>
 
                             <!-- // -->
@@ -94,6 +91,12 @@
                             ?>
                         </div>
                     </section>
+                <div class="m-4 p-4"></div>
+   <?php include("../../complementario/pie.php") ?>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
 
 <!-- // -->
 <?php
@@ -120,44 +123,41 @@
                                 <h3>Crear Beneficio</h3>
                             </div>
 
-                                <form action="../../publico/acciones/beneficios/crear.php" method="post" class="row">
+                            <div class="div-form">
+                                <form action="../../publico/acciones/beneficios/crear.php" method="post" class="p-5 row">
 
                                     <div class="col-6 mb-5">
                                         <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control input" id="nombre" name="nombre">
+                                        <input type="text" class="form-control input shadow" id="nombre" name="nombre">
                                     </div>
 
                                     <div class="col-6 mb-5">
                                         <label for="exampleFormControlInput1" class="form-label">Descripción</label>
-                                        <input type="text" class="form-control input" id="descripcion" name="descripcion">
+                                        <input type="text" class="form-control input shadow" id="descripcion" name="descripcion">
                                     </div>
 
                                     <div class="col-6 mb-5">
                                         <label for="exampleFormControlInput1" class="form-label">Fecha de inicio</label>
-                                        <input type="date" class="form-control input" id="fecha_inicio" name="fecha_inicio">
+                                        <input type="date" class="form-control input shadow" id="fecha_inicio" name="fecha_inicio">
                                     </div>
 
                                     <div class="col-6 mb-5">
                                         <label for="exampleFormControlInput1" class="form-label">Fecha de fin</label>
-                                        <input type="date" class="form-control input" id="fecha_fin" name="fecha_fin">
+                                        <input type="date" class="form-control input shadow" id="fecha_fin" name="fecha_fin">
                                     </div>
 
                                     <div class="mb-5 col-12">
                                         <label for="exampleFormControlInput1" class="form-label">Estado</label>
-                                        <select class="form-select input" aria-label="Default select example" id="estado" name="estado">
+                                        <select class="form-select input shadow" aria-label="Default select example" id="estado" name="estado">
                                         <option selected>Seleccione el estado</option>
                                         <option value="1">Activo</option>
                                         <option value="0">Terminado</option>
                                         </select>
                                     </div>
-
-                                    <div class="text-center">
-
-                                        <button type="submit" class="btn btn-success">Crear</button>
-
-                                        <button type="reset" class="btn btn-danger">Cancelar</button>
-                                    </div>
+                                        <button type="submit" class="btn button-confirm col-2">Crear</button>
+                                        <a href="lista.php" class="btn button-cancel col-2 ms-auto">Cancelar</a>
                                 </form>
+                            </div>
                                 <!-- // -->
                                 <?php
                                 if (isset($_GET["mensaje"])){
@@ -169,7 +169,13 @@
                                 }
                                 ?>
                         </section>
-                        
+
+                <div class="m-4 p-4"></div>
+   <?php include("../../complementario/pie.php") ?>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
 <!-- // -->
 <?php
                 }
@@ -185,5 +191,4 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

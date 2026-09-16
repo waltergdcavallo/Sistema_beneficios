@@ -45,6 +45,8 @@
                         </div>
 
                         <div class="row">
+
+                        <section class="section-list">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -89,6 +91,8 @@
                                     ?>
                                 </tbody>
                             </table>
+                        </section>
+                            
                         </div>
                         <!-- // -->
                         <?php
@@ -142,51 +146,54 @@
                                 </div>
                             </div>
 
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Id</th>
-                                            <th scope="col">Nombre y apellido</th>
-                                            <th scope="col">Fecha de venta</th>
-                                            <th scope="col">Detalles</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <!-- // -->
-                                    <?php
-                                        if($result->num_rows>0){
-                                            while($fila=$result->fetch_assoc()){
-
-                                    ?>
-                                                <tr>
-                                                    <td><?php echo $fila["id_venta"]; ?></td>
-                                                    <td><?php echo $fila["nombreyapellido"]; ?></td>
-                                                    <td><?php echo $fila["fecha_venta"]; ?></td>
-                                                    <td>
-                                                        <div class="d-sm-inline-block">
-                                                            <form action="detalle.php" method="post">
-                                                                <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
-                                                                <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                    <!-- // -->
-                                    <?php
+                                <section class="section-list">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Nombre y apellido</th>
+                                                <th scope="col">Fecha de venta</th>
+                                                <th scope="col">Detalles</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+    
+                                        <!-- // -->
+                                        <?php
+                                            if($result->num_rows>0){
+                                                while($fila=$result->fetch_assoc()){
+    
+                                        ?>
+                                                    <tr>
+                                                        <td><?php echo $fila["id_venta"]; ?></td>
+                                                        <td><?php echo $fila["nombreyapellido"]; ?></td>
+                                                        <td><?php echo $fila["fecha_venta"]; ?></td>
+                                                        <td>
+                                                            <div class="d-sm-inline-block">
+                                                                <form action="detalle.php" method="post">
+                                                                    <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
+                                                                    <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+    
+                                        <!-- // -->
+                                        <?php
+                                            }
+                                        }else{
+                                        ?>
+                                            <tr>
+                                                <td scope="5"></td>
+                                                <div class="alert alert-danger text-center">No existen Venta en la tabla</div>
+                                            </tr>
+                                        <?php
                                         }
-                                    }else{
-                                    ?>
-                                        <tr>
-                                            <td scope="5"></td>
-                                            <div class="alert alert-danger text-center">No existen Venta en la tabla</div>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                    </tbody>
-                                </table> 
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </section>
+                                 
                             </div>
                             <!-- // -->
                             <?php
@@ -199,6 +206,13 @@
                             }
                             ?>
                         </section>
+                        
+        <div class="m-5 p-5"></div>
+   <?php include("../../complementario/pie.php") ?>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
 <!-- // -->
 <?php
                 }
@@ -214,5 +228,4 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

@@ -34,64 +34,71 @@
                     <h3>Historial del usuario</h3>
                 </div>
 
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Nombre del usuario</th>
-                            <th scope="col">Dni</th>
-                            <th scope="col">Nombre del beneficio</th>
-                            <th scope="col">Estado del beneficio</th>
-                            <th scope="col">Fecha de la inscripcion</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <!-- // -->
-                        <?php
-                            if($resultado->num_rows>0){
-                                while($fila=$resultado->fetch_assoc()){
-
-                        ?>
-                                    <tr>
-                                        <td><?php echo $fila["id_historial"]; ?></td>
-                                        <td><?php echo $fila["nombreusuario"]; ?></td>
-                                        <td><?php echo $fila["dni"]; ?></td>
-                                        <td><?php echo $fila["nombrebene"]; ?></td>
-                                        <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
-                                        <td><?php echo $fila["fecha_inscripto"]; ?></td>
-                                        <td>
-                                            <div class="d-sm-inline-block">
-                                                <form action="../usuarios/detalle.php" method="post">
-                                                    <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                                    <button class="btn btn-success p-1" type="submit">Ver usuario</button>
-                                                </form>
-                                            </div>
-                                            <div class="d-sm-inline-block">
-                                                <form action="../beneficios/detalle.php" method="post">
-                                                    <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                                    <button class="btn btn-primary p-1" type="submit">Ver beneficio</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                        <!-- // -->
-                        <?php
-                            }
-                        }else {
-                        ?>
+                <section class="section-list">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
-                                <td scope="5"></td>
-                                <div class="alert alert-danger text-center">No existe historial de este usuario</div>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre del usuario</th>
+                                <th scope="col">Dni</th>
+                                <th scope="col">Nombre del beneficio</th>
+                                <th scope="col">Estado del beneficio</th>
+                                <th scope="col">Fecha de la inscripcion</th>
+                                <th scope="col">Acciones</th>
                             </tr>
-                        <?php
-                        }
-                        ?>
-                    </tbody>
-                </table>
+                        </thead>
+                    <tbody>
+    
+                            <!-- // -->
+                            <?php
+                                if($resultado->num_rows>0){
+                                    while($fila=$resultado->fetch_assoc()){
+    
+                            ?>
+                                        <tr>
+                                            <td><?php echo $fila["id_historial"]; ?></td>
+                                            <td><?php echo $fila["nombreusuario"]; ?></td>
+                                            <td><?php echo $fila["dni"]; ?></td>
+                                            <td><?php echo $fila["nombrebene"]; ?></td>
+                                            <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
+                                            <td><?php echo $fila["fecha_inscripto"]; ?></td>
+                                            <td>
+                                                <div class="d-sm-inline-block">
+                                                    <form action="../usuarios/detalle.php" method="post">
+                                                        <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
+                                                        <button class="btn btn-success p-1" type="submit">Ver usuario</button>
+                                                    </form>
+                                                </div>
+                                                <div class="d-sm-inline-block">
+                                                    <form action="../beneficios/detalle.php" method="post">
+                                                        <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
+                                                        <button class="btn btn-primary p-1" type="submit">Ver beneficio</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+    
+                            <!-- // -->
+                            <?php
+                                }
+                            }else {
+                            ?>
+                                <tr>
+                                    <td scope="5"></td>
+                                    <div class="alert alert-danger text-center">No existe historial de este usuario</div>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </section>
             </div>
+
+<?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
 
 <!-- // -->
 <?php
@@ -123,69 +130,79 @@
 
                 <?php include("../../complementario/encabezado.php") ?>
 
+                <div class="container">
                 <div class="text-center">
-                    <div class="text-center my-5">
+                    <div class="my-5">
                         <h3>Historial del beneficio</h3>
                     </div>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre del beneficio</th>
-                                <th scope="col">Estado del beneficio</th>
-                                <th scope="col">Nombre del usuario</th>
-                                <th scope="col">Dni</th>
-                                <th scope="col">Fecha de la inscripcion</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <!-- // -->
-                            <?php
-                                if($result->num_rows>0){
-                                    while($fila=$result->fetch_assoc()){
-
-                            ?>
-                                        <tr>
-                                            <td><?php echo $fila["id_historial"]; ?></td>
-                                            <td><?php echo $fila["nombrebeneficio"]; ?></td>
-                                            <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
-                                            <td><?php echo $fila["nombreusuario"]; ?></td>
-                                            <td><?php echo $fila["dni"]; ?></td>
-                                            <td><?php echo $fila["fecha_inscripto"]; ?></td>
-                                            <td>
-                                                <div class="d-sm-inline-block">
-                                                    <form action="../beneficios/detalle.php" method="post">
-                                                        <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                                        <button class="btn-sm btn-outline-danger p-1" type="submit">Ver beneficio</button>
-                                                    </form>
-                                                </div>
-                                                <div class="d-sm-inline-block">
-                                                    <form action="../usuarios/detalle.php" method="post">
-                                                        <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                                        <button class="btn-sm btn-outline-success p-1" type="submit">Ver usuario</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                            <!-- // -->
-                            <?php
+                        <section class="section-list">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Nombre del beneficio</th>
+                                        <th scope="col">Estado del beneficio</th>
+                                        <th scope="col">Nombre del usuario</th>
+                                        <th scope="col">Dni</th>
+                                        <th scope="col">Fecha de la inscripcion</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+    
+                                <!-- // -->
+                                <?php
+                                    if($result->num_rows>0){
+                                        while($fila=$result->fetch_assoc()){
+    
+                                ?>
+                                            <tr>
+                                                <td><?php echo $fila["id_historial"]; ?></td>
+                                                <td><?php echo $fila["nombrebeneficio"]; ?></td>
+                                                <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
+                                                <td><?php echo $fila["nombreusuario"]; ?></td>
+                                                <td><?php echo $fila["dni"]; ?></td>
+                                                <td><?php echo $fila["fecha_inscripto"]; ?></td>
+                                                <td>
+                                                    <div class="d-sm-inline-block">
+                                                        <form action="../beneficios/detalle.php" method="post">
+                                                            <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
+                                                            <button class="btn-sm btn-outline-danger p-1" type="submit">Ver beneficio</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="d-sm-inline-block">
+                                                        <form action="../usuarios/detalle.php" method="post">
+                                                            <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
+                                                            <button class="btn-sm btn-outline-success p-1" type="submit">Ver usuario</button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+    
+                                <!-- // -->
+                                <?php
+                                    }
+                                }else {
+                                ?>
+                                    <tr>
+                                        <td scope="5"></td>
+                                        <div class="alert alert-danger text-center">No existe historial de este beneficio</div>
+                                    </tr>
+                                <?php
                                 }
-                            }else {
-                            ?>
-                                <tr>
-                                    <td scope="5"></td>
-                                    <div class="alert alert-danger text-center">No existe historial de este beneficio</div>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
                 </div>
+            </div>
+        </div>
+
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
 
 <!-- // -->
 <?php
@@ -214,56 +231,66 @@
 
                 <?php include("../../complementario/encabezado.php") ?>
 
+                <div class="container">
                 <div class="text-center">
-                    <div class="text-center my-5">
+                    <div class="my-5">
                         <h3>Historial general</h3>
                     </div>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nombre del usuario</th>
-                                <th scope="col">Dni</th>
-                                <th scope="col">Nombre del beneficio</th>
-                                <th scope="col">Estado del beneficio</th>
-                                <th scope="col">Fecha de la inscripcion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <!-- // -->
-                            <?php
-                                if($result->num_rows>0){
-                                    while($fila=$result->fetch_assoc()){
-
-                            ?>
-                                        <tr>
-                                            <td><?php echo $fila["id_historial"]; ?></td>
-                                            <td><?php echo $fila["nombreusuario"]; ?></td>
-                                            <td><?php echo $fila["dni"]; ?></td>
-                                            <td><?php echo $fila["nombrebeneficio"]; ?></td>
-                                            <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
-                                            <td><?php echo $fila["fecha_inscripto"]; ?></td>
-                                        </tr>
-
-                            <!-- // -->
-                            <?php
+                        <section class="section-list">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Nombre del usuario</th>
+                                        <th scope="col">Dni</th>
+                                        <th scope="col">Nombre del beneficio</th>
+                                        <th scope="col">Estado del beneficio</th>
+                                        <th scope="col">Fecha de la inscripcion</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+    
+                                <!-- // -->
+                                <?php
+                                    if($result->num_rows>0){
+                                        while($fila=$result->fetch_assoc()){
+    
+                                ?>
+                                            <tr>
+                                                <td><?php echo $fila["id_historial"]; ?></td>
+                                                <td><?php echo $fila["nombreusuario"]; ?></td>
+                                                <td><?php echo $fila["dni"]; ?></td>
+                                                <td><?php echo $fila["nombrebeneficio"]; ?></td>
+                                                <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
+                                                <td><?php echo $fila["fecha_inscripto"]; ?></td>
+                                            </tr>
+    
+                                <!-- // -->
+                                <?php
+                                    }
+                                }else {
+                                ?>
+                                    <tr>
+                                        <td scope="5"></td>
+                                        <div class="alert alert-danger text-center">No existe historial</div>
+                                    </tr>
+                                <?php
                                 }
-                            }else {
-                            ?>
-                                <tr>
-                                    <td scope="5"></td>
-                                    <div class="alert alert-danger text-center">No existe historial</div>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                    </div>
                 </div>
 
-<!-- //     -->
+      <div class="m-5 p-5"></div>
+<?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
+
+<!-- //-->
 <?php   
             }else{
                 header("Location: ../../complementario/error404.php");
@@ -275,8 +302,3 @@
         }
         exit;
 ?>
-
-    <?php include("../../complementario/pie.php") ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>

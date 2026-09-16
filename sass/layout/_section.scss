@@ -8,3 +8,114 @@
     margin-top: 100px;
     margin-bottom: 100px;
 }
+
+
+.section-list {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 2rem 1rem;
+
+  table.table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border: none;
+
+    thead {
+      background-color: variables.$fondo-azul-oscuro;
+
+      tr {
+        th {
+          color: variables.$fondo-azul-oscuro;
+          font-weight: 600;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          padding: 1rem;
+          border: none;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background-color 0.2s ease;
+
+        td {
+          padding: 0.85rem 1rem;
+          color: #2b2b2b;
+          font-size: 0.95rem;
+          border-color: rgba(0, 0, 0, 0.05);
+
+          .d-sm-inline-block {
+            display: inline-block;
+
+            form {
+              margin: 0;
+            }
+          }
+        }
+
+        &:hover {
+          background-color: rgba(variables.$fondo-beige, 0.3) !important;
+        }
+      }
+
+      &.table-striped > tr:nth-of-type(odd) > * {
+        background-color: rgba(variables.$fondo-azul, 0.03);
+        color: #2b2b2b;
+      }
+    }
+  }
+
+  .btn-link {
+    color: variables.$fondo-azul;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: variables.$fondo-rojo;
+      text-decoration: underline;
+    }
+  }
+
+  .btn-primary {
+    background-color: variables.$fondo-azul;
+    border-color: variables.$fondo-azul;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+
+    &:hover, &:focus {
+      background-color: variables.$fondo-rojo;
+      border-color: variables.$fondo-rojo;
+      box-shadow: 0 4px 10px rgba(variables.$fondo-rojo, 0.3);
+    }
+  }
+
+  .alert {
+    border-radius: 8px;
+    font-weight: 500;
+    border: none;
+
+    &.alert-danger {
+      background-color: rgba(variables.$fondo-rojo, 0.15);
+      color: darken(variables.$fondo-rojo, 10%);
+      border-left: 4px solid variables.$fondo-rojo;
+    }
+
+    &.alert-success {
+      background-color: rgba(variables.$fondo-verde, 0.15);
+      color: darken(variables.$fondo-verde, 10%);
+      border-left: 4px solid variables.$fondo-verde;
+    }
+  }
+}
