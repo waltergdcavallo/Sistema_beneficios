@@ -105,6 +105,11 @@
                         }
                         ?>
                     </section>
+                    
+                    <div class="m-5 p-5"></div>
+   <?php include("../../complementario/pie.php") ?>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
 <!-- // -->
 <?php
                 //admin
@@ -140,7 +145,7 @@
                             <div class="row">
 
                                 <div class="col-10"></div>
-                                    <div class="col-2">
+                                    <div class="col-2 section-list">
                                         <a href="form.php" class="btn btn-primary">Agregar</a>
                                     <div>
                                 </div>
@@ -201,7 +206,7 @@
                                 if ($_GET["mensaje"]!="ok"){
                                     echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
                                 } else{
-                                    echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Beneficio editado</strong></div></div>";
+                                    echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Venta editada</strong></div></div>";
                                 }
                             }
                             ?>
@@ -223,9 +228,3 @@
     }
     exit;
 ?>
-
-   <?php include("../../complementario/pie.php") ?>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-</body>
-</html>

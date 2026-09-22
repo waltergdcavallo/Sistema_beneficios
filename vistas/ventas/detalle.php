@@ -36,20 +36,20 @@
 
         <?php include("../../complementario/encabezado.php") ?>
 
-            <section class="container">
+            <section class="container div-form mt-5">
 
-                <div class="text-center my-5 text text-primary">
+                <div class="text-center my-3 text text-primary">
                     <h3>Venta</h3>
                 </div>
 
-                <div class="row">
+                <div class="row div-form">
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-3">
                         <label for="exampleFormControlInput1" class="form-label">Monto</label>
                         <input class="form-control" type="text" value="<?php echo $fila['monto'];?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-2">
                         <label for="exampleFormControlInput1" class="form-label">Entregado</label>
                         <input class="form-control" type="text" value="<?php if(isset($fila['entregado']) && $fila['entregado']>0)
                             {echo "Si";
@@ -57,7 +57,7 @@
                             } ?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-2">
                         <label for="exampleFormControlInput1" class="form-label">Pagado</label>
                         <input class="form-control" type="text" value="<?php if(isset($fila['pagado']) && $fila['entregado']>0)
                             {echo "Si";
@@ -65,7 +65,7 @@
                             } ?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-3">
                         <label for="exampleFormControlInput1" class="form-label">Fecha de la venta</label>
                         <input class="form-control" type="text" value="<?php echo $fila['fecha_venta'];?>" aria-label="Disabled input example" disabled>
                     </div>
@@ -75,17 +75,9 @@
                         <input class="form-control" type="text" value="<?php echo $fila['nombreyapellido'];?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                </div>
-
-            </section>
-
-            <section class="container">
-
-                <div class="text-center my-5 text text-primary">
+                <div class="text-center my-2 text text-primary">
                     <h3>Detalles de la venta</h3>
                 </div>
-
-                <div class="row">
 
                     <div class="mb-3 col-6">
                         <label for="exampleFormControlInput1" class="form-label">Nombre del producto</label>
@@ -97,35 +89,34 @@
                         <input class="form-control" type="text" value="<?php echo $fila['precio_bruto'];?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-3">
                         <label for="exampleFormControlInput1" class="form-label">Cantidad de productos</label>
                         <input class="form-control" type="text" value="<?php echo $fila['cant_prod'];?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-4">
                         <label for="exampleFormControlInput1" class="form-label">Fecha de entrega</label>
                         <input class="form-control" type="text" value="<?php echo $fila['fecha_entrega'];?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="mb-3 col-6">
+                    <div class="mb-3 col-3">
                         <label for="exampleFormControlInput1" class="form-label">Ganancia</label>
                         <input class="form-control" type="text" value="<?php echo $fila['ganancia'];?>" aria-label="Disabled input example" disabled>
                     </div>
 
-                    <div class="text-center mt-5">
-                            <div class="d-sm-inline-block">
+                    <div class="col-2"></div>
+                            <div class="d-sm-inline-block col-2">
                                 <form action="form.php" method="post">
                                     <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
-                                    <button class="btn btn-primary p-2" type="submit">Editar</button>
+                                    <button class="btn button-confirm p-2" type="submit">Editar</button>
                                 </form>
                             </div>
-                            <div class="d-sm-inline-block">
-                                <form action="../../publico/acciones/usuarios/eliminar.php" method="post">
+                            <div class="d-sm-inline-block col-2 ms-auto">
+                                <form action="../../publico/acciones/ventas/eliminar.php" method="post">
                                     <input type="hidden"name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
-                                    <button class="btn btn-danger p-2" type="submit">Eliminar</button>
+                                    <button class="btn button-cancel p-2" type="submit">Eliminar</button>
                                 </form>
                             </div>
-                        </div>
 
                 </div>
                 <!-- // -->
@@ -136,15 +127,17 @@
                 ?>
 
             </section>
+
+            <div class="m-4 p-4"></div>
+            <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
 <?php
     }else {
         header("Location: ../../complementario/error404.php");
     }
     exit;
 ?>
-
-    <?php include("../../complementario/pie.php") ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-</body>
-</html>

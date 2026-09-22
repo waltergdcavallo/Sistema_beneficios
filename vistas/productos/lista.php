@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-10"></div>
 
-                            <div class="col-2">
+                            <div class="col-2 section-list">
                             <a href="form.php" class="btn btn-primary">Agregar</a>
                             <div>
 

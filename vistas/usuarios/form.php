@@ -170,61 +170,61 @@
 
                 <section class="container mt-5">
 
-                <div class="text-center my-5 text text-primary">
-                    <h3>Crear usuario</h3>
-                </div>
-                
-                    <div class="row text-center">
-                        <form action="../../publico/acciones/usuarios/crear.php" method="post" class="p-5">
+                    <div class="shadow div-form">
 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
+                        <div class="text-center my-5 text text-primary">
+                            <h3>Crear usuario</h3>
+                        </div>
+
+                        <form action="../../publico/acciones/usuarios/crear.php" method="post" class="p-5 row">
+
+                            <div class="mb-4 col-4">
                                 <label for="floatingPassword">Nombre</label>
+                                <input type="text" class="form-control input shadow" id="nombre" name="nombre" placeholder="Nombre" required>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" required>
+                            <div class="mb-4 col-4">
                                 <label for="floatingPassword">Apellido</label>
+                                <input type="text" class="form-control input shadow" id="apellido" name="apellido" placeholder="Apellido" required>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="dni" name="dni" placeholder="DNI" required>
+                            <div class="mb-4 col-4">
                                 <label for="floatingInput">DNI</label>
+                                <input type="text" class="form-control input shadow" id="dni" name="dni" placeholder="DNI" required minlength="8">
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Telefono" required>
+                            <div class="mb-4 col-3">
                                 <label for="floatingPassword">Teléfono</label>
+                                <input type="text" class="form-control input shadow" id="telefono" name="telefono" placeholder="Telefono" required>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="direccion" name="direccion" placeholder="direccion">
+                            <div class="mb-4 col-4">
                                 <label for="floatingPassword">Dirección</label>
+                                <input type="text" class="form-control input shadow" id="direccion" name="direccion" placeholder="direccion">
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Ejemplo@gmail.com" required>
+                            <div class="mb-4 col-5">
                                 <label for="floatingPassword">Email</label>
+                                <input type="email" class="form-control input shadow" id="email" name="email" placeholder="Ejemplo@gmail.com" required>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <input type="password" class="form-control" id="password_hash" name="password_hash" placeholder="Contraseña" required>
+                            <div class="mb-4 col-6">
                                 <label for="floatingPassword">Contraseña</label>
+                                <input type="password" class="form-control input shadow" id="password_hash" name="password_hash" placeholder="Contraseña" required>
                             </div>
 
-                            <div class="mb-5 col-12">
-                                <select class="form-select" aria-label="Default select example" id="rol" name="rol">
-                                <option selected value="<?php echo $fila['rol']; ?>">Rol</option>
-                                <option value="admin">Admin</option>
-                                <option value="vendedor">Vendedor</option>
-                                <option value="pendiente">Pendiente</option>
+                            <div class="col-6">
+                                <label for="floatingPassword">Rol</label>
+                                <select class="form-select input shadow" aria-label="Default select example" id="rol" name="rol">
+                                    <option selected value="<?php echo $fila['rol']; ?>">Elija un Rol</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="vendedor">Vendedor</option>
+                                    <option value="pendiente">Pendiente</option>
                                 </select>
                             </div>
 
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary p3 mt-5">Editar perfil</button>
-                                <a href="lista.php" class="btn btn-danger p3 mt-5">Cancelar</a>
-                            </div>
+                                <button type="submit" class="btn button-confirm col-2">Agregar</button>
+                                <a href="lista.php" class="btn button-cancel col-2 ms-auto">Cancelar</a>
                         </form>
                     </div>
 
@@ -243,6 +243,12 @@
         ?>
                     </div>
                 </section>
+
+            <div class="m-4 p-4"></div>
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
 
 <!-- // -->
 <?php
@@ -281,43 +287,43 @@
                         <h3 class="ps-5">REGISTRARSE</h3>
                         <form action="../../publico/acciones/usuarios/crear.php" method="post" class="p-5 row">
 
-                            <div class="mb-3 col-4">
+                            <div class="mb-4 col-4">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" class="form-control input" id="nombre" name="nombre" placeholder="Nombre" required>
+                                <input type="text" class="form-control input shadow" id="nombre" name="nombre" placeholder="Nombre" required>
                             </div>
                             
-                            <div class="mb-3 col-4">
+                            <div class="mb-4 col-4">
                                 <label class="form-label">Apellido</label>
-                                <input type="text" class="form-control input" id="apellido" name="apellido" placeholder="Apellido" required>
+                                <input type="text" class="form-control input shadow" id="apellido" name="apellido" placeholder="Apellido" required>
                             </div>
                             
-                            <div class="mb-3 col-2">
+                            <div class="mb-4 col-4">
                                 <label class="form-label">DNI</label>
-                                <input type="number" class="form-control input" id="dni" name="dni" placeholder="DNI" pattern="[0-9]{8}" required>
+                                <input type="number" class="form-control input shadow" id="dni" name="dni" placeholder="DNI" pattern="[0-9]{8}" required>
                             </div>
                             
-                            <div class="mb-3 col-5">
+                            <div class="mb-4 col-4">
                                 <label class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control input" id="telefono" name="telefono" placeholder="Telefono" required>
+                                <input type="tel" class="form-control input shadow" id="telefono" name="telefono" placeholder="Telefono" required>
                             </div>
                             
-                            <div class="mb-3 col-7">
+                            <div class="mb-4 col-6">
                                 <label class="form-label">Dirección</label>
-                                <input type="text" class="form-control input" id="direccion" name="direccion" placeholder="Direccion">
+                                <input type="text" class="form-control input shadow" id="direccion" name="direccion" placeholder="Direccion">
                             </div>
                             
-                            <div class="mb-3">
+                            <div class="mb-4 col-5">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control input" id="email" name="email" placeholder="Ejemplo@gmail.com" required>
+                                <input type="email" class="form-control input shadow" id="email" name="email" placeholder="Ejemplo@gmail.com" required>
                             </div>
                             
-                            <div class="mb-3">
+                            <div class="mb-4 col-6">
                                 <label class="form-label">Contraseña</label>
-                                <input type="password" class="form-control input" id="password_hash" name="password_hash" placeholder="Contraseña" minlength="8" required>
+                                <input type="password" class="form-control input shadow" id="password_hash" name="password_hash" placeholder="Contraseña" minlength="8" required>
                             </div>
                             <input type="hidden" class="form-control" id="rol" name="rol" value="pendiente">
                             
-                            <button type="submit" class="btn button-confirm col-2 p3 mt-5">Registrar usuario</button>
+                            <button type="submit" class="btn button-confirm col-2 p3 mt-5">Registrarse</button>
                             <a href="../inicio.php" class="btn button-cancel col-2 p3 ms-auto mt-5">Cancelar</a>
                         </form>
                     </div>
@@ -332,11 +338,13 @@
                     }
                     ?>
                 </section>
+
+            <div class="m-4 p-4"></div>
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
 <!-- // -->
 <?php
     }
 ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-</html>

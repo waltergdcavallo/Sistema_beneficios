@@ -40,12 +40,12 @@
 
                     <section class="container">
 
-                        <div class="text-center my-5 text text-primary">
-                            <h3>Editar Beneficio</h3>
-                        </div>
-
-
                         <div class="div-form">  
+
+                            <div class="text-center my-5 text text-primary">
+                                <h3>Editar Beneficio</h3>
+                            </div>
+                            
                             <form action="../../publico/acciones/beneficios/editar.php" method="post" class="p-5 row">
 
                                 <input type="hidden" class="form-control" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']; ?>">
@@ -119,11 +119,12 @@
 
                         <section class="container">
 
-                            <div class="text-center my-5 text text-primary">
-                                <h3>Crear Beneficio</h3>
-                            </div>
-
                             <div class="div-form">
+
+                                <div class="text-center my-5 text text-primary">
+                                    <h3>Crear Beneficio</h3>
+                                </div>
+                                
                                 <form action="../../publico/acciones/beneficios/crear.php" method="post" class="p-5 row">
 
                                     <div class="col-6 mb-5">
