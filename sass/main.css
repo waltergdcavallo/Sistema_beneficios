@@ -437,4 +437,84 @@ nav {
   background-color: rgba(0, 142, 59, 0.15);
   color: rgb(0, 91, 37.8098591549);
   border-left: 4px solid #008e3b;
+}
+
+.section-detail {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  background: linear-gradient(145deg, #003161 0%, #000B58 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+.section-detail .detail-title {
+  color: #FFF4B7;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.section-detail .form-label {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: center;
+}
+.section-detail .form-control {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 10px;
+  color: #000B58;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.section-detail .form-control:disabled, .section-detail .form-control[readonly] {
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #000B58;
+  opacity: 1;
+}
+.section-detail .detail-actions {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.section-detail .detail-actions .btn {
+  padding: 0.6rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+.section-detail .detail-actions .btn-edit {
+  background-color: #008e3b;
+  color: #ffffff;
+}
+.section-detail .detail-actions .btn-edit:hover {
+  background-color: rgb(0, 182.8, 75.9521126761);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 142, 59, 0.4);
+}
+.section-detail .detail-actions .btn-del {
+  background-color: #cc3a63;
+  color: #ffffff;
+}
+.section-detail .detail-actions .btn-del:hover {
+  background-color: rgb(167.6088709677, 43.3911290323, 78.2741935484);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(204, 58, 99, 0.4);
+}
+.section-detail .btn-view {
+  background-color: #FFF4B7;
+  color: #000B58;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
+}
+.section-detail .btn-view:hover {
+  background-color: rgb(255, 251.7916666667, 234);
+  transform: translateY(-2px);
 }/*# sourceMappingURL=main.css.map */

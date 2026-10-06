@@ -33,57 +33,67 @@
                 <!-- // -->
                 <?php include("../../complementario/encabezado.php") ?>
 
-                <section class="container">
-                    <div class="text-center my-5 text text-primary">
-                        <h3>Usuario</h3>
+                <section class="container section-detail my-5">
+
+                    <div class="text-center mb-4">
+                        <h3 class="detail-title">Usuario</h3>
                     </div>
-                    <div class="row">
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Nombre y Apellido</label>
-                            <input class="form-control" type="text" value="<?php echo $fila['nombreyapellido'];?>" aria-label="Disabled input example" disabled>
+                
+                    <div class="row g-4">
+                        <div class="col-12 col-md-6">
+                            <label for="nombreyapellido" class="form-label">Nombre y Apellido</label>
+                            <input class="form-control" type="text" id="nombreyapellido" value="<?php echo $fila['nombreyapellido']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Dni</label>
-                            <input class="form-control" type="text" value="<?php echo $fila['dni'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="dni" class="form-label">Dni</label>
+                            <input class="form-control" type="text" id="dni" value="<?php echo $fila['dni']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
-                            <input class="form-control" type="text" value="<?php echo $fila['telefono'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input class="form-control" type="text" id="telefono" value="<?php echo $fila['telefono']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input class="form-control" type="text" value="<?php echo $fila['email'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control" type="text" id="email" value="<?php echo $fila['email']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Dirección</label>
-                            <input class="form-control" type="text" value="<?php echo $fila['direccion'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input class="form-control" type="text" id="direccion" value="<?php echo $fila['direccion']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Rol</label>
-                            <input class="form-control" type="text" value="<?php echo $fila['rol'];?>" aria-label="Disabled input example" disabled>
-                        </div>
-                        <div class="text-center mt-5">
-                            <div class="d-sm-inline-block">
-                                <form action="../historial/lista.php" method="post">
-                                    <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                    <button class="btn btn-primary p-3" type="submit">Beneficios asociados</button>
-                                </form>
-                            </div>
-                            <div class="d-sm-inline-block">
-                                <form action="form.php" method="post">
-                                    <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                    <button class="btn btn-primary p-3" type="submit">Editar</button>
-                                </form>
-                            </div>
-                            <div class="d-sm-inline-block">
-                                <form action="../../publico/acciones/usuarios/eliminar.php" method="post">
-                                    <input type="hidden"name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                    <button class="btn btn-danger p-3" type="submit">Eliminar</button>
-                                </form>
-                            </div>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="rol" class="form-label">Rol</label>
+                            <input class="form-control" type="text" id="rol" value="<?php echo $fila['rol']; ?>" disabled>
                         </div>
                     </div>
+                
+                    <div class="detail-actions d-flex flex-wrap justify-content-between align-items-center gap-3 mt-5 pt-4">
+                        <form action="../historial/lista.php" method="post">
+                            <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario']; ?>">
+                            <button class="btn btn-view" type="submit">Beneficios asociados</button>
+                        </form>
+                
+                        <form action="form.php" method="post">
+                            <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario']; ?>">
+                            <button class="btn btn-edit" type="submit">Editar</button>
+                        </form>
+                
+                        <form action="../../publico/acciones/usuarios/eliminar.php" method="post">
+                            <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario']; ?>">
+                            <button class="btn btn-del" type="submit" onclick="return confirm('¿Estás seguro de eliminar este usuario?');">Eliminar</button>
+                        </form>
+                    </div>
+
                 </section>
+
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>      
+</body>    
+</html>
 <!-- // -->
 <?php 
         }elseif($_SESSION['rol']=="admin" || $_SESSION['rol']=="vendedor" || $_SESSION['rol']=="pendiente"){
@@ -105,43 +115,57 @@
                 <!-- // -->
                 <?php include("../../complementario/encabezado.php") ?>
 
-                <section class="container">
-                    <div class="text-center my-5 text text-primary">
-                        <h3>Usuario</h3>
+                <section class="container section-detail">
+
+                    <div class="text-center mb-4">
+                        <h3 class="detail-title">Usuario</h3>
                     </div>
-                    <div class="row">
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Nombre y Apellido</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['nombreyapellido'];?>" aria-label="Disabled input example" disabled>
+                
+                    <div class="row g-4">
+                        <div class="col-12 col-md-6">
+                            <label for="nombreyapellido" class="form-label">Nombre y Apellido</label>
+                            <input class="form-control" type="text" id="nombreyapellido" value="<?php echo $_SESSION['nombreyapellido']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Dni</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['dni'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="dni" class="form-label">Dni</label>
+                            <input class="form-control" type="text" id="dni" value="<?php echo $_SESSION['dni']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['telefono'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input class="form-control" type="text" id="telefono" value="<?php echo $_SESSION['telefono']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Email</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['email'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input class="form-control" type="text" id="email" value="<?php echo $_SESSION['email']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Dirección</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['direccion'];?>" aria-label="Disabled input example" disabled>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input class="form-control" type="text" id="direccion" value="<?php echo $_SESSION['direccion']; ?>" disabled>
                         </div>
-                        <div class="mb-3 col-6">
-                            <label for="exampleFormControlInput1" class="form-label">Rol</label>
-                            <input class="form-control" type="text" value="<?php echo $_SESSION['rol'];?>" aria-label="Disabled input example" disabled>
-                        </div>
-                        <div class="d-sm-inline-block">
-                            <form action="form.php" method="post">
-                                <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION["id_usuario"];?>">
-                                <button class="btn btn-primary p-1" type="submit">Editar</button>
-                            </form>
+                
+                        <div class="col-12 col-md-6">
+                            <label for="rol" class="form-label">Rol</label>
+                            <input class="form-control" type="text" id="rol" value="<?php echo $_SESSION['rol']; ?>" disabled>
                         </div>
                     </div>
+                
+                    <div class="detail-actions d-flex justify-content-end align-items-center mt-5 pt-4">
+                        <form action="form.php" method="post">
+                            <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>">
+                            <button class="btn btn-edit" type="submit">Editar</button>
+                        </form>
+                    </div>
+
                 </section>
+
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>      
+</body>    
+</html>
 <?php
         }else{
             header("Location: ../../complementario/error404.php");
@@ -153,10 +177,3 @@
     }
     exit;
 ?>
-
-    <?php include("../../complementario/pie.php") ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-            
-    </body>
-            
-</html>

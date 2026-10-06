@@ -119,3 +119,95 @@
     }
   }
 }
+
+
+.section-detail{
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: linear-gradient(145deg, variables.$fondo-azul 0%,variables.$fondo-azul-oscuro 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+
+  .detail-title {
+    color: variables.$fondo-beige;
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+
+  .form-label {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: center;
+  }
+
+  .form-control {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 10px;
+    color: variables.$fondo-azul-oscuro;
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    text-align: center;
+
+    &:disabled, &[readonly] {
+      background-color: rgba(255, 255, 255, 0.85);
+      color: variables.$fondo-azul-oscuro;
+      opacity: 1;
+    }
+  }
+
+  .detail-actions {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+    .btn {
+      padding: 0.6rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .btn-edit {
+      background-color: variables.$fondo-verde;
+      color: #ffffff;
+
+      &:hover {
+        background-color: lighten(variables.$fondo-verde, 8%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(variables.$fondo-verde, 0.4);
+      }
+    }
+
+    .btn-del {
+      background-color: variables.$fondo-rojo;
+      color: #ffffff;
+
+      &:hover {
+        background-color: darken(variables.$fondo-rojo, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(variables.$fondo-rojo, 0.4);
+      }
+    }
+  }
+  .btn-view {
+        background-color: variables.$fondo-beige;
+        color: variables.$fondo-azul-oscuro;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        border: none;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: lighten(variables.$fondo-beige, 10%);
+          transform: translateY(-2px);
+        }
+    }
+}
