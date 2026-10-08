@@ -52,41 +52,86 @@
 }
 
 .div-form {
-  border-radius: 30px;
   font-family: "Cabin", sans-serif;
-  color: white;
-  padding-bottom: 50px;
   background-color: #003161;
+  background: linear-gradient(145deg, #003161 0%, #000B58 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  max-width: 900px;
+  margin: 0 auto;
 }
 .div-form h3 {
   color: #FFF4B7;
-  letter-spacing: 2px;
-  font-size: 50px;
-  font-weight: 500;
-  padding-top: 5%;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
-.div-form input {
+.div-form label, .div-form .form-label {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: left;
+}
+.div-form input, .div-form select, .div-form .form-control, .div-form .form-select {
+  background-color: #FFF4B7;
+  border: none;
+  border-radius: 10px;
+  color: #000B58;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+.div-form input::-moz-placeholder, .div-form select::-moz-placeholder, .div-form .form-control::-moz-placeholder, .div-form .form-select::-moz-placeholder {
+  color: rgba(0, 11, 88, 0.7);
+}
+.div-form input::placeholder, .div-form select::placeholder, .div-form .form-control::placeholder, .div-form .form-select::placeholder {
+  color: rgba(0, 11, 88, 0.7);
+}
+.div-form input:focus, .div-form select:focus, .div-form .form-control:focus, .div-form .form-select:focus {
   background-color: #FFF4B7;
   color: #000B58;
+  box-shadow: 0 0 0 0.25rem rgba(255, 244, 183, 0.3);
+  outline: none;
 }
-.div-form input::-moz-placeholder {
-  color: black;
+.div-form input:focus::-moz-placeholder, .div-form select:focus::-moz-placeholder, .div-form .form-control:focus::-moz-placeholder, .div-form .form-select:focus::-moz-placeholder {
+  color: #000B58;
 }
-.div-form input::placeholder {
-  color: black;
+.div-form input:focus::placeholder, .div-form select:focus::placeholder, .div-form .form-control:focus::placeholder, .div-form .form-select:focus::placeholder {
+  color: #000B58;
 }
-.div-form input:focus::-moz-placeholder {
-  color: black;
+.div-form input:disabled, .div-form input[readonly], .div-form select:disabled, .div-form select[readonly], .div-form .form-control:disabled, .div-form .form-control[readonly], .div-form .form-select:disabled, .div-form .form-select[readonly] {
+  background-color: rgba(255, 244, 183, 0.85);
+  color: #000B58;
+  opacity: 0.9;
 }
-.div-form input:focus::placeholder {
-  color: black;
+.div-form .button-confirm {
+  background-color: #008e3b;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
 }
-.div-form input:focus {
-  background-color: #FFF4B7;
-  color: black;
+.div-form .button-confirm:hover {
+  background-color: rgb(0, 182.8, 75.9521126761);
+  transform: translateY(-2px);
 }
-.div-form label {
-  color: white;
+.div-form .button-cancel {
+  background-color: #cc3a63;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  transition: all 0.3s ease;
+}
+.div-form .button-cancel:hover {
+  background-color: rgb(167.6088709677, 43.3911290323, 78.2741935484);
+  transform: translateY(-2px);
 }
 
 .div-title {
@@ -246,9 +291,15 @@ label {
   transition: 0.5s;
 }
 
-.h5 {
-  font-size: 50px;
-  margin: 30px;
+.title-list {
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+  color: #003161;
 }
 
 body {
@@ -463,7 +514,7 @@ nav {
   text-align: center;
 }
 .section-detail .form-control {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #FFF4B7;
   border: none;
   border-radius: 10px;
   color: #000B58;
@@ -472,7 +523,7 @@ nav {
   text-align: center;
 }
 .section-detail .form-control:disabled, .section-detail .form-control[readonly] {
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: #FFF4B7;
   color: #000B58;
   opacity: 1;
 }

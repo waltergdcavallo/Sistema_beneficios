@@ -2,41 +2,91 @@
 @use "../base/fonts";
 
 
-.div-form{
-    border-radius: 30px;
+.div-form {
     font-family: fonts.$font-body;
-    color: white;
-    padding-bottom: 50px;
     background-color: variables.$fondo-azul;
-    
-    h3{
+    background: linear-gradient(145deg, variables.$fondo-azul 0%, variables.$fondo-azul-oscuro 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+
+    h3 {
         color: variables.$fondo-beige;
-        letter-spacing: 2px;
-        font-size: 50px;
-        font-weight: 500;
-        padding-top: 5%;
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
     }
 
-    input{
-    background-color: variables.$fondo-beige;
-    color: variables.$fondo-azul-oscuro;
-
-    &::placeholder{
-        color: black;
-    }
-    
-    &:focus::placeholder{
-        color: black;
+    label, .form-label {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        display: block;
+        text-align: left;
     }
 
-    &:focus{
+    input, select, .form-control, .form-select {
         background-color: variables.$fondo-beige;
-        color: black;
+        border: none;
+        border-radius: 10px;
+        color: variables.$fondo-azul-oscuro;
+        font-weight: 600;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            color: rgba(variables.$fondo-azul-oscuro, 0.7);
+        }
+
+        &:focus {
+            background-color: variables.$fondo-beige;
+            color: variables.$fondo-azul-oscuro;
+            box-shadow: 0 0 0 0.25rem rgba(variables.$fondo-beige, 0.3);
+            outline: none;
+
+            &::placeholder {
+                color: variables.$fondo-azul-oscuro;
+            }
+        }
+
+        &:disabled, &[readonly] {
+            background-color: rgba(variables.$fondo-beige, 0.85);
+            color: variables.$fondo-azul-oscuro;
+            opacity: 0.9;
+        }
     }
+
+    .button-confirm {
+        background-color: variables.$fondo-verde;
+        color: #ffffff;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        border: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: lighten(variables.$fondo-verde, 8%);
+            transform: translateY(-2px);
+        }
     }
-    
-    label{
-        color: white;
+
+    .button-cancel {
+        background-color: variables.$fondo-rojo;
+        color: #ffffff;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        border-radius: 10px;
+        border: none;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: darken(variables.$fondo-rojo, 10%);
+            transform: translateY(-2px);
+        }
     }
 }
 

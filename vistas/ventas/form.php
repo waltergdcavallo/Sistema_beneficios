@@ -37,7 +37,7 @@
 
             <?php include("../../complementario/encabezado.php") ?>
 
-                <section class="container">
+                <section class="container my-5">
 
                     <div class="div-form shadow">
                         
@@ -110,7 +110,8 @@
                         </div>
                     </section>
             
-            <div class="m-4 p-4"></div>
+    <div class="m-4 p-4"></div>
+    <!-- // -->
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
@@ -149,79 +150,94 @@
 
             <?php include("../../complementario/encabezado.php") ?>
 
-                <section class="container">
-
-                    <div class="text-center my-5 text text-success">
+            <section class="container my-5">
+                <div class="div-form shadow p-4 p-md-5">
+            
+                    <div class="text-center mb-4 text">
                         <h3>Crear venta</h3>
                     </div>
-
-                    
-                    <form action="../../publico/acciones/ventas/crear.php" method="post">
-                        <div class="row">
-
-                            <input type="hidden" class="form-control" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario'];?>">
-                            
-                            <div class="col-6 mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Fecha de la venta</label>
-                                <input type="date" class="form-control" id="fecha_venta" name="fecha_venta"required>
-                            </div>
-                            
-                            <div class="col-6 mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Producto disponible</label>
-                                <select class="form-select" aria-label="Default select example" id="id_producto" name="id_producto" required>
-                                    <option selected>Seleccione un producto</option>
-                                        <?php
-                                        if($resultado->num_rows>0){
-                                            while($fila=$resultado->fetch_assoc()){?>
-
-                                                <option value="<?php echo $fila['id_producto'];?>"><?php echo $fila['nombre'];?></option>
-
-                                        <?php 
-                                            }
-                                        }?>
-                                </select>
-                            </div>
-
-                            <div class="col-6 mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Cantidad de productos</label>
-                                <input type="text" class="form-control" id="cant_prod" name="cant_prod" required>
-                            </div>
-                            <div class="col-6 mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Monto</label>
-                                <input type="text" class="form-control" id="monto" name="monto" required>
-                            </div>
-                            
-                            <div class="col-3 mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Entregado</label>
-                                <select class="form-select" aria-label="Default select example" id="entregado" name="entregado">
-                                    <option selected value="0">No</option>
-                                    <option value="1">Si</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-5 col-3">
-                                <label for="exampleFormControlInput1" class="form-label">Pagado</label>
-                                <select class="form-select" aria-label="Default select example" id="pagado" name="pagado">
-                                    <option selected value="0">No</option>
-                                    <option value="1">Si</option>
-                                </select>
-                            </div>
-                            
-                            <div class="col-6 mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Fecha de entrega</label>
-                                <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
-                            </div>
-    
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-success">Crear venta</button>
-                                <button type="reset" class="btn btn-danger">Cancelar</button>
-                            </div>
-                        </div>
-                    </form>
-                </section>
             
-        <div class="m-4 p-4"></div>
+                    <form action="../../publico/acciones/ventas/crear.php" method="post" class="row g-3">
+            
+                        <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>">
+            
+                        <div class="col-12 col-md-6">
+                            <label for="fecha_venta" class="form-label">Fecha de la venta</label>
+                            <input type="date" class="form-control shadow-sm" id="fecha_venta" name="fecha_venta" value="<?php echo date('Y-m-d'); ?>" required>
+                        </div>
+            
+                        <div class="col-12 col-md-6">
+                            <label for="id_producto" class="form-label">Producto disponible</label>
+                            <select class="form-select shadow-sm" id="id_producto" name="id_producto" required>
+                                <option value="" disabled selected>Seleccione un producto</option>
+                                <?php if ($resultado->num_rows > 0): ?>
+                                    <?php while ($fila = $resultado->fetch_assoc()): ?>
+                                        <option value="<?php echo $fila['id_producto']; ?>">
+                                            <?php echo $fila['nombre']; ?>
+                                        </option>
+                                    <?php endwhile; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+            
+                        <div class="col-12 col-md-6">
+                            <label for="cant_prod" class="form-label">Cantidad de productos</label>
+                            <input type="number" class="form-control shadow-sm" id="cant_prod" name="cant_prod" min="1" placeholder="Ej: 2" required>
+                        </div>
+            
+                        <div class="col-12 col-md-6">
+                            <label for="monto" class="form-label">Monto ($)</label>
+                            <input type="number" step="0.01" min="0" class="form-control shadow-sm" id="monto" name="monto" placeholder="Ej: 1500.00" required>
+                        </div>
+            
+                        <div class="col-12 col-md-3">
+                            <label for="entregado" class="form-label">Entregado</label>
+                            <select class="form-select shadow-sm" id="entregado" name="entregado" required>
+                                <option value="0" selected>No</option>
+                                <option value="1">Sí</option>
+                            </select>
+                        </div>
+            
+                        <div class="col-12 col-md-3">
+                            <label for="pagado" class="form-label">Pagado</label>
+                            <select class="form-select shadow-sm" id="pagado" name="pagado" required>
+                                <option value="0" selected>No</option>
+                                <option value="1">Sí</option>
+                            </select>
+                        </div>
+            
+                        <div class="col-12 col-md-6">
+                            <label for="fecha_entrega" class="form-label">Fecha de entrega</label>
+                            <input type="date" class="form-control shadow-sm" id="fecha_entrega" name="fecha_entrega" required>
+                        </div>
+            
+                        <!-- Botones -->
+                        <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
+                            <button type="submit" class="btn button-confirm col-5 col-md-2">Crear venta</button>
+                            <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                        </div>
+            
+                    </form>
+            
+                </div>
+            
+                <?php if (isset($_GET["mensaje"])): ?>
+                    <div class="text-center mt-4 mb-5">
+                        <?php if ($_GET["mensaje"] != "ok"): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <strong><?php echo $_GET["mensaje"]; ?></strong>
+                            </div>
+                        <?php else: ?>
+                            <div class="alert alert-success" role="alert">
+                                <strong>Venta registrada exitosamente</strong>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+            </section>
+            
+    <div class="m-4 p-4"></div>
+    <!-- // -->
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>

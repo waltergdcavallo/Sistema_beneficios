@@ -1,6 +1,13 @@
 @use "../abstracts/variables";
 @use "../base/fonts";
-.h5{
-    font-size: 50px;
-    margin: 30px;
+
+.title-list {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+    color: variables.$fondo-azul;
 }

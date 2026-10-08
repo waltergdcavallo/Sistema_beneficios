@@ -40,72 +40,85 @@
 
                     <?php include("../../complementario/encabezado.php") ?>
 
-                    <section class="container">
-
-                        <div class="text-center my-5 text text-primary">
-                            <h3>Editar producto</h3>
-                        </div>
-
-                        <div class="row">  
-                            <form action="../../publico/acciones/productos/editar.php" method="post">
-
-                                <input type="hidden" class="form-control" id="id_producto" name="id_producto" value="<?php echo $fila['id_producto']; ?>">
-
-                                <div class="col-6 mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>">
+                    <section class="container my-5">
+                        <div class="div-form shadow p-4 p-md-5">
+                    
+                            <div class="text-center mb-4 text">
+                                <h3>Editar producto</h3>
+                            </div>
+                    
+                            <form action="../../publico/acciones/productos/editar.php" method="post" class="row g-4">
+                    
+                                <input type="hidden" id="id_producto" name="id_producto" value="<?php echo $fila['id_producto']; ?>">
+                    
+                                <div class="col-12 col-md-6">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control input shadow" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>" required>
                                 </div>
-                                <div class="col-6 mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Precio</label>
-                                    <input type="text" class="form-control" id="precio" name="precio" value="<?php echo $fila['precio']; ?>">
+                    
+                                <div class="col-12 col-md-6">
+                                    <label for="precio" class="form-label">Precio</label>
+                                    <input type="number" step="0.01" min="0" class="form-control input shadow" id="precio" name="precio" value="<?php echo $fila['precio']; ?>" required>
                                 </div>
-                                <div class="col-6 mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Stock inicial</label>
-                                    <input type="text" class="form-control" id="stock_inicial" name="stock_inicial" value="<?php echo $fila['stock_inicial']; ?>">
+                    
+                                <div class="col-12 col-md-6">
+                                    <label for="stock_inicial" class="form-label">Stock inicial</label>
+                                    <input type="number" min="0" class="form-control input shadow" id="stock_inicial" name="stock_inicial" value="<?php echo $fila['stock_inicial']; ?>" required>
                                 </div>
-
-                                <div class="col-6 mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Stock actual</label>
-                                    <input type="text" class="form-control" id="stock_actual" name="stock_actual" value="<?php echo $fila['stock_actual']; ?>">
+                    
+                                <div class="col-12 col-md-6">
+                                    <label for="stock_actual" class="form-label">Stock actual</label>
+                                    <input type="number" min="0" class="form-control input shadow" id="stock_actual" name="stock_actual" value="<?php echo $fila['stock_actual']; ?>" required>
                                 </div>
-
-                                <div class="mb-5 col-12">
-                                    <select class="form-select" aria-label="Default select example" id="id_beneficio" name="id_beneficio">
-                                    <option selected><?php echo $fila['nombre'];?></option>
-
-                                    <!-- // -->
-                                    <?php
-
-                                        if($resultado2->num_rows>0){
-                                            while($fila2=$resultado2->fetch_assoc()){
-                                    ?>
-                                    <option value="<?php echo $fila2['id_beneficio'];?>"><?php echo $fila2['nombre'];?></option>
-                                    <?php
-
-                                            }
-                                        } else{
-                                            ?>
-                                            <option>No existen beneficios activos para vincular</option>
-                                            <?php
-                                        }
-                                    ?>
+                    
+                                <div class="col-12">
+                                    <label for="id_beneficio" class="form-label">Beneficio asociado</label>
+                                    <select class="form-select input shadow" id="id_beneficio" name="id_beneficio">
+                                        <?php if ($resultado2 && $resultado2->num_rows > 0): ?>
+                                            <option value="">-- Seleccionar Beneficio --</option>
+                                            <?php while ($fila2 = $resultado2->fetch_assoc()): ?>
+                                                <option value="<?php echo $fila2['id_beneficio']; ?>" <?php echo ($fila2['id_beneficio'] == $fila['id_beneficio']) ? 'selected' : ''; ?>>
+                                                    <?php echo $fila2['nombre']; ?>
+                                                </option>
+                                            <?php endwhile; ?>
+                                        <?php else: ?>
+                                            <option value="">No existen beneficios activos para vincular</option>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
-
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-success">Editar</button>
-                                    <button type="reset" class="btn btn-danger">Cancelar</button>
+                    
+                                <div class="col-12 d-flex justify-content-between align-items-center mt-5 pt-2">
+                                    <button type="submit" class="btn button-confirm col-5 col-md-2">Editar</button>
+                                    <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                 </div>
+                    
                             </form>
-
-                            <!-- // -->
-                            <?php
-                            if (isset($_GET["mensaje"])){
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                            }
-                            ?> 
+                    
                         </div>
+                    
+                        <?php if (isset($_GET["mensaje"])): ?>
+                            <div class="text-center mt-4 mb-5">
+                                <?php if ($_GET["mensaje"] != "ok"): ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong><?php echo $_GET["mensaje"]; ?></strong>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="alert alert-success" role="alert">
+                                        <strong>Producto editado con éxito</strong>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
                     </section>
+
+    <div class="m-4 p-4"></div>
+    <!-- // -->
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
 
 <!-- // -->
 <?php
@@ -134,77 +147,83 @@
 
                         <?php include("../../complementario/encabezado.php") ?>
 
-                        <section class="container">
-
-                            <div class="text-center my-5 text text-primary">
-                                <h3>Crear producto</h3>
-                            </div>
-
-                            <div class="row">
-
-                                <form action="../../publico/acciones/productos/crear.php" method="post">
-
-                                    <div class="col-6 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <section class="container my-5">
+                            <div class="div-form shadow p-4 p-md-5">
+                        
+                                <div class="text-center mb-4 text text-primary">
+                                    <h3>Crear producto</h3>
+                                </div>
+                        
+                                <form action="../../publico/acciones/productos/crear.php" method="post" class="row g-3">
+                        
+                                    <div class="col-12 col-md-6">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control input shadow-sm" id="nombre" name="nombre" placeholder="Nombre del producto" required>
                                     </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Precio</label>
-                                        <input type="number" class="form-control" id="precio" name="precio" required>
+                        
+                                    <div class="col-12 col-md-6">
+                                        <label for="precio" class="form-label">Precio ($)</label>
+                                        <input type="number" step="0.01" min="0" class="form-control input shadow-sm" id="precio" name="precio" placeholder="Ej: 2500.00" required>
                                     </div>
-                                    <div class="col-6 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Stock inicial</label>
-                                        <input type="number" class="form-control" id="stock_inicial" name="stock_inicial" required>
+                        
+                                    <div class="col-12 col-md-6">
+                                        <label for="stock_inicial" class="form-label">Stock inicial</label>
+                                        <input type="number" min="0" class="form-control input shadow-sm" id="stock_inicial" name="stock_inicial" placeholder="Ej: 100" required>
                                     </div>
-
-                                    <div class="col-6 mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Stock actual</label>
-                                        <input type="number" class="form-control" id="stock_actual" name="stock_actual" required>
+                        
+                                    <div class="col-12 col-md-6">
+                                        <label for="stock_actual" class="form-label">Stock actual</label>
+                                        <input type="number" min="0" class="form-control input shadow-sm" id="stock_actual" name="stock_actual" placeholder="Ej: 100" required>
                                     </div>
-
-                                    <div class="mb-5 col-12">
-                                        <option selected>Seleccione el beneficio</option>
-                                        <select class="form-select" aria-label="Default select example" id="id_beneficio" name="id_beneficio" required>
-
-                                        <!-- // -->
-                                        <?php
-                                            if($result->num_rows>0){
-                                                while($fila=$result->fetch_assoc()){
-
-                                        ?>
-
-                                        <option value="<?php echo $fila['id_beneficio'];?>"><?php echo $fila['nombre'];?></option>
-
-                                        <?php
-                                                }
-                                            } else{
-                                                ?>
-                                                <option value="">No existen beneficios activos</option>
-                                                <?php
-                                            }
-                                        ?>
+                        
+                                    <div class="col-12">
+                                        <label for="id_beneficio" class="form-label">Beneficio asociado</label>
+                                        <select class="form-select input shadow-sm" id="id_beneficio" name="id_beneficio" required>
+                                            <option value="" disabled selected>Seleccione el beneficio</option>
+                                            <?php if (isset($result) && $result->num_rows > 0): ?>
+                                                <?php while ($fila = $result->fetch_assoc()): ?>
+                                                    <option value="<?php echo $fila['id_beneficio']; ?>">
+                                                        <?php echo $fila['nombre']; ?>
+                                                    </option>
+                                                <?php endwhile; ?>
+                                            <?php else: ?>
+                                                <option value="" disabled>No existen beneficios activos</option>
+                                            <?php endif; ?>
                                         </select>
                                     </div>
-
-                                    <div class="text-center">
-
-                                        <button type="submit" class="btn btn-success">Crear</button>
-
-                                        <button type="reset" class="btn btn-danger">Cancelar</button>
+                        
+                                    <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
+                                        <button type="submit" class="btn button-confirm col-5 col-md-2">Crear</button>
+                                        <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                     </div>
+                        
                                 </form>
-                                <!-- // -->
-                                <?php
-                                if (isset($_GET["mensaje"])){
-                                    if ($_GET["mensaje"]!="ok"){
-                                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                                    } else{
-                                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Producto creado</strong></div></div>";
-                                    }
-                                }
-                                ?>
+                        
                             </div>
+                        
+                            <?php if (isset($_GET["mensaje"])): ?>
+                                <div class="text-center mt-4 mb-5">
+                                    <?php if ($_GET["mensaje"] != "ok"): ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <strong><?php echo $_GET["mensaje"]; ?></strong>
+                                        </div>
+                                    <?php else: ?>
+                                        <div class="alert alert-success" role="alert">
+                                            <strong>Producto creado exitosamente</strong>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
                         </section>
+                        
+    <div class="m-4 p-4"></div>
+    <!-- // -->
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
                         
 <!-- // -->
 <?php
@@ -216,10 +235,3 @@
 }
 exit;
 ?>
-
-   <?php include("../../complementario/pie.php") ?>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-</body>
-
-</html>

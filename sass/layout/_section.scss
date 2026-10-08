@@ -147,7 +147,7 @@
   }
 
   .form-control {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: variables.$fondo-beige;
     border: none;
     border-radius: 10px;
     color: variables.$fondo-azul-oscuro;
@@ -156,7 +156,7 @@
     text-align: center;
 
     &:disabled, &[readonly] {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: variables.$fondo-beige;
       color: variables.$fondo-azul-oscuro;
       opacity: 1;
     }

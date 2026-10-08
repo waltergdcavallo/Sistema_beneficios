@@ -30,7 +30,7 @@
                     <meta charset="UTF-8">
                     <meta http-equiv="X-UA-Compatible" content="IE=edge">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Lista de ventas</title>
+                    <title>Listado de ventas</title>
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
                     <link rel="stylesheet" href="../../sass/main.css">
                 </head>
@@ -41,10 +41,18 @@
                     <section class="container">
 
                         <div class="text-center my-5 text text-primary">
-                            <h3><?php if(isset($fila['nombreyapellido'])){echo "Ventas de: ".$fila['nombreyapellido'];}else{ echo "Este usuario no tiene ventas";}?></h3>
+                            <h3 class="title-list"><?php if(isset($fila['nombreyapellido'])){echo "Ventas de: ".$fila['nombreyapellido'];}else{ echo "Este usuario no tiene ventas";}?></h3>
                         </div>
 
                         <div class="row">
+
+                            <div class="col-2 section-list">
+                                <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                            </div>
+                            <div class="col-8"></div>
+                            <div class="col-2 section-list">
+                                <a href="form.php" class="btn btn-primary">Agregar</a>
+                            </div>
 
                         <section class="section-list">
                             <table class="table table-striped">
@@ -106,9 +114,13 @@
                         ?>
                     </section>
                     
-                    <div class="m-5 p-5"></div>
-   <?php include("../../complementario/pie.php") ?>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <div class="m-5 p-5"></div>
+    <!-- // -->
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    
+</body>
+</html>
 
 <!-- // -->
 <?php
@@ -128,7 +140,7 @@
                         <meta charset="UTF-8">
                         <meta http-equiv="X-UA-Compatible" content="IE=edge">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Lista de ventas</title>
+                        <title>Listado de ventas</title>
                         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
                         <link rel="stylesheet" href="../../sass/main.css">
                     </head>
@@ -136,85 +148,92 @@
 
                         <?php include("../../complementario/encabezado.php") ?>
 
-                        <section class="container">
-
-                            <div class="text-center my-5 text text-primary">
-                                <h3>Lista de ventas</h3>
+                        <div class="text-center">
+                            <div class="text-center my-5">
+                                <h3 class="title-list">Listado de ventas</h3>
                             </div>
-
-                            <div class="row">
-
-                                <div class="col-10"></div>
+                            
+                            <section class="container">
+                                <div class="row">
+    
+                                    <div class="col-2 section-list">
+                                        <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                                    </div>
+                                    <div class="col-8"></div>
                                     <div class="col-2 section-list">
                                         <a href="form.php" class="btn btn-primary">Agregar</a>
-                                    <div>
-                                </div>
-                            </div>
-
-                                <section class="section-list">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Nombre y apellido</th>
-                                                <th scope="col">Fecha de venta</th>
-                                                <th scope="col">Detalles</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                    </div>
     
-                                        <!-- // -->
-                                        <?php
-                                            if($result->num_rows>0){
-                                                while($fila=$result->fetch_assoc()){
-    
-                                        ?>
-                                                    <tr>
-                                                        <td><?php echo $fila["id_venta"]; ?></td>
-                                                        <td><?php echo $fila["nombreyapellido"]; ?></td>
-                                                        <td><?php echo $fila["fecha_venta"]; ?></td>
-                                                        <td>
-                                                            <div class="d-sm-inline-block">
-                                                                <form action="detalle.php" method="post">
-                                                                    <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
-                                                                    <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-    
-                                        <!-- // -->
-                                        <?php
+                                    <section class="section-list">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Id</th>
+                                                    <th scope="col">Nombre y apellido</th>
+                                                    <th scope="col">Entregado</th>
+                                                    <th scope="col">Pagado</th>
+                                                    <th scope="col">Fecha de venta</th>
+                                                    <th scope="col">Detalles</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+        
+                                            <!-- // -->
+                                            <?php
+                                                if($result->num_rows>0){
+                                                    while($fila=$result->fetch_assoc()){
+        
+                                            ?>
+                                                        <tr>
+                                                            <td><?php echo $fila["id_venta"]; ?></td>
+                                                            <td><?php echo $fila["nombreyapellido"]; ?></td>
+                                                            <td><?php if($fila["entregado"]>0){ echo "Si"; } else{ echo "No"; };?></td>
+                                                            <td><?php if($fila["pagado"]>0){ echo "Si"; } else{ echo "No"; };?></td>
+                                                            <td><?php echo $fila["fecha_venta"]; ?></td>
+                                                            <td>
+                                                                <div class="d-sm-inline-block">
+                                                                    <form action="detalle.php" method="post">
+                                                                        <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
+                                                                        <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                                    </form>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+        
+                                            <!-- // -->
+                                            <?php
+                                                }
+                                            }else{
+                                            ?>
+                                                <tr>
+                                                    <td scope="5"></td>
+                                                    <div class="alert alert-danger text-center">No existen Venta en la tabla</div>
+                                                </tr>
+                                            <?php
                                             }
-                                        }else{
-                                        ?>
-                                            <tr>
-                                                <td scope="5"></td>
-                                                <div class="alert alert-danger text-center">No existen Venta en la tabla</div>
-                                            </tr>
-                                        <?php
-                                        }
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </section>
-                                 
-                            </div>
-                            <!-- // -->
-                            <?php
-                            if (isset($_GET["mensaje"])){
-                                if ($_GET["mensaje"]!="ok"){
-                                    echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                                } else{
-                                    echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Venta editada</strong></div></div>";
+                                            ?>
+                                            </tbody>
+                                        </table>
+                                    </section>
+                                     
+                                </div>
+                                <!-- // -->
+                                <?php
+                                if (isset($_GET["mensaje"])){
+                                    if ($_GET["mensaje"]!="ok"){
+                                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
+                                    } else{
+                                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Venta editada</strong></div></div>";
+                                    }
                                 }
-                            }
-                            ?>
-                        </section>
-                        
-        <div class="m-5 p-5"></div>
-   <?php include("../../complementario/pie.php") ?>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+                                ?>
+                            </section>
+                    </div>
+
+    <div class="m-5 p-5"></div>
+    <!-- // -->
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 </body>
 </html>

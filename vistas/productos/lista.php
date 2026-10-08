@@ -8,7 +8,7 @@
 
         require_once "../../conexion.php";
 
-        $sql="select *, (producto.nombre) as nombreprod, (beneficio.nombre) as nombrebene from beneficio, producto where (producto.id_beneficio=beneficio.id_beneficio) group by producto.nombre order by producto.nombre asc ";
+        $sql="select producto.*, (producto.nombre) as nombreprod, (beneficio.nombre) as nombrebene from beneficio, producto where (producto.id_beneficio=beneficio.id_beneficio) group by producto.nombre order by producto.nombre asc ";
         $stmt=$conex->prepare($sql);
         if ($stmt->execute()){
             $resultado=$stmt->get_result();
@@ -29,19 +29,18 @@
 
             <div class="text-center">
                 <div class="my-5">
-                    <h3>Listado de Productos</h3>
+                    <h3 class="title-list">Listado de Productos</h3>
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-10"></div>
-
-                            <div class="col-2 section-list">
+                        <div class="col-2 section-list">
+                            <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                        </div>
+                        <div class="col-8"></div>
+                        <div class="col-2 section-list">
                             <a href="form.php" class="btn btn-primary">Agregar</a>
-                            <div>
-
                         </div>
                     </div>
-                </div>
 
                     <section class="section-list">
                         <table class="table table-striped">
@@ -50,6 +49,7 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Precio</th>
                                 <th scope="col">Beneficio relacionado</th>
+                                <th scope="col">Stock actual</th>
                                 <th scope="col">Detalle</th>
                             </tr>
                         </thead>
@@ -72,6 +72,7 @@
                                                     </form><?php }else{ echo "No tiene.";}?>
                                                 </div>
                                             </td>
+                                            <td><?php echo $fila["stock_actual"]; ?></td>
                                             <td>
     
                                             <div class="d-sm-inline-block">
@@ -83,21 +84,21 @@
                                             </td>
                                         </tr>
     
-                            <!-- // -->
-                            <?php
+                                <!-- // -->
+                                <?php
+                                    }
+                                }else {
+                                ?>
+                                    <tr>
+                                        <td scope="5"></td>
+                                        <div class="alert alert-danger text-center">No existen Productos en la tabla</div>
+                                    </tr>
+                                <?php
                                 }
-                            }else {
-                            ?>
-                                <tr>
-                                    <td scope="5"></td>
-                                    <div class="alert alert-danger text-center">No existen Productos en la tabla</div>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </section>
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
                 </div>
             </div>
 
@@ -122,8 +123,3 @@
     }
     exit;
 ?>
-
-    <?php include("../../complementario/pie.php") ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-</body>
-</html>
