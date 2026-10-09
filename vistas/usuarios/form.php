@@ -255,7 +255,7 @@
                                 </div>
                             <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    <?php endif; }?>
                 </section>
 
     <div class="m-4 p-4"></div>
@@ -361,6 +361,5 @@
 </html>
 <!-- // -->
 <?php
-    }
 }
 ?>
