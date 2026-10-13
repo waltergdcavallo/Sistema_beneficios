@@ -27,10 +27,10 @@
         $stmt=$conex->prepare($sql);
         $stmt->bind_param("ssssssssi", $nombre, $apellido, $dni, $telefono, $email, $direccion, $password_hash, $rol, $id_usuario);
         if ($stmt->execute()){
-            header("Location:../../../vistas/usuarios/lista.php?mensaje=ok");
+            header("Location:../../../vistas/usuarios/lista.php?mensaje=editado");
         } else{
             $error.="Error en la edición";
-            header("Location:../../../vistas/usuarios/form.php?mensaje=".$error);
+            header("Location:../../../vistas/usuarios/form.php?mensaje=error1");
             exit;
         }
 
@@ -52,14 +52,12 @@
         $stmt=$conex->prepare($sql);
         $stmt->bind_param("sssssi", $nombre, $apellido, $telefono, $direccion, $password_hash, $id_usuario);
         if ($stmt->execute()){
-        header("Location:../../../vistas/usuarios/detalle.php?mensaje=ok");
+        header("Location:../../../vistas/usuarios/detalle.php?mensaje=editado");
         } else{
-            $error.="Error en la edición";
-            header("Location:../../../vistas/usuarios/form.php?mensaje=".$error);
+            header("Location:../../../vistas/usuarios/form.php?mensaje=error1");
         }
     } else {
-        $error.="Faltan datos";
-        header("Location:../../../vistas/usuarios/lista.php?mensaje=".$error);
+        header("Location:../../../vistas/usuarios/lista.php?mensaje=error2");
         exit;
     }
     

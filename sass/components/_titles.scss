@@ -11,3 +11,51 @@
     margin: 0;
     color: variables.$fondo-azul;
 }
+
+.title-welcome {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: variables.$fondo-azul-oscuro;
+    letter-spacing: -0.5px;
+
+    span {
+        color: variables.$fondo-verde;
+    }
+}
+
+.title-welcome-2{
+    h2 {
+    font-family: fonts.$font-body;
+    color: variables.$fondo-azul-oscuro;
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+    }
+
+    p {
+        font-family: fonts.$font-body;
+        color: rgba(variables.$fondo-azul-oscuro, 0.75);
+        font-size: 1.1rem;
+        margin-bottom: 0;
+    }
+}
+
+.title-quest{
+    h2 {
+        font-family: fonts.$font-body;
+        color: variables.$fondo-azul-oscuro;
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.5px;
+    }
+
+    p{
+        font-family: fonts.$font-body;
+        color: rgba(variables.$fondo-azul-oscuro, 0.75);
+        font-size: 1.05rem;
+        margin-bottom: 0;
+    }
+}

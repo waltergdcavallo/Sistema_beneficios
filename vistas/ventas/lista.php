@@ -91,7 +91,7 @@
                                     ?>
                                             <tr>
                                                 <td scope="5"></td>
-                                                <div class="alert alert-danger text-center">No existen Venta en la tabla</div>
+                                                <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Ventas en la tabla</div>
                                             </tr>
                                     <!-- // -->
                                     <?php
@@ -103,15 +103,36 @@
                             
                         </div>
                         <!-- // -->
-                        <?php
-                        if (isset($_GET["mensaje"])){
-                            if ($_GET["mensaje"]!="ok"){
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                            } else{
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Beneficio editado</strong></div></div>";
-                            }
-                        }
-                        ?>
+                        <?php if (isset($_GET['mensaje'])){ ?>
+                                <div class="container mt-4">
+                                    <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                        <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Éxito!</strong> La venta fue creada correctamente.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                        <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Actualizado!</strong> La venta fue editada correctamente.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php }elseif ($_GET['mensaje'] == 'eliminado'){ ?>
+                                        <div class="alert alert-warning alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Eliminado!</strong> La venta fue eliminada correctamente.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                        <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                        <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Error!</strong> Faltan datos.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php } ?>
+                                <?php } ?>
+                            </div>
                     </section>
                     
     <div class="m-5 p-5"></div>
@@ -127,10 +148,10 @@
                 //admin
                 } elseif($_SESSION['rol']=="admin"){
 
-                    $sql="select venta.*, concat(usuario.nombre, ' ', usuario.apellido) as nombreyapellido from venta, usuario where (venta.id_usuario=usuario.id_usuario) order by venta.id_venta desc";
+                    $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) ORDER BY venta.fecha_venta DESC";
                     $stmt=$conex->prepare($sql);
                     if ($stmt->execute()){
-                        $result=$stmt->get_result();
+                        $resultado=$stmt->get_result();
                     }
 ?>
 
@@ -169,7 +190,8 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Id</th>
-                                                    <th scope="col">Nombre y apellido</th>
+                                                    <th scope="col">Vendedor</th>
+                                                    <th scope="col">Beneficio</th>
                                                     <th scope="col">Entregado</th>
                                                     <th scope="col">Pagado</th>
                                                     <th scope="col">Fecha de venta</th>
@@ -180,13 +202,14 @@
         
                                             <!-- // -->
                                             <?php
-                                                if($result->num_rows>0){
-                                                    while($fila=$result->fetch_assoc()){
+                                                if($resultado->num_rows>0){
+                                                    while($fila=$resultado->fetch_assoc()){
         
                                             ?>
                                                         <tr>
                                                             <td><?php echo $fila["id_venta"]; ?></td>
                                                             <td><?php echo $fila["nombreyapellido"]; ?></td>
+                                                            <td><?php echo $fila["nombre"]; ?></td>
                                                             <td><?php if($fila["entregado"]>0){ echo "Si"; } else{ echo "No"; };?></td>
                                                             <td><?php if($fila["pagado"]>0){ echo "Si"; } else{ echo "No"; };?></td>
                                                             <td><?php echo $fila["fecha_venta"]; ?></td>
@@ -207,7 +230,7 @@
                                             ?>
                                                 <tr>
                                                     <td scope="5"></td>
-                                                    <div class="alert alert-danger text-center">No existen Venta en la tabla</div>
+                                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Ventas en la tabla</div>
                                                 </tr>
                                             <?php
                                             }
@@ -218,15 +241,31 @@
                                      
                                 </div>
                                 <!-- // -->
-                                <?php
-                                if (isset($_GET["mensaje"])){
-                                    if ($_GET["mensaje"]!="ok"){
-                                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                                    } else{
-                                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Venta editada</strong></div></div>";
-                                    }
-                                }
-                                ?>
+                                <?php if (isset($_GET['mensaje'])){ ?>
+                                    <div class="container mt-4">
+                                        <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                            <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                                <strong>¡Éxito!</strong> La venta fue creada correctamente.
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                            <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                                <strong>¡Actualizado!</strong> La venta fue editada correctamente.
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                            <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                                <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                            <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                                <strong>¡Error!</strong> Faltan datos.
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </div>
                             </section>
                     </div>
 

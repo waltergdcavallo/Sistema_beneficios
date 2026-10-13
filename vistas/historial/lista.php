@@ -9,11 +9,11 @@
         if(!empty($_POST['id_usuario'])){
 
             $id_usuario=$_POST['id_usuario'];
-            $sql="select historial.*, usuario.nombre AS nombreusuario, beneficio.nombre AS nombrebene, usuario.dni, beneficio.estado FROM beneficio, usuario, historial WHERE historial.id_usuario = usuario.id_usuario AND historial.id_beneficio = beneficio.id_beneficio AND historial.id_usuario = ?";
+            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, beneficio.nombre AS nombrebene, usuario.dni, usuario.rol, beneficio.estado FROM beneficio, usuario, historial WHERE (historial.id_usuario=usuario.id_usuario) AND (historial.id_beneficio=beneficio.id_beneficio) AND historial.id_usuario=? ORDER BY id_historial DESC";
             $stmt=$conex->prepare($sql);
             $stmt->bind_param("i", $id_usuario);
             if ($stmt->execute()){
-            $resultado=$stmt->get_result();
+                $resultado=$stmt->get_result();
             }
 ?>
         <!DOCTYPE html>
@@ -50,6 +50,7 @@
                                     <th scope="col">Id</th>
                                     <th scope="col">Nombre del usuario</th>
                                     <th scope="col">Dni</th>
+                                    <th scope="col">Rol</th>
                                     <th scope="col">Nombre del beneficio</th>
                                     <th scope="col">Estado del beneficio</th>
                                     <th scope="col">Fecha de la inscripcion</th>
@@ -68,6 +69,7 @@
                                                 <td><?php echo $fila["id_historial"]; ?></td>
                                                 <td><?php echo $fila["nombreusuario"]; ?></td>
                                                 <td><?php echo $fila["dni"]; ?></td>
+                                                <td><?php echo $fila["rol"]; ?></td>
                                                 <td><?php echo $fila["nombrebene"]; ?></td>
                                                 <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
                                                 <td><?php echo $fila["fecha_inscripto"]; ?></td>
@@ -75,7 +77,7 @@
                                                     <div class="d-sm-inline-block">
                                                         <form action="../usuarios/detalle.php" method="post">
                                                             <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                                            <button class="btn btn-primary p-1" type="submit">Ver usuario</button>
+                                                            <button class="btn btn-primary p-1 mb-1" type="submit">Ver usuario</button>
                                                         </form>
                                                     </div>
                                                     <div class="d-sm-inline-block">
@@ -94,7 +96,7 @@
                                 ?>
                                     <tr>
                                         <td scope="5"></td>
-                                        <div class="alert alert-danger text-center">No existe historial de este usuario</div>
+                                        <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existe historial de este usuario</div>
                                     </tr>
                                 <?php
                                 }
@@ -105,7 +107,7 @@
                 </div>
             </div>
 
-    <div class="m-5 p-5"></div>
+    <div class="m-4 p-4"></div>
     <!-- // -->
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -118,12 +120,9 @@
         } elseif(!empty($_POST['id_beneficio']) && $_SESSION['rol']=="admin"){
 
             $id_beneficio=$_POST['id_beneficio'];
-
-            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, beneficio.nombre AS nombrebeneficio, beneficio.estado, usuario.dni FROM beneficio, usuario, historial WHERE historial.id_usuario = usuario.id_usuario AND historial.id_beneficio = beneficio.id_beneficio AND historial.id_beneficio = ? ORDER BY historial.id_beneficio DESC";
-
+            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, usuario.rol, beneficio.nombre AS nombrebeneficio, beneficio.estado, usuario.dni FROM beneficio, usuario, historial WHERE historial.id_usuario = usuario.id_usuario AND historial.id_beneficio = beneficio.id_beneficio AND historial.id_beneficio = ? ORDER BY id_historial DESC";
             $stmt=$conex->prepare($sql);
             $stmt->bind_param("i", $id_beneficio);
-
             if ($stmt->execute()){
             $result=$stmt->get_result();
             }
@@ -166,6 +165,7 @@
                                         <th scope="col">Estado del beneficio</th>
                                         <th scope="col">Nombre del usuario</th>
                                         <th scope="col">Dni</th>
+                                        <th scope="col">Rol</th>
                                         <th scope="col">Fecha de la inscripcion</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
@@ -183,12 +183,13 @@
                                                     <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
                                                     <td><?php echo $fila["nombreusuario"]; ?></td>
                                                     <td><?php echo $fila["dni"]; ?></td>
+                                                    <td><?php echo $fila["rol"]; ?></td>
                                                     <td><?php echo $fila["fecha_inscripto"]; ?></td>
                                                     <td>
                                                         <div class="d-sm-inline-block">
                                                             <form action="../beneficios/detalle.php" method="post">
                                                                 <input type="hidden"name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                                                <button class="btn btn-primary p-1" type="submit">Ver beneficio</button>
+                                                                <button class="btn btn-primary p-1 mb-1" type="submit">Ver beneficio</button>
                                                             </form>
                                                         </div>
                                                         <div class="d-sm-inline-block">
@@ -207,7 +208,7 @@
                                     ?>
                                         <tr>
                                             <td scope="5"></td>
-                                            <div class="alert alert-danger text-center">No existe historial de este beneficio</div>
+                                            <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existe historial de este beneficio</div>
                                         </tr>
                                     <?php
                                     }
@@ -218,7 +219,7 @@
                     </div>
                 </div>
 
-    <div class="m-5 p-5"></div>
+    <div class="m-4 p-4"></div>
     <!-- // -->
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
@@ -230,7 +231,7 @@
 
         }elseif($_SESSION['rol']=="admin"){
 
-            $sql="select *, (usuario.nombre) as nombreusuario, (beneficio.nombre) as nombrebeneficio from beneficio, usuario, historial where (historial.id_beneficio=beneficio.id_beneficio) and (historial.id_usuario=usuario.id_usuario) order by id_historial desc";
+            $sql="SELECT historial.*, (usuario.nombre) AS nombreusuario, usuario.dni, usuario.rol, (beneficio.nombre) AS nombrebeneficio, beneficio.estado FROM beneficio, usuario, historial WHERE (historial.id_beneficio=beneficio.id_beneficio) AND (historial.id_usuario=usuario.id_usuario) ORDER BY id_historial DESC";
     
             $stmt=$conex->prepare($sql);
     
@@ -273,6 +274,7 @@
                                             <th scope="col">Id</th>
                                             <th scope="col">Nombre del usuario</th>
                                             <th scope="col">Dni</th>
+                                            <th scope="col">Rol</th>
                                             <th scope="col">Nombre del beneficio</th>
                                             <th scope="col">Estado del beneficio</th>
                                             <th scope="col">Fecha de la inscripcion</th>
@@ -291,6 +293,7 @@
                                                     <td><?php echo $fila["id_historial"]; ?></td>
                                                     <td><?php echo $fila["nombreusuario"]; ?></td>
                                                     <td><?php echo $fila["dni"]; ?></td>
+                                                    <td><?php echo $fila["rol"]; ?></td>
                                                     <td><?php echo $fila["nombrebeneficio"]; ?></td>
                                                     <td><?php if($fila["estado"]>0){ echo "Activo"; } else{ echo "Terminado"; };?></td>
                                                     <td><?php echo $fila["fecha_inscripto"]; ?></td>
@@ -298,7 +301,7 @@
                                                         <div class="d-sm-inline-block">
                                                             <form action="../usuarios/detalle.php" method="post">
                                                                 <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                                                <button class="btn btn-primary p-1" type="submit">Ver usuario</button>
+                                                                <button class="btn btn-primary p-1 mb-1" type="submit">Ver usuario</button>
                                                             </form>
                                                         </div>
                                                         <div class="d-sm-inline-block">
@@ -317,7 +320,7 @@
                                     ?>
                                         <tr>
                                             <td scope="5"></td>
-                                            <div class="alert alert-danger text-center">No existe historial</div>
+                                            <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existe historial</div>
                                         </tr>
                                     <?php
                                     }
@@ -328,7 +331,7 @@
                     </div>
                 </div>
 
-    <div class="m-5 p-5"></div>
+    <div class="m-4 p-4"></div>
     <!-- // -->
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

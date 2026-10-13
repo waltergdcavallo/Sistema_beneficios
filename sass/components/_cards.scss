@@ -1,105 +1,8 @@
 @use "../abstracts/variables";
 @use "../base/fonts";
 
-.section-cards{
-    text-align: center;
-    padding: 100px;
-    transition: 1s;
-
-    .card-beneficio1{
-        
-        background: variables.$gradient-verde;
-        border-color: variables.$fondo-verde;
-        border-radius: 10px;
-        border-width: 5px;
-        margin: 30px;
-        padding: 30px;
-        transition: 0.5s;
-        
-        h2{
-            color: variables.$fondo-beige;
-        }
-    
-        p{
-            font-family: fonts.$font-card;
-            color: variables.$fondo-beige;
-            font-size: 20px;
-            transition: 1s;
-        }
-
-        &:hover{
-            scale: 110%;
-            transition: 0.5s;
-
-        }
-    }
-    
-    .card-beneficio2{
-        background: variables.$gradient-beige;
-        border-color: variables.$fondo-beige;
-        border-radius: 10px;
-        border-width: 5px;
-        margin: 30px;
-        padding: 30px;
-        transition: 0.5s;
-
-        h2{
-            font-family: fonts.$font-body;
-            color: variables.$fondo-azul;
-        }
-        
-        p{
-            color: variables.$fondo-beige;
-            font-family: fonts.$font-card;
-            font-size: 20px;
-            transition: 1s;
-        }
-
-        &:hover{
-            scale: 110%;
-            transition: 0.5s;
-
-        }
-    }
-    
-    .card-beneficio3{
-        background: variables.$gradient-azul;
-        border-color: variables.$fondo-azul;
-        border-radius: 10px;
-        border-width: 5px;
-        font-family: fonts.$font-body;
-        margin: 30px;
-        padding: 30px;
-        transition: 0.5s;
-    
-        h2{
-            color: variables.$fondo-beige;
-            font-family: fonts.$font-body;
-        }
-    
-        p{
-            color: variables.$fondo-beige;
-            font-family: fonts.$font-card;
-            font-size: 20px;
-            transition: 1s;
-        }
-
-        &:hover{
-            scale: 110%;
-            transition: 0.5s;
-        }
-    }
-
-    
-    &:hover{
-        p{
-            font-size: 25px;
-        }
-    }
-}
-
 .card-list{
-    background: variables.$gradient-beige;
+    background: #ffff;
     border-color: variables.$fondo-azul;
     border-radius: 10px;
     border-width: 5px;
@@ -111,6 +14,7 @@
         color: black;
         font-family: fonts.$font-body;
         font-size: 25px;
+        font-weight:800;
     }
 
     p{
@@ -121,7 +25,104 @@
     }
 
     &:hover{
-        scale: 110%;
-        transition: 0.5s;
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.08) !important;
     }
+}
+
+.info-card {
+    background-color: variables.$fondo-azul-oscuro;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+
+    .card-subtitle {
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+}
+
+.card-item {
+    .num {
+        min-width: 38px;
+        height: 38px;
+        background-color: #ffffff;
+        color: variables.$fondo-verde;
+        font-weight: 800;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+    }
+
+    .content {
+        h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: variables.$fondo-verde;
+            margin-bottom: 0.2rem;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: variables.$fondo-beige;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+    }
+}
+
+.card-item-2 {
+    background-color: #ffffff;
+    border: 1px solid rgba(variables.$fondo-azul, 0.12);
+    border-radius: 20px;
+    padding: 2.25rem 2rem;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+    }
+
+    div{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background-color: variables.$fondo-verde;
+        color: #ffffff;
+        font-weight: 800;
+        font-size: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+    }
+
+    h3 {
+        font-family: fonts.$font-body;
+        color: variables.$fondo-azul-oscuro;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.85rem;
+        line-height: 1.35;
+    }
+
+    p {
+        font-family: fonts.$font-body;
+        color: rgba(variables.$fondo-azul-oscuro, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-bottom: 0;
+    }
+}
+
+.card-title {
+    font-family: fonts.$font-body;
+    color: variables.$fondo-azul-oscuro;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
 }

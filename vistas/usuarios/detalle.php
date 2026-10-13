@@ -72,10 +72,12 @@
                     </div>
                 
                     <div class="detail-actions d-flex flex-wrap justify-content-between align-items-center gap-3 mt-5 pt-4">
+                        <?php if($fila['rol']!="pendiente"){?>
                         <form action="../historial/lista.php" method="post">
                             <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario']; ?>">
                             <button class="btn btn-view" type="submit">Beneficios asociados</button>
                         </form>
+                        <?php }?>
                 
                         <form action="form.php" method="post">
                             <input type="hidden" name="id_usuario" value="<?php echo $fila['id_usuario']; ?>">
@@ -89,6 +91,35 @@
                     </div>
 
                 </section>
+                
+                <section class="container">
+                    <div class="row">
+                        <div class="col-2 section-list">
+                            <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                        </div>
+                    </div>
+                </section>
+
+                <?php if (isset($_GET['mensaje'])){ ?>
+                        <div class="container mt-4">
+                            <?php if ($_GET['mensaje'] == 'editado'){ ?>
+                                <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Actualizado!</strong> El perfil fue editado correctamente.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Error!</strong> Faltan datos.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
 
     <div class="m-4 p-4"></div>
     <!-- // -->
@@ -164,6 +195,22 @@
                     </div>
 
                 </section>
+
+                <?php if (isset($_GET['mensaje'])){ ?>
+                        <div class="container mt-4">
+                            <?php if ($_GET['mensaje'] == 'editado'){ ?>
+                                <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Actualizado!</strong> El perfil fue editado correctamente.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php }elseif ($_GET['mensaje'] == 'error'){ ?>
+                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
 
     <div class="m-4 p-4"></div>
     <!-- // -->

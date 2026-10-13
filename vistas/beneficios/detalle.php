@@ -11,7 +11,7 @@
 
             $id_beneficio=$_POST['id_beneficio'];
 
-            $sql="select *, beneficio.nombre as nombrebene from beneficio, producto where (producto.id_beneficio=beneficio.id_beneficio) and beneficio.id_beneficio=?";
+            $sql="select beneficio.*, beneficio.nombre as nombrebene from beneficio where beneficio.id_beneficio=?";
 
             $stmt=$conex->prepare($sql);
 
@@ -43,7 +43,7 @@
                     <?php include("../../complementario/encabezado.php") ?>
 
                     <section class="container my-5 section-detail">
-                          
+
                         <div class="text-center mb-4">
                             <h3 class="detail-title">Beneficio <?php echo $fila["nombrebene"]; ?></h3>
                         </div>
@@ -68,6 +68,21 @@
                                 <label for="estado" class="form-label">Estado</label>
                                 <input type="text" class="form-control" id="estado" value="<?php echo ($fila['estado'] > 0) ? 'Activo' : 'Terminado'; ?>" disabled>
                             </div>
+                         
+                            <!-- // -->
+                            <?php
+                            $sql="select producto.nombre as nombreprod from beneficio, producto where (producto.id_beneficio=beneficio.id_beneficio) and beneficio.id_beneficio=?";
+                            $stmt2=$conex->prepare($sql);
+                            $stmt2->bind_param("i", $id_beneficio);
+                            $stmt2->execute();
+                            $resultado2=$stmt2->get_result();
+                            $fila2=$resultado2->fetch_assoc();
+                            ?>
+
+                            <div class="col-12 col-md-6">
+                                <label for="estado" class="form-label">Producto relacionado</label>
+                                <input type="text" class="form-control" id="nombre" value="<?php if(!empty($fila2['nombreprod'])) {echo $fila2['nombreprod'];}else{echo 'Sin producto asignado';}  ?>" disabled>
+                            </div>
                         </div>
                       
                           <?php if($_SESSION['rol'] == "admin"): ?>
@@ -89,6 +104,14 @@
                               </div>
                           <?php endif; ?>
                       
+                    </section>
+
+                    <section class="container">
+                        <div class="row">
+                            <div class="col-2 section-list">
+                              <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                            </div>
+                        </div>
                     </section>
                     
         <div class="m-4 p-4"></div>

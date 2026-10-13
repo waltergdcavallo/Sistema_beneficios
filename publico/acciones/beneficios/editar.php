@@ -22,13 +22,11 @@
 
 
         if ($stmt->execute()){
-            header("Location:../../../vistas/beneficios/lista.php?mensaje=ok");
+            header("Location:../../../vistas/beneficios/lista.php?mensaje=editado");
         } else{
-            $error.="Error en la edición";
-            header("Location:../../../vistas/beneficios/form.php?mensaje=".$error);
+            header("Location:../../../vistas/beneficios/form.php?mensaje=error1");
         }
     } else{
-        $error.="Error en la edición";
-        header("Location:../../../vistas/beneficios/form.php?mensaje=".$error);
+        header("Location:../../../vistas/beneficios/form.php?mensaje=error2");
     }
 ?>

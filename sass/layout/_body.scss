@@ -1,6 +1,37 @@
 @use "../abstracts/variables";
+@use "../base/fonts";
+
 body{
     background: variables.$gradient-body;
     background-size: cover;
     min-height: 100vh;
+}
+
+.dashboard-no-logged{
+    .tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f1f5f9;
+    padding: 0.35rem 0.85rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: #475569;
+
+        span {
+            width: 8px;
+            height: 8px;
+            background-color: variables.$fondo-verde;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    }
+
+    .description {
+        font-size: 1.1rem;
+        color: variables.$fondo-azul-oscuro;
+        max-width: 480px;
+        line-height: 1.5;
+    }
 }

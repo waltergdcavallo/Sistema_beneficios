@@ -20,15 +20,14 @@
         $stmt_venta->bind_param("i", $id_venta);
 
         if ($stmt_venta->execute()){
-           header("Location:../../../vistas/ventas/lista.php?mensaje=ok");
+           header("Location:../../../vistas/ventas/lista.php?mensaje=eliminado");
         } else{
-            $error.="Error en la eliminación";
-            header("Location:../../../vistas/ventas/detalle.php?mensaje=".$error);
+            header("Location:../../../vistas/ventas/detalle.php?mensaje=error1");
         }
 
         } else{
             $error.="Error en la eliminación";
-            header("Location:../../../vistas/ventas/detalle.php?mensaje=".$error);
+            header("Location:../../../vistas/ventas/detalle.php?mensaje=error1");
     }
 
 ?>

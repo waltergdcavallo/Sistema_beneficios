@@ -22,14 +22,12 @@
         $stmt->bind_param("siiiii", $nombre, $precio, $stock_inicial, $stock_actual, $id_beneficio, $id_producto);
 
         if ($stmt->execute()){
-            header("Location:../../../vistas/beneficios/lista.php?mensaje=ok");
+            header("Location:../../../vistas/beneficios/lista.php?mensaje=editado");
         } else{
-            $error.="Error en la edición";
-            header("Location:../../../vistas/beneficios/lista.php?mensaje=".$error);
+            header("Location:../../../vistas/beneficios/lista.php?mensaje=error1");
         }
 
     } else{
-        $error.="Faltan datos";
-        header("Location:../../../vistas/beneficios/lista.php?mensaje=".$error);
+        header("Location:../../../vistas/beneficios/lista.php?mensaje=error2");
     }
 ?>

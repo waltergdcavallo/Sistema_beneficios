@@ -15,14 +15,12 @@
         $stmt->bind_param("ii", $id_usuario, $id_beneficio);
 
         if ($stmt->execute()){
-            header("Location:../../../vistas/inicio.php?mensaje=ok");
+            header("Location:../../../vistas/inicio.php?mensaje=creado");
         } else{
-            $error.="Error en la inserción";
-            header("Location:../../vistas/inicio.php?mensaje=".$error);
+            header("Location:../../vistas/inicio.php?mensaje=error1");
         }
 
     } else{
-        $error.="Faltan datos";
-        header("Location:../../../vistas/inicio.php?mensaje=".$error);
+        header("Location:../../../vistas/inicio.php?mensaje=error1");
     }
 ?>

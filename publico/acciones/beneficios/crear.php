@@ -20,14 +20,12 @@
         $stmt->bind_param("sssis", $nombre, $fecha_inicio, $fecha_fin, $estado, $descripcion);
 
         if ($stmt->execute()){
-            header("Location:../../../vistas/beneficios/lista.php?mensaje=ok");
+            header("Location:../../../vistas/beneficios/lista.php?mensaje=creado");
         } else{
-            $error.="Error en la inserción";
-            header("Location:../../vistas/beneficios/form.php?mensaje=".$error);
+            header("Location:../../vistas/beneficios/form.php?mensaje=error1");
         }
 
     } else{
-        $error.="Faltan datos";
-        header("Location:../../../vistas/beneficios/form.php?mensaje=".$error);
+        header("Location:../../../vistas/beneficios/form.php?mensaje=error2");
     }
 ?>

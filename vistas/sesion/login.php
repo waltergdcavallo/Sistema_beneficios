@@ -21,22 +21,22 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="navbar-brand button-nav-title" href="http://localhost/sistema_beneficios/vistas/inicio.php">Sistema de beneficios</a>
+            <a class="navbar-brand btn-nav-title" href="http://localhost/sistema_beneficios/vistas/inicio.php">Sistema de beneficios</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse me-2" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="btn btn-dark button-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                        <a class="btn btn-dark btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
                     </li>
                 </ul>
-                <a href="http://localhost/sistema_beneficios/vistas/usuarios/form.php" class="btn btn-dark ms-auto button-nav">Registrarse</a>
+                <a href="http://localhost/sistema_beneficios/vistas/usuarios/form.php" class="btn btn-dark ms-auto btn-nav">Registrarse</a>
             </div>
         </div>
     </nav>
    
-    <section class="container section-dashboard">
+    <section class="container my-5">
         <div class="div-form shadow">
             <h3 class="ps-5">INICIO DE SESIÓN</h3>
             <form action="../../publico/acciones/sesion/acceso.php" method="post" class="p-5">
@@ -58,13 +58,14 @@
                         unset($_SESSION["error"]);
                     }
                 ?> 
-                <button type="submit" class="btn button-confirm col-2" name="btn_ingresar" id="btn_ingresar">Ingresar</button>
+                <button type="submit" class="btn btn-confirm col-2" name="btn_ingresar" id="btn_ingresar">Ingresar</button>
             </form>
         </div>
     </section>
 
+    <div class="m-4 p-4"></div>
+<!-- // -->
     <?php include("../../complementario/pie.php")?>
-   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -28,16 +28,14 @@
         $stmt->bind_param("ssssssss", $nombre, $apellido, $dni, $telefono, $email, $direccion, $password_hash, $rol);
 
         if ($stmt->execute()){
-            header("Location:../../../vistas/sesion/login.php?mensaje=ok");
+            header("Location:../../../vistas/sesion/login.php?mensaje=creado");
         } else{
-            $error.="Error en la inserción";
-            header("Location:../../../vistas/usuarios/form.php?mensaje=".$error);
+            header("Location:../../../vistas/usuarios/form.php?mensaje=error1");
             exit;
         }
         
     } else {
-        $error.="Faltan datos";
-        header("Location:../../../vistas/usuarios/form.php?mensaje=".$error);
+        header("Location:../../../vistas/usuarios/form.php?mensaje=error2");
         exit;
     }
 

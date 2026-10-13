@@ -19,6 +19,20 @@
         letter-spacing: 1px;
     }
 
+    h1 {
+        color: variables.$fondo-beige;
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    p {
+        color: variables.$fondo-beige;
+        font-size: 2.2rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
     label, .form-label {
         color: #ffffff;
         font-weight: 600;
@@ -56,36 +70,6 @@
             background-color: rgba(variables.$fondo-beige, 0.85);
             color: variables.$fondo-azul-oscuro;
             opacity: 0.9;
-        }
-    }
-
-    .button-confirm {
-        background-color: variables.$fondo-verde;
-        color: #ffffff;
-        font-weight: 700;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        border: none;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background-color: lighten(variables.$fondo-verde, 8%);
-            transform: translateY(-2px);
-        }
-    }
-
-    .button-cancel {
-        background-color: variables.$fondo-rojo;
-        color: #ffffff;
-        font-weight: 700;
-        padding: 0.75rem 1.5rem;
-        border-radius: 10px;
-        border: none;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background-color: darken(variables.$fondo-rojo, 10%);
-            transform: translateY(-2px);
         }
     }
 }

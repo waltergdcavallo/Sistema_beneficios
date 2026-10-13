@@ -6,15 +6,11 @@
 
     if(isset($_SESSION['rol']) && !empty($_SESSION['rol']) && $_SESSION['rol']=="admin"){
 
-
         require_once "../../conexion.php";
-
-        $sql="select *, concat(nombre, ' ', apellido) as nombreyapellido from usuario order by nombre asc";
-
+        $sql="SELECT *, concat(nombre, ' ', apellido) AS nombreyapellido FROM usuario ORDER BY id_usuario DESC";
         $stmt=$conex->prepare($sql);
-
         if ($stmt->execute()){
-            $result=$stmt->get_result();
+            $resultado=$stmt->get_result();
         }
 
 ?>
@@ -65,8 +61,8 @@
     
                             <!-- // -->
                             <?php
-                                if($result->num_rows>0){
-                                    while($fila=$result->fetch_assoc()){
+                                if($resultado->num_rows>0){
+                                    while($fila=$resultado->fetch_assoc()){
     
                             ?>
                                         <tr>
@@ -99,7 +95,7 @@
                             ?>
                                 <tr>
                                     <td scope="5"></td>
-                                    <div class="alert alert-danger text-center">No existen Usuarios en la tabla</div>
+                                    <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Usuarios en la tabla</div>
                                 </tr>
                             <?php
                             }
@@ -107,15 +103,36 @@
                         </tbody>
                     </table>
                     <!-- // -->
-                    <?php
-                    if (isset($_GET["mensaje"])){
-                        if ($_GET["mensaje"]!="ok"){
-                            echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                        } else{
-                            echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Usuario editado</strong></div></div>";
-                        }
-                    }
-                    ?>
+                    <?php if (isset($_GET['mensaje'])){ ?>
+                            <div class="container mt-4">
+                                <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Éxito!</strong> El usuario fue creado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Actualizado!</strong> El usuario fue editado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'eliminado'){ ?>
+                                    <div class="alert alert-warning alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Eliminado!</strong> El usuario fue eliminado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
                 </section>
             </div>
         </div>

@@ -111,15 +111,15 @@
                             <button class="btn btn-del" type="submit" onclick="return confirm('¿Estás seguro de eliminar esta venta?');">Eliminar</button>
                         </form>
                     </div>
-            
-                <?php if (isset($_GET["mensaje"])): ?>
-                    <div class="text-center mt-4">
-                        <div class="alert alert-success" role="alert">
-                            <strong><?php echo $_GET["mensaje"]; ?></strong>
-                        </div>
-                    </div>
-                <?php endif; ?>
 
+            </section>
+
+            <section class="container">
+                <div class="row">
+                    <div class="col-2 section-list">
+                        <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                    </div>
+                </div>
             </section>
 
     <div class="m-4 p-4"></div>

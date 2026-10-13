@@ -33,19 +33,16 @@
             $stmt2->bind_param("iiis", $id_venta, $id_producto, $cant_prod, $fecha_entrega);
 
             if ($stmt2->execute()){
-                header("Location:../../../vistas/ventas/form.php?mensaje=ok");
+                header("Location:../../../vistas/ventas/form.php?mensaje=creado");
             } else{
-                $error.="Error en la inserción";
-                header("Location:../../../vistas/ventas/form.php?mensaje=".$error);
+                header("Location:../../../vistas/ventas/form.php?mensaje=error1");
             }
 
         } else{
-            $error.="Error en la inserción";
-            header("Location:../../../vistas/ventas/form.php?mensaje=".$error);
+            header("Location:../../../vistas/ventas/form.php?mensaje=error1");
         }
     } else {
-        $error.="Faltan datos";
-        header("Location:../../../vistas/ventas/form.php?mensaje=".$error);
+        header("Location:../../../vistas/ventas/form.php?mensaje=error2");
         exit;
     }
 

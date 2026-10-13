@@ -32,18 +32,15 @@
             $stmt_detalle->bind_param("issi", $id_producto, $cant_prod, $fecha_entrega, $id_detalle_venta);
 
             if ($stmt_detalle->execute()){
-                header("Location:../../../vistas/ventas/lista.php?mensaje=ok");
+                header("Location:../../../vistas/ventas/lista.php?mensaje=editado");
             } else{
-                $error.="Error en la edición";
-                header("Location:../../../vistas/ventas/lista.php?mensaje=".$error);
+                header("Location:../../../vistas/ventas/lista.php?mensaje=error1");
             }
 
         } else{
-            $error.="Error en la edición";
-            header("Location:../../../vistas/ventas/lista.php?mensaje=".$error);
+            header("Location:../../../vistas/ventas/lista.php?mensaje=error1");
         }
     } else{
-        $error.="Faltan datos";
-        header("Location:../../../vistas/ventas/lista.php?mensaje=".$error);
+        header("Location:../../../vistas/ventas/lista.php?mensaje=error2");
     }
 ?>

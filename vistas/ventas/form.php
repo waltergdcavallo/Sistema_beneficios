@@ -9,14 +9,14 @@
         if(!empty($_POST['id_venta'])){
     
             $id_venta=$_POST['id_venta'];
-            $sql="select * from venta, detalle_venta, producto where venta.id_venta=? group by venta.id_venta";
+            $sql="SELECT *, (producto.nombre) AS nombreprod, (beneficio.nombre) AS nombrebene FROM venta, detalle_venta, producto, beneficio WHERE (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND venta.id_venta=? GROUP BY venta.id_venta";
             $stmt=$conex->prepare($sql);
             $stmt->bind_param("i", $id_venta);
             if($stmt->execute()){
                 $resultado=$stmt->get_result();
                 $fila=$resultado->fetch_assoc();
             }
-            $sql2="select nombre, id_producto from producto";
+            $sql2="SELECT producto.id_producto, (producto.nombre) AS nombreprod, (beneficio.nombre) AS nombrebene FROM producto, beneficio WHERE (producto.id_beneficio=beneficio.id_beneficio) AND beneficio.estado=1";
             $stmt2=$conex->prepare($sql2);
             if($stmt2->execute()){
                 $resultado2=$stmt2->get_result();
@@ -76,12 +76,12 @@
                                 <div class="mb-4 col-5">
                                     <label for="exampleFormControlInput1" class="form-label">Producto disponible</label>
                                     <select class="form-select input shadow" aria-label="Default select example" id="id_producto" name="id_producto">
-                                        <option selected value="<?php echo $fila['id_producto'];?>"><?php echo $fila['nombre'];?></option>
+                                        <option selected value="<?php echo $fila['id_producto'];?>"><?php echo $fila['nombreprod'];?> Beneficio: <?php echo $fila["nombrebene"];?></option>
                                         <?php
                                             if($resultado2->num_rows>0){
                                                 while($fila2=$resultado2->fetch_assoc()){?>
 
-                                                <option value="<?php echo $fila2['id_producto'];?>"><?php echo $fila2['nombre'];?></option>
+                                                <option value="<?php echo $fila2['id_producto'];?>"><?php echo $fila2['nombreprod'];?> Beneficio: <?php echo $fila2["nombrebene"];?></option>
                                                 
                                                 <?php 
                                                 }
@@ -104,11 +104,26 @@
                                     <input type="text" class="form-control" id="fecha_entrega" name="fecha_entrega" value="<?php echo $fila['fecha_entrega'];?>">
                                 </div>
 
-                                    <button type="submit" class="btn button-confirm col-2">Actualizar</button>
-                                    <a href="lista.php" class="btn button-cancel col-2 ms-auto">Cancelar</a>
+                                    <button type="submit" class="btn btn-confirm col-2">Actualizar</button>
+                                    <a href="lista.php" class="btn btn-cancel col-2 ms-auto">Cancelar</a>
                             </form>
                         </div>
                     </section>
+                    <?php if (isset($_GET['mensaje'])){ ?>
+                        <div class="container mt-4">
+                            <?php if ($_GET['mensaje'] == 'error1'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
             
     <div class="m-4 p-4"></div>
     <!-- // -->
@@ -118,18 +133,10 @@
 </html>
 
 <!-- // -->
-<?php
-            if (isset($_GET["mensaje"])){
-                if ($_GET["mensaje"]!="ok"){
-                    echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                } else{
-                    echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Venta agregada</strong></div></div>";
-                }
-            }
-                
+<?php   
         } else{
 
-            $sql="select id_producto, nombre from producto";
+            $sql="SELECT producto.id_producto, (producto.nombre) AS nombreprod1, (beneficio.nombre) AS nombrebene1 FROM producto, beneficio WHERE (producto.id_beneficio=beneficio.id_beneficio)";
             $stmt=$conex->prepare($sql);
             if($stmt->execute()){
                 $resultado=$stmt->get_result();
@@ -168,15 +175,33 @@
             
                         <div class="col-12 col-md-6">
                             <label for="id_producto" class="form-label">Producto disponible</label>
+                            <!-- // -->
+                            <?php
+                            if(isset($_GET["id_beneficio"])){
+                                $id_beneficio=$_GET["id_beneficio"];
+                                $sql2="SELECT producto.id_producto, (producto.nombre) AS nombreprod2, (beneficio.nombre) AS nombrebene2 FROM producto, beneficio WHERE (producto.id_beneficio=beneficio.id_beneficio) AND beneficio.id_beneficio=? AND beneficio.estado=1";
+                                $stmt2=$conex->prepare($sql2);
+                                $stmt2->bind_param("i", $id_beneficio);
+                                if($stmt2->execute()){
+                                    $resultado2=$stmt2->get_result();
+                                    $fila2=$resultado2->fetch_assoc();
+                                }
+                            }
+                            ?>
                             <select class="form-select shadow-sm" id="id_producto" name="id_producto" required>
-                                <option value="" disabled selected>Seleccione un producto</option>
-                                <?php if ($resultado->num_rows > 0): ?>
-                                    <?php while ($fila = $resultado->fetch_assoc()): ?>
-                                        <option value="<?php echo $fila['id_producto']; ?>">
-                                            <?php echo $fila['nombre']; ?>
+                                
+                                <?php if($fila2["id_producto"]>0 && isset($_GET["id_beneficio"])){?>
+                                    <option value="<?php $fila["id_producto"]?>" selected><?php echo $fila2["nombreprod2"]?> Beneficio: <?php echo $fila2["nombrebene2"];?></option>
+                                <?php }else{?>
+                                        <option value="" disabled selected>Seleccione un producto</option>
+                                <?php }
+                                    if ($resultado->num_rows > 0){ ?>
+                                    <?php while ($fila = $resultado->fetch_assoc()){ ?>
+                                        <option value="<?php echo $fila['id_producto'];?>">
+                                            <?php echo $fila['nombreprod1'];?> Beneficio: <?php echo $fila["nombrebene1"];?>
                                         </option>
-                                    <?php endwhile; ?>
-                                <?php endif; ?>
+                                    <?php }?>
+                                <?php }?>
                             </select>
                         </div>
             
@@ -213,28 +238,27 @@
             
                         <!-- Botones -->
                         <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
-                            <button type="submit" class="btn button-confirm col-5 col-md-2">Crear venta</button>
-                            <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                            <button type="submit" class="btn btn-confirm col-5 col-md-2">Crear venta</button>
+                            <a href="lista.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                         </div>
-            
                     </form>
-            
                 </div>
-            
-                <?php if (isset($_GET["mensaje"])): ?>
-                    <div class="text-center mt-4 mb-5">
-                        <?php if ($_GET["mensaje"] != "ok"): ?>
-                            <div class="alert alert-danger" role="alert">
-                                <strong><?php echo $_GET["mensaje"]; ?></strong>
-                            </div>
-                        <?php else: ?>
-                            <div class="alert alert-success" role="alert">
-                                <strong>Venta registrada exitosamente</strong>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                <?php endif; ?>
             </section>
+            <?php if (isset($_GET['mensaje'])){ ?>
+                <div class="container mt-4">
+                    <?php if ($_GET['mensaje'] == 'error1'){ ?>
+                            <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                            <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                <strong>¡Error!</strong> Faltan datos.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+                </div>
             
     <div class="m-4 p-4"></div>
     <!-- // -->
@@ -242,16 +266,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
-                <!-- // -->
-                <?php
-                if (isset($_GET["mensaje"])){
-                    if ($_GET["mensaje"]!="ok"){
-                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                    } else{
-                        echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Beneficio editado</strong></div></div>";
-                    }
-                }
-                ?>
 <?php
         }
     }else {

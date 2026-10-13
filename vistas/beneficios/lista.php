@@ -9,7 +9,7 @@
 
         require_once "../../conexion.php";
 
-        $sql="select *, (producto.nombre) as nombreprod, (beneficio.nombre) as nombrebene from beneficio, producto where (producto.id_beneficio=beneficio.id_beneficio) group by beneficio.id_beneficio order by beneficio.nombre asc";
+        $sql="SELECT *, (nombre) as nombrebene FROM beneficio ORDER BY fecha_inicio DESC";
         $stmt=$conex->prepare($sql);
         if ($stmt->execute()){
             $resultado=$stmt->get_result();
@@ -74,9 +74,18 @@
                                             <td><?php echo $fila["descripcion"]; ?></td>
                                             <td>
                                                 <div class="d-sm-inline-block">
-                                                    <?php if(isset($fila['id_producto'])){?><form action="../productos/detalle.php" method="post">
-                                                        <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $fila["id_producto"];?>">
-                                                        <button type="submit" class="btn btn-link"><?php echo $fila["nombreprod"]; ?></button>
+                                                   <?php 
+                                                    $sql2="SELECT id_producto, (producto.nombre) as nombreprod FROM beneficio, producto WHERE (producto.id_beneficio=beneficio.id_beneficio) AND beneficio.id_beneficio=?";
+                                                    $stmt2=$conex->prepare($sql2);
+                                                    $id_beneficio=$fila["id_beneficio"];
+                                                    $stmt2->bind_param("i", $id_beneficio);
+                                                    $stmt2->execute();
+                                                    $resultado2=$stmt2->get_result();
+                                                    $fila2=$resultado2->fetch_assoc();
+                                                    if(isset($fila2['id_producto'])){?>
+                                                     <form action="../productos/detalle.php" method="post">
+                                                        <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $fila2["id_producto"];?>">
+                                                        <button type="submit" class="btn btn-link"><?php echo $fila2["nombreprod"]; ?></button>
                                                     </form><?php }else{ echo "No tiene.";}?>
                                                 </div>
                                             </td>
@@ -97,7 +106,7 @@
                                 ?>
                                     <tr>
                                         <td scope="5"></td>
-                                        <div class="alert alert-danger text-center">No existen Beneficios en la tabla</div>
+                                        <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Beneficios en la tabla</div>
                                     </tr>
                                 <?php
                                 }
@@ -105,15 +114,32 @@
                             </tbody>
                         </table>
                         <!-- // -->
-                        <?php
-                        if (isset($_GET["mensaje"])){
-                            if ($_GET["mensaje"]!="ok"){
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                            } else{
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Beneficio agregado</strong></div></div>";
-                            }
-                        }
-                        ?> 
+                        <?php if (isset($_GET['mensaje'])){ ?>
+                                <div class="container mt-4">
+                                    <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                        <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Éxito!</strong> El beneficio fue creado correctamente.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                        <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Actualizado!</strong> El beneficio fue editado correctamente.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php }elseif ($_GET['mensaje'] == 'eliminado'){ ?>
+                                        <div class="alert alert-warning alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Eliminado!</strong> El beneficio fue eliminado correctamente.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php }elseif ($_GET['mensaje'] == 'error'){ ?>
+                                        <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                         <?php } ?>
+                         
                     </section>
                 </div>
 

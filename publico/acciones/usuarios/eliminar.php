@@ -12,10 +12,9 @@
     $stmt->execute();
 
     if ($stmt->execute()){
-        header("Location:../../../vistas/usuarios/lista.php?mensaje=ok");
+        header("Location:../../../vistas/usuarios/lista.php?mensaje=eliminado");
     } else{
-        $error.="Error en la eliminación";
-        header("Location:../../../vistas/usuarios/detalle.php?mensaje=".$error);
+        header("Location:../../../vistas/usuarios/detalle.php?mensaje=error");
     }
 
 ?>

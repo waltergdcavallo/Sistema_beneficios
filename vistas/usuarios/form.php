@@ -38,7 +38,7 @@
                             <h3>Editar usuario</h3>
                         </div>
                 
-                        <?php if ($_SESSION['rol'] == 'vendedor'): ?>
+                        <?php if ($_SESSION['rol'] == 'vendedor'){ ?>
                 
                             <form action="../../publico/acciones/usuarios/editar.php" method="post" class="row g-3">
                 
@@ -70,13 +70,13 @@
                                 </div>
                 
                                 <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
-                                    <button type="submit" class="btn button-confirm col-5 col-md-2">Editar perfil</button>
-                                    <a href="../inicio.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                                    <button type="submit" class="btn btn-confirm col-5 col-md-2">Editar perfil</button>
+                                    <a href="../inicio.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                 </div>
                 
                             </form>
                 
-                        <?php elseif ($_SESSION['rol'] == 'admin'): ?>
+                        <?php }elseif ($_SESSION['rol'] == 'admin'){ ?>
                 
                             <form action="../../publico/acciones/usuarios/editar.php" method="post" class="row g-3">
                 
@@ -127,25 +127,43 @@
                                 </div>
                 
                                 <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
-                                    <button type="submit" class="btn button-confirm col-5 col-md-2">Editar perfil</button>
-                                    <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                                    <button type="submit" class="btn btn-confirm col-5 col-md-2">Editar perfil</button>
+                                    <a href="lista.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                 </div>
                 
                             </form>
                 
-                        <?php else: ?>
+                        <?php }else{ ?>
                             <script>window.location.href = "../../complementario/error404.php";</script>
-                        <?php endif; ?>
+                        <?php } ?>
                 
                     </div>
                 
-                    <?php if (isset($_GET["mensaje"])): ?>
-                        <div class="text-center mt-4 mb-5">
-                            <div class="alert alert-success" role="alert">
-                                <strong><?php echo $_GET["mensaje"]; ?></strong>
-                            </div>
+                    <?php if (isset($_GET['mensaje'])){ ?>
+                            <div class="container mt-4">
+                                <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Éxito!</strong> El usuario fue creado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Actualizado!</strong> El registro fue editado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
-                    <?php endif; ?>
                 </section>
 
     <div class="m-4 p-4"></div>
@@ -181,7 +199,7 @@
                             <h3>Crear usuario</h3>
                         </div>
                 
-                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'): ?>
+                        <?php if (isset($_SESSION['rol']) && $_SESSION['rol'] == 'admin'){ ?>
                 
                             <form action="../../publico/acciones/usuarios/crear.php" method="post" class="row g-3">
                 
@@ -231,31 +249,44 @@
                                 </div>
                 
                                 <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
-                                    <button type="submit" class="btn button-confirm col-5 col-md-2">Agregar</button>
-                                    <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                                    <button type="submit" class="btn btn-confirm col-5 col-md-2">Agregar</button>
+                                    <a href="lista.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                 </div>
                 
                             </form>
                 
-                        <?php else: ?>
+                        <?php }else{ ?>
                             <script>window.location.href = "../../complementario/error404.php";</script>
-                        <?php endif; ?>
+                        <?php } ?>
                 
                     </div>
                 
-                    <?php if (isset($_GET["mensaje"])): ?>
-                        <div class="text-center mt-4 mb-5">
-                            <?php if ($_GET["mensaje"] != "ok"): ?>
-                                <div class="alert alert-danger" role="alert">
-                                    <strong><?php echo $_GET["mensaje"]; ?></strong>
-                                </div>
-                            <?php else: ?>
-                                <div class="alert alert-success" role="alert">
-                                    <strong>Usuario creado exitosamente</strong>
-                                </div>
-                            <?php endif; ?>
+                    <?php if (isset($_GET['mensaje'])){ ?>
+                           <div class="container mt-4">
+                               <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                   <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                       <strong>¡Éxito!</strong> El usuario fue creado correctamente.
+                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                   </div>
+                               <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                   <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                       <strong>¡Actualizado!</strong> El registro fue editado correctamente.
+                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                   </div>
+                               <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                   <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                       <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                   </div>
+                                <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
                         </div>
-                    <?php endif; }?>
+                    <?php  }?> 
                 </section>
 
     <div class="m-4 p-4"></div>
@@ -282,17 +313,17 @@
 
                 <nav class="navbar navbar-expand-lg">
                     <div class="container-fluid">
-                        <a class="navbar-brand button-nav-title" href="http://localhost/sistema_beneficios/vistas/inicio.php">Sistema de beneficios</a>
+                        <a class="navbar-brand btn-nav-title" href="http://localhost/sistema_beneficios/vistas/inicio.php">Sistema de beneficios</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse me-2" id="navbarNav">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="btn btn-dark button-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                                    <a class="btn btn-dark btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
                                 </li>
                             </ul>
-                            <a href="http://localhost/sistema_beneficios/vistas/sesion/login.php" class="btn btn-dark ms-auto button-nav">Iniciar sesion</a>
+                            <a href="http://localhost/sistema_beneficios/vistas/sesion/login.php" class="btn btn-dark ms-auto btn-nav">Iniciar sesion</a>
                         </div>
                     </div>
                 </nav>
@@ -338,22 +369,12 @@
                             </div>
                             <input type="hidden" class="form-control" id="rol" name="rol" value="pendiente">
                             
-                            <button type="submit" class="btn button-confirm col-2 p3 mt-5">Registrarse</button>
-                            <a href="../inicio.php" class="btn button-cancel col-2 p3 ms-auto mt-5">Cancelar</a>
+                            <button type="submit" class="btn btn-confirm col-2 p3 mt-5">Registrarse</button>
+                            <a href="../inicio.php" class="btn btn-cancel col-2 p3 ms-auto mt-5">Cancelar</a>
                         </form>
                     </div>
-                    <!-- // -->
-                    <?php
-                        if (isset($_GET["mensaje"])){
-                            if ($_GET["mensaje"]!="ok"){
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-danger' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-                            } else{
-                                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>Usuario creado</strong></div></div>";
-                            }
-                        }
-                    ?>
                 </section>
-
+    <!-- // -->
     <div class="m-4 p-4"></div>
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

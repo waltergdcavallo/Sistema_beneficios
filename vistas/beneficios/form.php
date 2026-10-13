@@ -79,28 +79,27 @@
                                 </div>
                     
                                 <div class="col-12 d-flex justify-content-between align-items-center mt-5 pt-2">
-                                    <button type="submit" class="btn button-confirm col-5 col-md-2">Editar</button>
-                                    <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                                    <button type="submit" class="btn btn-confirm col-5 col-md-2">Editar</button>
+                                    <a href="lista.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                 </div>
-                    
                             </form>
-                    
                         </div>
-                    
-                        <?php if (isset($_GET["mensaje"])): ?>
-                            <div class="text-center mt-4 mb-5">
-                                <?php if ($_GET["mensaje"] != "ok"): ?>
-                                    <div class="alert alert-danger" role="alert">
-                                        <strong><?php echo $_GET["mensaje"]; ?></strong>
-                                    </div>
-                                <?php else: ?>
-                                    <div class="alert alert-success" role="alert">
-                                        <strong>Beneficio editado</strong>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
                     </section>
+                    <?php if (isset($_GET['mensaje'])){ ?>
+                        <div class="container mt-4">
+                            <?php if ($_GET['mensaje'] == 'error1'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                            <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
                     
     <div class="m-4 p-4"></div>
     <!-- // -->
@@ -168,28 +167,22 @@
                                     </div>
                         
                                     <div class="col-12 d-flex justify-content-between align-items-center mt-5 pt-2">
-                                        <button type="submit" class="btn button-confirm col-5 col-md-2">Crear</button>
-                                        <a href="lista.php" class="btn button-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
+                                        <button type="submit" class="btn btn-confirm col-5 col-md-2">Crear</button>
+                                        <a href="lista.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>
                                     </div>
-                        
                                 </form>
-                        
                             </div>
-                        
-                            <?php if (isset($_GET["mensaje"])): ?>
-                                <div class="text-center mt-4 mb-5">
-                                    <?php if ($_GET["mensaje"] != "ok"): ?>
-                                        <div class="alert alert-danger" role="alert">
-                                            <strong><?php echo $_GET["mensaje"]; ?></strong>
-                                        </div>
-                                    <?php else: ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <strong>Beneficio agregado</strong>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            <?php endif; ?>
                         </section>
+                        <?php if (isset($_GET['mensaje'])){ ?>
+                            <div class="container mt-4">
+                                <?php if ($_GET['mensaje'] == 'error'){ ?>
+                                        <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                            <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                <?php } ?>
+                            </div>
+                        <?php } ?>
 
     <div class="m-4 p-4"></div>
     <!-- // -->

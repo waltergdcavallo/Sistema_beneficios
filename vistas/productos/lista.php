@@ -91,7 +91,7 @@
                                 ?>
                                     <tr>
                                         <td scope="5"></td>
-                                        <div class="alert alert-danger text-center">No existen Productos en la tabla</div>
+                                        <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Productos en la tabla</div>
                                     </tr>
                                 <?php
                                 }
@@ -104,11 +104,36 @@
 
             <div class="m-5 p-5"></div>
             <!-- // -->
-            <?php
-            if (isset($_GET["mensaje"])){
-                echo "<div class='text-center mt-4 mb-5'><div class='alert alert-success' role='alert'><strong>".$_GET["mensaje"]."</strong></div></div>";
-            }
-            ?>
+            <?php if (isset($_GET['mensaje'])){ ?>
+                        <div class="container mt-4">
+                            <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Éxito!</strong> El producto fue creado correctamente.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Actualizado!</strong> El producto fue editado correctamente.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php }elseif ($_GET['mensaje'] == 'eliminado'){ ?>
+                                <div class="alert alert-warning alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Eliminado!</strong> El producto fue eliminado correctamente.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                    <strong>¡Error!</strong> Faltan datos.
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            <?php } ?>
+                        <?php } ?>
+                        </div> 
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
