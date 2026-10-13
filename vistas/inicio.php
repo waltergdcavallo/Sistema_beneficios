@@ -45,7 +45,7 @@
                         
                         <section class="container-fluid px-5 my-5">
                             <div class="row justify-content-center align-items-start">
-                                <section class="col-lg-6 col-12 section-dashboard mb-5 mx-5">
+                                <section class="col-10 col-xxl-6 section-dashboard mb-5 mx-5">
                                     <div class="mb-4">
                                         <h3>Listado de beneficios disponibles</h3>
                                     </div>
@@ -134,7 +134,7 @@
                                 </div>
                             </section>
 
-                            <section class="col-lg-4 col-12 section-dashboard mb-5 mx-5 d-flex flex-column gap-4">
+                            <section class="col-10 col-xxl-4 section-dashboard mb-5 mx-5 d-flex flex-column gap-4">
                                 <?php $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND venta.fecha_venta=CURDATE() ORDER BY venta.fecha_venta DESC";
                                       $stmt=$conex->prepare($sql);
                                       if ($stmt->execute()){

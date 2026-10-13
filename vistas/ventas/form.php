@@ -96,12 +96,12 @@
                                 
                                 <div class="mb-4 col-6">
                                   <label for="exampleFormControlInput1" class="form-label">Fecha de la venta</label>
-                                  <input type="text" class="form-control" id="fecha_venta" name="fecha_venta" value="<?php echo $fila['fecha_venta'];?>">
+                                  <input type="date" class="form-control" id="fecha_venta" name="fecha_venta" value="<?php echo $fila['fecha_venta'];?>">
                                 </div>
 
                                 <div class="mb-4 col-6">
                                     <label for="exampleFormControlInput1" class="form-label">Fecha de entrega</label>
-                                    <input type="text" class="form-control" id="fecha_entrega" name="fecha_entrega" value="<?php echo $fila['fecha_entrega'];?>">
+                                    <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" value="<?php echo $fila['fecha_entrega'];?>">
                                 </div>
 
                                     <button type="submit" class="btn btn-confirm col-2">Actualizar</button>

@@ -174,14 +174,19 @@
                             </div>
                         </section>
                         <?php if (isset($_GET['mensaje'])){ ?>
-                            <div class="container mt-4">
-                                <?php if ($_GET['mensaje'] == 'error'){ ?>
-                                        <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-                                            <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                        </div>
-                                <?php } ?>
-                            </div>
+                        <div class="container mt-4">
+                            <?php if ($_GET['mensaje'] == 'error1'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                            <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                            <?php } ?>
+                        </div>
                         <?php } ?>
 
     <div class="m-4 p-4"></div>
