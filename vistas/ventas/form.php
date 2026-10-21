@@ -47,11 +47,11 @@
 
                         <form action="../../publico/acciones/ventas/editar.php" method="post" class="p-5 row">
                             <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
-                            <input type="hidden" name="id_detalle_venta" id="id_detalle_venta" value="<?php echo $fila["id_detalle_venta"];?>">
+                            <input type="hidden" name="id_detalle_venta" id="id_detalle_venta" value="<?php echo $fila["id_detalle_venta"];?>" required>
 
                                 <div class="mb-4 col-3">
                                     <label for="exampleFormControlInput1" class="form-label">Monto</label>
-                                    <input type="text" class="form-control input shadow" id="monto" name="monto" value="<?php echo $fila['monto'];?>">
+                                    <input type="text" class="form-control input shadow" id="monto" name="monto" value="<?php echo $fila['monto'];?>" required>
                                 </div>
 
                                 <div class="mb-4 col-3">
@@ -75,7 +75,7 @@
                                 
                                 <div class="mb-4 col-5">
                                     <label for="exampleFormControlInput1" class="form-label">Producto disponible</label>
-                                    <select class="form-select input shadow" aria-label="Default select example" id="id_producto" name="id_producto">
+                                    <select class="form-select input shadow" aria-label="Default select example" id="id_producto" name="id_producto" required>
                                         <option selected value="<?php echo $fila['id_producto'];?>"><?php echo $fila['nombreprod'];?> Beneficio: <?php echo $fila["nombrebene"];?></option>
                                         <?php
                                             if($resultado2->num_rows>0){
@@ -91,17 +91,17 @@
                                 
                                 <div class="mb-4 col-6">
                                     <label for="exampleFormControlInput1" class="form-label">Cantidad de productos</label>
-                                    <input type="text" class="form-control" id="cant_prod" name="cant_prod" value="<?php echo $fila['cant_prod'];?>">
+                                    <input type="text" class="form-control" id="cant_prod" name="cant_prod" value="<?php echo $fila['cant_prod'];?>" required>
                                 </div>
                                 
                                 <div class="mb-4 col-6">
                                   <label for="exampleFormControlInput1" class="form-label">Fecha de la venta</label>
-                                  <input type="date" class="form-control" id="fecha_venta" name="fecha_venta" value="<?php echo $fila['fecha_venta'];?>">
+                                  <input type="date" class="form-control" id="fecha_venta" name="fecha_venta" value="<?php echo $fila['fecha_venta'];?>" required>
                                 </div>
 
                                 <div class="mb-4 col-6">
                                     <label for="exampleFormControlInput1" class="form-label">Fecha de entrega</label>
-                                    <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" value="<?php echo $fila['fecha_entrega'];?>">
+                                    <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" value="<?php echo $fila['fecha_entrega'];?>" required>
                                 </div>
 
                                     <button type="submit" class="btn btn-confirm col-2">Actualizar</button>
@@ -235,8 +235,7 @@
                             <label for="fecha_entrega" class="form-label">Fecha de entrega</label>
                             <input type="date" class="form-control shadow-sm" id="fecha_entrega" name="fecha_entrega" required>
                         </div>
-            
-                        <!-- Botones -->
+
                         <div class="col-12 d-flex justify-content-between align-items-center mt-4 pt-2">
                             <button type="submit" class="btn btn-confirm col-5 col-md-2">Crear venta</button>
                             <a href="lista.php" class="btn btn-cancel col-5 col-md-2 text-center ms-auto">Cancelar</a>

@@ -73,7 +73,7 @@
                     
                                 <div class="col-12">
                                     <label for="id_beneficio" class="form-label">Beneficio asociado</label>
-                                    <select class="form-select input shadow" id="id_beneficio" name="id_beneficio">
+                                    <select class="form-select input shadow" id="id_beneficio" name="id_beneficio" required>
                                         <?php if ($resultado2 && $resultado2->num_rows > 0): ?>
                                             <option value="">-- Seleccionar Beneficio --</option>
                                             <?php while ($fila2 = $resultado2->fetch_assoc()): ?>

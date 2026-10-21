@@ -31,7 +31,7 @@
                 <div class="my-5">
                     <h3 class="title-list">Listado de Productos</h3>
                 </div>
-                <div class="container">
+                <section class="container">
                     <div class="row">
                         <div class="col-2 section-list">
                             <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
@@ -40,100 +40,101 @@
                         <div class="col-2 section-list">
                             <a href="form.php" class="btn btn-primary">Agregar</a>
                         </div>
-                    </div>
 
-                    <section class="section-list">
-                        <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Beneficio relacionado</th>
-                                <th scope="col">Stock actual</th>
-                                <th scope="col">Detalle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-    
-                            <!-- // -->
-                            <?php
-                                if($resultado->num_rows>0){
-                                    while($fila=$resultado->fetch_assoc()){
-    
-                            ?>
-                                        <tr>
-                                            <td><?php echo $fila["nombreprod"]; ?></td>
-                                            <td><?php echo $fila["precio"]; ?></td>
-                                            <td>
-                                                <div class="d-sm-inline-block">
-                                                    <?php if(isset($fila['id_beneficio'])){?><form action="../beneficios/detalle.php" method="post">
-                                                        <input type="hidden" name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
-                                                        <button type="submit" class="btn btn-link"><?php echo $fila["nombrebene"]; ?></button>
-                                                    </form><?php }else{ echo "No tiene.";}?>
-                                                </div>
-                                            </td>
-                                            <td><?php echo $fila["stock_actual"]; ?></td>
-                                            <td>
-    
-                                            <div class="d-sm-inline-block">
-                                                <form action="detalle.php" method="post">
-                                                    <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $fila["id_producto"];?>">
-                                                    <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
-                                                </form>
-                                            </div>
-                                            </td>
-                                        </tr>
-    
+                        <!-- // -->
+                        <?php if (isset($_GET['mensaje'])){ ?>
+                            <div class="container mt-4">
+                                <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Éxito!</strong> El producto fue creado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Actualizado!</strong> El producto fue editado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'eliminado'){ ?>
+                                    <div class="alert alert-warning alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Eliminado!</strong> El producto fue eliminado correctamente.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
+                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Error!</strong> Faltan datos.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+
+                        <section class="section-list">
+                            <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Beneficio relacionado</th>
+                                    <th scope="col">Stock actual</th>
+                                    <th scope="col">Detalle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        
                                 <!-- // -->
                                 <?php
+                                    if($resultado->num_rows>0){
+                                        while($fila=$resultado->fetch_assoc()){
+        
+                                ?>
+                                            <tr>
+                                                <td><?php echo $fila["nombreprod"]; ?></td>
+                                                <td><?php echo $fila["precio"]; ?></td>
+                                                <td>
+                                                    <div class="d-sm-inline-block">
+                                                        <?php if(isset($fila['id_beneficio'])){?><form action="../beneficios/detalle.php" method="post">
+                                                            <input type="hidden" name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
+                                                            <button type="submit" class="btn btn-link"><?php echo $fila["nombrebene"]; ?></button>
+                                                        </form><?php }else{ echo "No tiene.";}?>
+                                                    </div>
+                                                </td>
+                                                <td><?php echo $fila["stock_actual"]; ?></td>
+                                                <td>
+        
+                                                <div class="d-sm-inline-block">
+                                                    <form action="detalle.php" method="post">
+                                                        <input type="hidden" name="id_producto" id="id_producto" value="<?php echo $fila["id_producto"];?>">
+                                                        <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                    </form>
+                                                </div>
+                                                </td>
+                                            </tr>
+        
+                                    <!-- // -->
+                                    <?php
+                                        }
+                                    }else {
+                                    ?>
+                                        <tr>
+                                            <td scope="5"></td>
+                                            <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Productos en la tabla</div>
+                                        </tr>
+                                    <?php
                                     }
-                                }else {
-                                ?>
-                                    <tr>
-                                        <td scope="5"></td>
-                                        <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Productos en la tabla</div>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
+                                    ?>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </section>
             </div>
 
             <div class="m-5 p-5"></div>
-            <!-- // -->
-            <?php if (isset($_GET['mensaje'])){ ?>
-                        <div class="container mt-4">
-                            <?php if ($_GET['mensaje'] == 'creado'){ ?>
-                                <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-                                    <strong>¡Éxito!</strong> El producto fue creado correctamente.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            <?php }elseif ($_GET['mensaje'] == 'editado'){ ?>
-                                <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-                                    <strong>¡Actualizado!</strong> El producto fue editado correctamente.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            <?php }elseif ($_GET['mensaje'] == 'eliminado'){ ?>
-                                <div class="alert alert-warning alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-                                    <strong>¡Eliminado!</strong> El producto fue eliminado correctamente.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
-                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-                                    <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
-                                <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
-                                    <strong>¡Error!</strong> Faltan datos.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            <?php } ?>
-                        <?php } ?>
-                        </div> 
+    <!-- // -->
     <?php include("../../complementario/pie.php") ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>

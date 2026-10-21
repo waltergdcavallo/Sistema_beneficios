@@ -65,7 +65,7 @@
                                 </div>
                 
                                 <div class="col-12">
-                                    <input type="password" class="form-control" id="password" name="password_hash" placeholder="Contraseña" minlength="8" value="<?php echo $fila['password_hash']; ?>" required>
+                                    <input type="password" class="form-control" id="password" name="password_hash" placeholder="Contraseña" minlength="8" autocomplete="new-password">
                                     <label for="password" class="form-label">Contraseña</label>
                                 </div>
                 
@@ -104,7 +104,7 @@
                 
                                 <div class="col-12 col-md-6">
                                     <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control" id="password" name="password_hash" placeholder="Contraseña" minlength="8" value="<?php echo $fila['password_hash']; ?>" required>
+                                    <input type="password" class="form-control" id="password" name="password_hash" placeholder="Contraseña" minlength="8" autocomplete="new-password">
                                 </div>
                 
                                 <div class="col-12 col-md-6">
@@ -235,7 +235,7 @@
                 
                                 <div class="col-12 col-md-6">
                                     <label for="password_hash" class="form-label">Contraseña</label>
-                                    <input type="password" class="form-control input shadow-sm" id="password_hash" name="password_hash" placeholder="Contraseña" required minlength="8">
+                                    <input type="password" class="form-control input shadow-sm" id="password_hash" name="password_hash" placeholder="Contraseña" minlength="8" autocomplete="new-password">
                                 </div>
                 
                                 <div class="col-12 col-md-6">
@@ -365,7 +365,7 @@
                             
                             <div class="mb-4 col-6">
                                 <label class="form-label">Contraseña</label>
-                                <input type="password" class="form-control input shadow" id="password_hash" name="password_hash" placeholder="Contraseña" minlength="8" required>
+                                <input type="password" class="form-control input shadow" id="password_hash" name="password_hash" placeholder="Contraseña" minlength="8" autocomplete="new-password">
                             </div>
                             <input type="hidden" class="form-control" id="rol" name="rol" value="pendiente">
                             

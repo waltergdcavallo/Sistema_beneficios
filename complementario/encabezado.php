@@ -21,25 +21,25 @@
                     <div class="collapse navbar-collapse me-2" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">Inicio</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/lista.php">listado de usuarios</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/lista.php">Listado de usuarios</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/lista.php">listado de beneficios</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/lista.php">Listado de beneficios</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/ventas/lista.php">lista de ventas</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/ventas/lista.php">Lista de ventas</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/productos/lista.php">lista de productos</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/productos/lista.php">Lista de productos</a>
                             </li>
                             <li class="nav-item px-2">
                                 <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/historial/lista.php">Historial</a>
                             </li>
                         </ul>
-                        <a class="btn ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">perfil</a>
+                        <a class="btn ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">Perfil</a>
                         <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/publico/acciones/sesion/salir.php">Salir</a>
                     </div>
                 </div>
@@ -63,15 +63,15 @@
                     <div class="collapse navbar-collapse me-2" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/detalle.php">beneficios</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/detalle.php">Beneficios</a>
                             </li>
                         </ul>
-                        <a class="btn ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/ventas/lista.php">mis ventas</a>
-                        <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">perfil</a>
-                        <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/publico/acciones/sesion/salir.php">salir</a>
+                        <a class="btn ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/ventas/lista.php">Mis ventas</a>
+                        <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">Perfil</a>
+                        <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/publico/acciones/sesion/salir.php">Salir</a>
                     </div>
                 </div>
             </nav>
@@ -92,11 +92,11 @@
                     <div class="collapse navbar-collapse me-2" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="btn btn-dark btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                                <a class="btn btn-dark btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">Inicio</a>
                             </li>
                         </ul>
-                        <a class="btn btn-dark ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">perfil</a>
-                        <a class="btn btn-dark ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/publico/acciones/sesion/salir.php">salir</a>
+                        <a class="btn btn-dark ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">Perfil</a>
+                        <a class="btn btn-dark ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/publico/acciones/sesion/salir.php">Salir</a>
                     </div>
                 </div>
             </nav>
@@ -118,7 +118,7 @@
             <div class="collapse navbar-collapse me-2" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="btn btn-dark btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">inicio</a>
+                        <a class="btn btn-dark btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">Inicio</a>
                     </li>
                 </ul>
                 <a class="btn btn-dark ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/form.php">Registrarse</a>

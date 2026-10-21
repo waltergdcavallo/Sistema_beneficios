@@ -52,27 +52,27 @@
                     
                                 <div class="col-12 col-md-6">
                                     <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control input shadow" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>">
+                                    <input type="text" class="form-control input shadow" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>" required>
                                 </div>
                     
                                 <div class="col-12 col-md-6">
                                     <label for="descripcion" class="form-label">Descripción</label>
-                                    <input type="text" class="form-control input shadow" id="descripcion" name="descripcion" value="<?php echo $fila['descripcion']; ?>">
+                                    <input type="text" class="form-control input shadow" id="descripcion" name="descripcion" value="<?php echo $fila['descripcion']; ?>" required>
                                 </div>
                     
                                 <div class="col-12 col-md-6">
                                     <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
-                                    <input type="date" class="form-control input shadow" id="fecha_inicio" name="fecha_inicio" value="<?php echo $fila['fecha_inicio']; ?>">
+                                    <input type="date" class="form-control input shadow" id="fecha_inicio" name="fecha_inicio" value="<?php echo $fila['fecha_inicio']; ?>" required>
                                 </div>
                     
                                 <div class="col-12 col-md-6">
                                     <label for="fecha_fin" class="form-label">Fecha de fin</label>
-                                    <input type="date" class="form-control input shadow" id="fecha_fin" name="fecha_fin" value="<?php echo $fila['fecha_fin']; ?>">
+                                    <input type="date" class="form-control input shadow" id="fecha_fin" name="fecha_fin" value="<?php echo $fila['fecha_fin']; ?>" required>
                                 </div>
                     
                                 <div class="col-12">
                                     <label for="estado" class="form-label">Estado</label>
-                                    <select class="form-select input shadow" id="estado" name="estado">
+                                    <select class="form-select input shadow" id="estado" name="estado" required>
                                         <option value="1" <?php echo ($fila['estado'] == 1) ? 'selected' : ''; ?>>Activo</option>
                                         <option value="0" <?php echo ($fila['estado'] == 0) ? 'selected' : ''; ?>>Terminado</option>
                                     </select>
@@ -139,27 +139,27 @@
                         
                                     <div class="col-12 col-md-6">
                                         <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control input shadow" id="nombre" name="nombre">
+                                        <input type="text" class="form-control input shadow" id="nombre" name="nombre" required>
                                     </div>
                         
                                     <div class="col-12 col-md-6">
                                         <label for="descripcion" class="form-label">Descripción</label>
-                                        <input type="text" class="form-control input shadow" id="descripcion" name="descripcion">
+                                        <input type="text" class="form-control input shadow" id="descripcion" name="descripcion" required>
                                     </div>
                         
                                     <div class="col-12 col-md-6">
                                         <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
-                                        <input type="date" class="form-control input shadow" id="fecha_inicio" name="fecha_inicio">
+                                        <input type="date" class="form-control input shadow" id="fecha_inicio" name="fecha_inicio" required>
                                     </div>
                         
                                     <div class="col-12 col-md-6">
                                         <label for="fecha_fin" class="form-label">Fecha de fin</label>
-                                        <input type="date" class="form-control input shadow" id="fecha_fin" name="fecha_fin">
+                                        <input type="date" class="form-control input shadow" id="fecha_fin" name="fecha_fin" required>
                                     </div>
                         
                                     <div class="col-12">
                                         <label for="estado" class="form-label">Estado</label>
-                                        <select class="form-select input shadow" id="estado" name="estado">
+                                        <select class="form-select input shadow" id="estado" name="estado" required>
                                             <option selected disabled>Seleccione el estado</option>
                                             <option value="1">Activo</option>
                                             <option value="0">Terminado</option>

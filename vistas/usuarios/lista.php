@@ -33,7 +33,7 @@
                     <h3 class="title-list">Listado de Usuarios</h3>
                 </div>
 
-                <div class="container">
+                <section class="container">
                     <div class="row">
 
                         <div class="col-2 section-list">
@@ -43,67 +43,9 @@
                         <div class="col-2 section-list">
                             <a href="form.php" class="btn btn-primary">Agregar</a>
                         </div>
-                    </div>
 
-                <section class="section-list">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nombre y apellido</th>
-                                <th scope="col">DNI</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Rol</th>
-                                <th scope="col">Ventas</th>
-                                <th scope="col">Detalles</th>
-                            </tr>
-                        </thead>
-                    <tbody>
-    
-                            <!-- // -->
-                            <?php
-                                if($resultado->num_rows>0){
-                                    while($fila=$resultado->fetch_assoc()){
-    
-                            ?>
-                                        <tr>
-                                            <td><?php echo $fila["nombreyapellido"]; ?></td>
-                                            <td><?php echo $fila["dni"]; ?></td>
-                                            <td><?php echo $fila["email"]; ?></td>
-                                            <td><?php echo$fila["rol"];?></td>
-                                            <td>
-                                                <div class="d-sm-inline-block">
-                                                    <form action="../ventas/lista.php" method="post">
-                                                        <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                                        <button type="submit" class="btn btn-link">Ver ventas</button>
-                                                    </form>
-                                                </div>
-                                            </td> 
-                                            <td>
-                                                <div class="d-sm-inline-block">
-                                                    <form action="detalle.php" method="post">
-                                                        <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
-                                                        <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-    
-                            <!-- // -->
-                            <?php
-                                }
-                            }else{
-                            ?>
-                                <tr>
-                                    <td scope="5"></td>
-                                    <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Usuarios en la tabla</div>
-                                </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    <!-- // -->
-                    <?php if (isset($_GET['mensaje'])){ ?>
+                        <!-- // -->
+                        <?php if (isset($_GET['mensaje'])){ ?>
                             <div class="container mt-4">
                                 <?php if ($_GET['mensaje'] == 'creado'){ ?>
                                     <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
@@ -132,10 +74,68 @@
                                     </div>
                                 <?php } ?>
                             <?php } ?>
-                        </div>
+
+                        <section class="section-list">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre y apellido</th>
+                                        <th scope="col">DNI</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Rol</th>
+                                        <th scope="col">Ventas</th>
+                                        <th scope="col">Detalles</th>
+                                    </tr>
+                                </thead>
+                            <tbody>
+            
+                                    <!-- // -->
+                                    <?php
+                                        if($resultado->num_rows>0){
+                                            while($fila=$resultado->fetch_assoc()){
+            
+                                    ?>
+                                                <tr>
+                                                    <td><?php echo $fila["nombreyapellido"]; ?></td>
+                                                    <td><?php echo $fila["dni"]; ?></td>
+                                                    <td><?php echo $fila["email"]; ?></td>
+                                                    <td><?php echo$fila["rol"];?></td>
+                                                    <td>
+                                                        <div class="d-sm-inline-block">
+                                                            <form action="../ventas/lista.php" method="post">
+                                                                <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
+                                                                <button type="submit" class="btn btn-link">Ver ventas</button>
+                                                            </form>
+                                                        </div>
+                                                    </td> 
+                                                    <td>
+                                                        <div class="d-sm-inline-block">
+                                                            <form action="detalle.php" method="post">
+                                                                <input type="hidden" name="id_usuario" id="id_usuario" value="<?php echo $fila["id_usuario"];?>">
+                                                                <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+            
+                                    <!-- // -->
+                                    <?php
+                                        }
+                                    }else{
+                                    ?>
+                                        <tr>
+                                            <td scope="5"></td>
+                                            <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Usuarios en la tabla</div>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
                 </section>
             </div>
-        </div>
 
     <div class="m-5 p-5"></div>
     <!-- // -->
