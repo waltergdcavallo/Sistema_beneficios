@@ -66,7 +66,7 @@
                                 <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/inicio.php">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/detalle.php">Beneficios</a>
+                                <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/lista.php">Beneficios</a>
                             </li>
                         </ul>
                         <a class="btn ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/ventas/lista.php">Mis ventas</a>

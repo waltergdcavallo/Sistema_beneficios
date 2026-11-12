@@ -128,7 +128,7 @@
                                         <?php 
                                         }
                                     } else {
-                                        echo "<p class='col-12'>No existen beneficios activos por el momento</p>";
+                                        echo "<p class='col-12 text-white'>No existen beneficios activos por el momento</p>";
                                     }
                                     ?>
                                 </div>
@@ -313,55 +313,190 @@
                             <div class="div-form mb-3">
                                 <h3>Bienvenido <?php echo $_SESSION['nombreyapellido']?></h3>
                             </div>
-                            <div class="mb-4">
-                                <h5 class="h5">Listado de beneficios activos</h5>
-                            </div>
+                        </section>
                         
-                            <div class="row g-4 justify-content-center">
-                                <?php
-                                if ($resultado->num_rows > 0) {
-                                    while ($fila = $resultado->fetch_assoc()) { ?>
-                                        
-                                        <div class="col-12 col-md-4">
-                                            <div class="card card-list h-100">
-                                                <div class="card-body d-flex flex-column justify-content-between">
-                                                    <div>
-                                                        <h5 class="card-title">Beneficio <?php echo $fila['nombre']?></h5>
-                                                        <p>Activo</p>
+                        <section class="container-fluid px-5 my-5">
+                            <div class="row justify-content-center align-items-start">
+                                <section class="col-10 col-xxl-6 section-dashboard mb-5 mx-5">
+                                    <div class="mb-4">
+                                        <h3>Listado de beneficios disponibles</h3>
+                                    </div>
+                                     <?php if (isset($_GET['mensaje'])){ ?>
+                                                <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                                        <strong>¡Éxito!</strong> Registrado correctamente.
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                                     </div>
-                        
-                                                    <?php 
-                                                    $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
-                                                    $beneficio = $fila['id_beneficio'];
-                                                    $usuario = $_SESSION['id_usuario'];
-                                                    $stmt2 = $conex->prepare($sql2);
-                                                    $stmt2->bind_param("ii", $beneficio, $usuario);
-                                                    $stmt2->execute();
-                                                    $resultado2 = $stmt2->get_result();
-                                                    
-                                                    if ($resultado2->num_rows > 0) {
-                                                        echo "<p class='text-success font-weight-bold'>inscripto</p>";
-                                                    } else { ?> 
-                                                        <form action="../publico/acciones/historial/crear.php" method="post">
-                                                            <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
+                                                    <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                                        <strong>¡Error!</strong> Hubo un problema al registrarse. Inténtalo más tarde.
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                    </div>
+                                                <?php } ?>
+                                             <?php } ?>
+        
+                                <div class="d-flex justify-content-center gap-2 mb-5">
+                                    <button type="button" id="todo" onclick="filtrarbeneficios('todo')" class="btn btn-confirm px-4 py-2 rounded-pill">
+                                        Todos los activos
+                                    </button>
+                                    <button type="button" id="mio" onclick="filtrarbeneficios('mio')" class="btn btn-register px-4 py-2 rounded-pill">
+                                        Mis beneficios
+                                    </button>
+                                </div>
+                                <div class="row justify-content-center g-4">
+                                    <!-- // -->
+                                    <?php
+                                    if ($resultado->num_rows > 0) {
+                                        while ($fila = $resultado->fetch_assoc()) { 
+                                        
+                                            $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
+                                            $stmt2 = $conex->prepare($sql2);
+                                            $beneficio = $fila['id_beneficio'];
+                                            $usuario = $_SESSION['id_usuario'];
+                                            $stmt2->bind_param("ii", $beneficio, $usuario);
+                                            $stmt2->execute();
+                                            $resultado2 = $stmt2->get_result();
+                                            ?>
+                                            
+                                            <div class="col-12 col-md-6 col-lg-4 card-beneficio" filtro="<?php if($resultado2->num_rows > 0){ echo "true";}else{ echo "false";}?>">
+                                                <div class="card h-100 shadow-sm border-0 rounded-4 p-3 transition-card card-list">
+                                                    <div class="card-body d-flex flex-column justify-content-between">
+                                                        <div>
+                                                        <h4 class="card-title fw-bold text-dark mb-2">Beneficio <?php echo $fila['nombre']; ?></h4>
+                                                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-semibold">
+                                                                    Activo
+                                                                </span>
+                                                                <!-- // -->
+                                                                <?php if ($resultado2->num_rows > 0){ ?>
+                                                                    <div class="d-flex align-items-center gap-2">
+                                                                        <a href="ventas/form.php?id_beneficio=<?php echo $fila['id_beneficio']; ?>" class="btn btn-sm btn-confirm px-3 py-1 rounded-pill">Vender</a>
+                                                                    </div>
+                                                                <?php }?>
+                                                            </div>
+                                                        </div>
+                                                        <!-- // -->
+                                                        <?php
+                                                        
+                                                        if ($resultado2->num_rows > 0) {
+                                                            echo "<span class='badge bg-light text-dark border mb-2'>inscripto</span>";
+                                                        } else { ?>
+                                                            <form action="../publico/acciones/historial/crear.php" method="post">
+                                                                <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                                <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
+                                                                <button type="submit" class="btn btn-register w-100 mb-1" onclick="return confirm('¿Estás seguro de anotarte?');">Anotarse</button>
+                                                            </form>
+                                                        <?php } ?>
+                                                        <form action="../vistas/beneficios/detalle.php" method="post">
                                                             <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
-                                                            <button type="submit" class="btn button-confirm w-100">Anotarse al beneficio</button>
-                                                        </form> 
-                                                    <?php } ?>
+                                                            <button type="submit" class="btn btn-confirm w-100 py-2">
+                                                                Ver detalle
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                        
-                                    <?php 
+                                        <!-- // -->
+                                        <?php 
+                                        }
+                                    } else {
+                                        echo "<p class='col-12 text-white'>No existen beneficios activos por el momento</p>";
                                     }
-                                } else {
-                                    echo "<p class='col-12'>No existen beneficios activos por el momento</p>";
-                                }
-                                ?>
-                            </div>
+                                    ?>
+                                </div>
+                            </section>
+
+                            <section class="col-10 col-xxl-4 section-dashboard mb-5 mx-5 d-flex flex-column gap-4">
+                                <?php $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND venta.fecha_venta=CURDATE() AND usuario.id_usuario=? ORDER BY venta.fecha_venta DESC";
+                                      $stmt=$conex->prepare($sql);
+                                      $stmt->bind_param("i", $usuario);
+                                      if ($stmt->execute()){
+                                          $resultado=$stmt->get_result();
+                                }?>
+
+                                <div class="mb-4">
+                                    <h3>Listado de mis ventas en el dia</h3>
+                                </div>
+
+                                <section class="section-list">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Monto</th>
+                                                <th scope="col">Beneficio</th>
+                                                <th scope="col">Detalles</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+    
+                                        <!-- // -->
+                                        <?php
+                                            if($resultado->num_rows>0){
+                                                while($fila=$resultado->fetch_assoc()){
+    
+                                        ?>
+                                                    <tr>
+                                                        <td><?php echo $fila["monto"]; ?></td>
+                                                        <td><?php echo $fila["nombre"]; ?></td>
+                                                        <td>
+                                                            <div class="d-sm-inline-block">
+                                                                <form action="ventas/detalle.php" method="post">
+                                                                    <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
+                                                                    <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+    
+                                        <!-- // -->
+                                        <?php
+                                            }
+                                        }else{
+                                        ?>
+                                            <tr>
+                                                <td scope="5"></td>
+                                                <div class="alert alert-danger text-center">No existen Ventas de hoy</div>
+                                            </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </section>
+                            </section>
                         </section>
+                        <div class="p-4 m-4"></div>
     <!-- // -->
     <?php include("../complementario/pie.php")?>
+    <script> 
+        function filtrarbeneficios(tipo){
+            const tarjetas = document.querySelectorAll('.card-beneficio');
+            const mio=document.getElementById("mio"); 
+            const todo=document.getElementById("todo");
+
+            if (tipo=="todo") {
+                todo.className = "btn btn-confirm px-4 py-2 rounded-pill";
+                mio.className = "btn btn-register px-4 py-2 rounded-pill";
+            } else {
+                mio.className = "btn btn-confirm px-4 py-2 rounded-pill";
+                todo.className = "btn btn-register px-4 py-2 rounded-pill";
+            }
+
+            tarjetas.forEach(tarjeta => {
+                const estaInscripto = tarjeta.getAttribute('filtro');
+        
+                if (tipo=="todo") {
+                    tarjeta.style.display = 'block';
+                } else if (tipo=="mio") {
+                    if (estaInscripto === 'true') {
+                        tarjeta.style.display = 'block';
+                    } else {
+                        tarjeta.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
@@ -385,13 +520,91 @@
 
                         <?php include("../complementario/encabezado.php")?>
 
-                        <section class="mt-5 text-center container">
-                            <div class="row">
+                        <main class="container my-5 flex-grow-1">
+        
+                            <div class="row mb-5">
                                 <div class="col-12">
-                                    <h1 class="h5">Bienvendo, espera a que un administrador de acceso a tu cuenta.</h1>
+                                    <div class="p-4 p-md-5 bg-white rounded-4 shadow-sm border text-center">
+                                        <div class="mb-3">
+                                            <span class="badge bg-warning text-dark px-4 py-2 rounded-pill fs-6 fw-semibold">
+                                                ⏳ Cuenta en proceso de revisión
+                                            </span>
+                                        </div>
+                                        <h1 class="display-6 fw-bold text-dark mb-3">¡Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreyapellido']); ?>!</h1>
+                                        <p class="text-muted lead mx-auto" style="max-width: 700px;">
+                                            Tu registro se ha completado con éxito. Actualmente, tu cuenta se encuentra <strong>pendiente de aprobación por un administrador</strong>. En breve podrás acceder a todas las funcionalidades del sistema.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </section>
+
+                            <div class="row text-center mb-4">
+                                <div class="col-12">
+                                    <h3 class="fw-bold text-dark">Conoce lo que este sistema te ofrece</h3>
+                                    <p class="text-muted">Una vez que tu cuenta sea activada, tendrás acceso a las siguientes herramientas:</p>
+                                </div>
+                            </div>
+
+                            <div class="row g-4 mb-5">
+                                <!-- Card 1 -->
+                                <div class="col-12 col-md-4">
+                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                                        <div class="card-body">
+                                            <div class="mb-3 text-primary fs-1">🎁</div>
+                                            <h4 class="fw-bold h5 text-dark">Gestión de Beneficios</h4>
+                                            <p class="text-muted small">
+                                                Explora todos los beneficios activos disponibles, anótate a los que te interesen y haz un seguimiento detallado desde tu panel personal.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2 -->
+                                <div class="col-12 col-md-4">
+                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                                        <div class="card-body">
+                                            <div class="mb-3 text-success fs-1">📈</div>
+                                            <h4 class="fw-bold h5 text-dark">Control de Ventas</h4>
+                                            <p class="text-muted small">
+                                                Registra tus operaciones de forma ágil, consulta el listado de ventas realizadas en el día y mantén tus reportes organizados en tiempo real.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3 -->
+                                <div class="col-12 col-md-4">
+                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                                        <div class="card-body">
+                                            <div class="mb-3 text-warning fs-1">🛡️</div>
+                                            <h4 class="fw-bold h5 text-dark">Seguridad y Roles</h4>
+                                            <p class="text-muted small">
+                                                Un entorno seguro con control de acceso por roles (Administradores y Usuarios) para garantizar la correcta supervisión de los datos.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-lg-8">
+                                    <div class="card shadow-sm border-0 rounded-4 p-4 bg-white">
+                                        <h4 class="fw-bold text-dark mb-3">Preguntas frecuentes</h4>
+
+                                        <div class="mb-3">
+                                            <h6 class="fw-bold text-primary">¿Cuánto tiempo demora la aprobación?</h6>
+                                            <p class="text-muted small mb-0">Generalmente el equipo de administración valida las cuentas en un plazo menor a 24 horas hábiles.</p>
+                                        </div>
+                                        <hr class="text-muted opacity-25">
+                                        <div class="mb-3">
+                                            <h6 class="fw-bold text-primary">¿Qué debo hacer si necesito acceso urgente?</h6>
+                                            <p class="text-muted small mb-0">Puedes comunicarte directamente con el soporte técnico o con el administrador general del sistema para agilizar la habilitación de tu rol.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </main>
 
     <!-- // -->
     <?php include("../complementario/pie.php")?>
