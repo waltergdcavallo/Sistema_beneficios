@@ -9,8 +9,9 @@
 
         require_once "../../conexion.php";
 
-        $sql="SELECT *, (nombre) as nombrebene FROM beneficio ORDER BY fecha_inicio DESC";
+        $sql="SELECT *, (nombre) as nombrebene FROM beneficio WHERE creador=? ORDER BY fecha_inicio DESC";
         $stmt=$conex->prepare($sql);
+        $stmt->bind_param("s", $_SESSION['nombreyapellido']);
         if ($stmt->execute()){
             $resultado=$stmt->get_result();
         }
@@ -199,6 +200,7 @@
                                     <tr>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Estado</th>
+                                        <th scope="col">Creador</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col">Producto relacionado</th>
                                         <th scope="col">Acciones</th>
@@ -220,6 +222,7 @@
                                                         echo "Terminado";
                                                     };?>
                                                 </td>
+                                                <td><?php echo $fila["creador"]; ?></td>
                                                 <td><?php echo $fila["descripcion"]; ?></td>
                                                 <td>
                                                     <div class="d-sm-inline-block">

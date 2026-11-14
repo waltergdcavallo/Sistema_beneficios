@@ -1,10 +1,10 @@
 <?php
 
-    //admin y vendedor
+    //vendedor
 
     session_start();
 
-    if(isset($_SESSION['rol']) && !empty($_SESSION['rol']) && $_SESSION['rol']!=="pendiente"){
+    if(isset($_SESSION['rol']) && !empty($_SESSION['rol']) && $_SESSION['rol']=="vendedor" || $_SESSION['rol']=="admin"){
 
         require_once "../../conexion.php";
 
@@ -19,8 +19,8 @@
                 $stmt->bind_param("i", $id_usuario);
 
                 if ($stmt->execute()){
-                    $result=$stmt->get_result();
-                    $fila=$result->fetch_assoc();
+                    $resultado=$stmt->get_result();
+                    $fila=$resultado->fetch_assoc();
                 }
 ?>
 
@@ -40,7 +40,7 @@
 
                     <div class="text-center">
                         <div class="text-center my-5 text text-primary">
-                            <h3 class="title-list"><?php if(isset($fila['nombreyapellido'])){echo "Ventas de: ".$fila['nombreyapellido'];}else{ echo "Este usuario no tiene ventas";}?></h3>
+                            <h3 class="title-list"><?php if(isset($fila['nombreyapellido'])){echo "Ventas de: ".$fila['nombreyapellido'];}else{ if($_SESSION['rol']=="admin"){ echo "Este usuario no tiene ventas";}else{ echo "Sin ventas por el momento";}}?></h3>
                         </div>
                     
                         <section class="container">
@@ -99,8 +99,8 @@
         
                                             <!-- // -->
                                             <?php
-                                                if($result->num_rows>0){
-                                                    while($fila=$result->fetch_assoc()){
+                                                if($resultado->num_rows>0){
+                                                    while($fila=$resultado->fetch_assoc()){
                                             ?>
                                                         <tr>
                                                             <td><?php echo $fila["id_venta"]; ?></td>
@@ -148,8 +148,9 @@
                 //admin
                 } elseif($_SESSION['rol']=="admin"){
 
-                    $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) ORDER BY venta.fecha_venta DESC";
+                    $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND beneficio.creador=? ORDER BY venta.fecha_venta DESC";
                     $stmt=$conex->prepare($sql);
+                    $stmt->bind_param("s", $_SESSION['nombreyapellido']);
                     if ($stmt->execute()){
                         $resultado=$stmt->get_result();
                     }
@@ -277,7 +278,10 @@
 </html>
 <!-- // -->
 <?php
+                }else {
+                    header("Location: ../../complementario/error404.php");
                 }
+                exit;
 
     //pendiente
     }else {

@@ -136,6 +136,7 @@
                                 </div>
                         
                                 <form action="../../publico/acciones/beneficios/crear.php" method="post" class="p-4 p-md-5 row g-4">
+                                    <input type="hidden" id="creador" name="creador" value="<?php echo $_SESSION['nombreyapellido']; ?>">
                         
                                     <div class="col-12 col-md-6">
                                         <label for="nombre" class="form-label">Nombre</label>

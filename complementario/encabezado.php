@@ -69,7 +69,10 @@
                                 <a class="btn btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/beneficios/lista.php">Beneficios</a>
                             </li>
                         </ul>
-                        <a class="btn ms-auto btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/ventas/lista.php">Mis ventas</a>
+                        <form action="http://localhost/sistema_beneficios/vistas/ventas/lista.php" class="ms-auto" method="POST">
+                            <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']; ?>">
+                            <button type="submit" class="btn btn-nav" aria-current="page">Mis ventas</button>
+                        </form>
                         <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/vistas/usuarios/detalle.php">Perfil</a>
                         <a class="btn ms-1 btn-nav" aria-current="page" href="http://localhost/sistema_beneficios/publico/acciones/sesion/salir.php">Salir</a>
                     </div>

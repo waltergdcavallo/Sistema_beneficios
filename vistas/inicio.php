@@ -135,8 +135,9 @@
                             </section>
 
                             <section class="col-10 col-xxl-4 section-dashboard mb-5 mx-5 d-flex flex-column gap-4">
-                                <?php $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND venta.fecha_venta=CURDATE() ORDER BY venta.fecha_venta DESC";
+                                <?php $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND venta.fecha_venta=CURDATE() AND beneficio.creador=? ORDER BY venta.fecha_venta DESC";
                                       $stmt=$conex->prepare($sql);
+                                      $stmt->bind_param("s", $_SESSION['nombreyapellido']);
                                       if ($stmt->execute()){
                                           $resultado=$stmt->get_result();
                                 }?>

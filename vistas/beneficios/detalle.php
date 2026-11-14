@@ -1,6 +1,6 @@
 <?php 
 
-    //admin
+    //admin y vendedor
 
     session_start();
 
@@ -59,6 +59,11 @@
                                 <input type="text" class="form-control" id="fecha_fin" value="<?php echo $fila['fecha_fin'];?>" disabled>
                             </div>
                     
+                            <div class="col-12 col-md-6">
+                                <label for="creador" class="form-label">Creador</label>
+                                <input type="text" class="form-control" id="creador" value="<?php echo $fila['creador'];?>" disabled>
+                            </div>
+
                             <div class="col-12 col-md-6">
                                 <label for="descripcion" class="form-label">Descripción</label>
                                 <input type="text" class="form-control" id="descripcion" value="<?php echo $fila['descripcion'];?>" disabled>
@@ -123,6 +128,7 @@
 
 <!-- // -->
 <?php 
+            //vendedor
             } else {
                 header("Location: ../../complementario/mensaje.php");
             }
