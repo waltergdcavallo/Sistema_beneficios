@@ -222,7 +222,7 @@
                                 <option value="1">Sí</option>
                             </select>
                         </div>
-            
+             
                         <div class="col-12 col-md-3">
                             <label for="pagado" class="form-label">Pagado</label>
                             <select class="form-select shadow-sm" id="pagado" name="pagado" required>
@@ -243,9 +243,15 @@
                     </form>
                 </div>
             </section>
+    
             <?php if (isset($_GET['mensaje'])){ ?>
                 <div class="container mt-4">
-                    <?php if ($_GET['mensaje'] == 'error1'){ ?>
+                    <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                            <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                <strong>¡Éxito!</strong> La venta fue creada correctamente.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php }elseif ($_GET['mensaje'] == 'error1'){ ?>
                             <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
                                 <strong>¡Error!</strong> Hubo un problema al procesar la creación o edición. Inténtalo de nuevo.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -253,6 +259,11 @@
                         <?php } elseif ($_GET['mensaje'] == 'error2'){ ?>
                             <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
                                 <strong>¡Error!</strong> Faltan datos.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php } elseif ($_GET['mensaje'] == 'error3'){ ?>
+                            <div class="alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                <strong>¡Error!</strong> Sin esa cantidad de stock disponible.
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         <?php } ?>

@@ -33,7 +33,25 @@
             $stmt2->bind_param("iiis", $id_venta, $id_producto, $cant_prod, $fecha_entrega);
 
             if ($stmt2->execute()){
-                header("Location:../../../vistas/ventas/form.php?mensaje=creado");
+                $sql="SELECT stock_actual FROM producto WHERE id_producto=?";
+                $stmt=$conex->prepare($sql);
+                $stmt->bind_param("i", $id_producto);
+                if ($stmt->execute()){
+                    $resultado=$stmt->get_result();
+                    $fila=$resultado->fetch_assoc();
+
+                    $stock=$fila['stock_inicial']-$cant_prod;
+
+                    $sql3="UPDATE productos SET stock_actual=?";
+                    $stmt=$conex->prepare($sql);
+                    $stmt->bind_param("i", $stock);
+                    if ($stmt->execute()){
+                        header("Location:../../../vistas/ventas/form.php?mensaje=creado");
+                    } else{
+                        header("Location:../../../vistas/ventas/form.php?mensaje=error3");
+                    }
+                }
+
             } else{
                 header("Location:../../../vistas/ventas/form.php?mensaje=error1");
             }

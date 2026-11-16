@@ -212,7 +212,14 @@
                                 <?php
                                     if($resultado->num_rows>0){
                                         while($fila=$resultado->fetch_assoc()){
-        
+
+                                            $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
+                                            $stmt2 = $conex->prepare($sql2);
+                                            $beneficio = $fila['id_beneficio'];
+                                            $usuario = $_SESSION['id_usuario'];
+                                            $stmt2->bind_param("ii", $beneficio, $usuario);
+                                            $stmt2->execute();
+                                            $resultado2 = $stmt2->get_result();
                                 ?>
                                             <tr>
                                                 <td><?php echo $fila["nombrebene"]; ?></td>
@@ -247,11 +254,17 @@
                                                             <input type="hidden" name="id_beneficio" id="id_beneficio" value="<?php echo $fila["id_beneficio"];?>">
                                                             <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
                                                         </form>
-                                                        <form action="../publico/acciones/historial/crear.php" method="post">
-                                                            <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
-                                                            <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
-                                                            <button type="submit" class="btn btn-register w-100 mb-1" onclick="return confirm('¿Estás seguro de anotarte?');">Anotarse</button>
-                                                        </form>
+                                                        <?php
+                                                        
+                                                        if ($resultado2->num_rows > 0) {
+                                                            echo "<span class='badge bg-light text-dark border mb-2'>inscripto</span>";
+                                                        } else { ?>
+                                                            <form action="../../publico/acciones/historial/crear.php" method="post">
+                                                                <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                                <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
+                                                                <button type="submit" class="btn btn-register w-100 mb-1" onclick="return confirm('¿Estás seguro de anotarte?');">Anotarse</button>
+                                                            </form>
+                                                        <?php } ?>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -274,8 +287,10 @@
                     </div>
                 </section>
             </div>
-        
-?>
+        <div class="m-5 p-5"></div>
+    <!-- // -->
+    <?php include("../../complementario/pie.php") ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <?php
     //pendiente
     } else{

@@ -12,7 +12,7 @@
         $fecha_inicio=$_POST['fecha_inicio'];
         $fecha_fin=$_POST['fecha_fin'];
         $estado=$_POST['estado'];
-        $estado=$_POST['creador'];
+        $creador=$_POST['creador'];
         $descripcion=$_POST['descripcion'];
 
         $sql="insert into beneficio(nombre, fecha_inicio, fecha_fin, estado, creador, descripcion) values (?, ?, ?, ?, ?, ?)";

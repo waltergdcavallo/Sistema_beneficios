@@ -9,9 +9,9 @@
         if(!empty($_POST['id_usuario'])){
 
             $id_usuario=$_POST['id_usuario'];
-            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, beneficio.nombre AS nombrebene, usuario.dni, usuario.rol, beneficio.estado FROM beneficio, usuario, historial WHERE (historial.id_usuario=usuario.id_usuario) AND (historial.id_beneficio=beneficio.id_beneficio) AND historial.id_usuario=? ORDER BY id_historial DESC";
+            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, beneficio.nombre AS nombrebene, usuario.dni, usuario.rol, beneficio.estado FROM beneficio, usuario, historial WHERE (historial.id_usuario=usuario.id_usuario) AND (historial.id_beneficio=beneficio.id_beneficio) AND historial.id_usuario=? AND beneficio.creador=? ORDER BY id_historial DESC";
             $stmt=$conex->prepare($sql);
-            $stmt->bind_param("i", $id_usuario);
+            $stmt->bind_param("is", $id_usuario, $_SESSION['rol']);
             if ($stmt->execute()){
                 $resultado=$stmt->get_result();
             }
@@ -120,9 +120,9 @@
         } elseif(!empty($_POST['id_beneficio']) && $_SESSION['rol']=="admin"){
 
             $id_beneficio=$_POST['id_beneficio'];
-            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, usuario.rol, beneficio.nombre AS nombrebeneficio, beneficio.estado, usuario.dni FROM beneficio, usuario, historial WHERE historial.id_usuario = usuario.id_usuario AND historial.id_beneficio = beneficio.id_beneficio AND historial.id_beneficio = ? ORDER BY id_historial DESC";
+            $sql="SELECT historial.*, usuario.nombre AS nombreusuario, usuario.rol, beneficio.nombre AS nombrebeneficio, beneficio.estado, usuario.dni FROM beneficio, usuario, historial WHERE historial.id_usuario = usuario.id_usuario AND historial.id_beneficio = beneficio.id_beneficio AND historial.id_beneficio = ? AND beneficio.creador=? ORDER BY id_historial DESC";
             $stmt=$conex->prepare($sql);
-            $stmt->bind_param("i", $id_beneficio);
+            $stmt->bind_param("is", $id_beneficio, $_SESSION['rol']);
             if ($stmt->execute()){
             $result=$stmt->get_result();
             }
@@ -231,9 +231,10 @@
 
         }elseif($_SESSION['rol']=="admin"){
 
-            $sql="SELECT historial.*, (usuario.nombre) AS nombreusuario, usuario.dni, usuario.rol, (beneficio.nombre) AS nombrebeneficio, beneficio.estado FROM beneficio, usuario, historial WHERE (historial.id_beneficio=beneficio.id_beneficio) AND (historial.id_usuario=usuario.id_usuario) ORDER BY id_historial DESC";
+            $sql="SELECT historial.*, (usuario.nombre) AS nombreusuario, usuario.dni, usuario.rol, (beneficio.nombre) AS nombrebeneficio, beneficio.estado FROM beneficio, usuario, historial WHERE (historial.id_beneficio=beneficio.id_beneficio) AND (historial.id_usuario=usuario.id_usuario) AND beneficio.creador=? ORDER BY id_historial DESC";
     
             $stmt=$conex->prepare($sql);
+            $stmt->bind_param("s", $_SESSION['rol']);
     
             if ($stmt->execute()){
                 $result=$stmt->get_result();

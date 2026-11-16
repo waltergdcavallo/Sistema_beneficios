@@ -1,18 +1,18 @@
 <?php
 
-    //vendedor
+    //vendedor y admin
 
     session_start();
-
-    if(isset($_SESSION['rol']) && !empty($_SESSION['rol']) && $_SESSION['rol']=="vendedor" || $_SESSION['rol']=="admin"){
-
+    
+    if(isset($_SESSION['rol']) && !empty($_SESSION['rol']) && !empty($_POST['id_usuario'])){
+        
         require_once "../../conexion.php";
 
-            if(!empty($_POST['id_usuario'])){
+            if($_SESSION['rol']=="vendedor" || $_SESSION['rol']=="admin"){
 
                 $id_usuario=$_POST['id_usuario'];
 
-                $sql="select venta.*, concat(usuario.nombre, ' ', usuario.apellido) as nombreyapellido from venta, usuario where venta.id_usuario=? group by venta.id_venta";
+                $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido FROM venta, usuario WHERE venta.id_usuario=? GROUP BY venta.id_venta";
 
                 $stmt=$conex->prepare($sql);
 
@@ -40,7 +40,7 @@
 
                     <div class="text-center">
                         <div class="text-center my-5 text text-primary">
-                            <h3 class="title-list"><?php if(isset($fila['nombreyapellido'])){echo "Ventas de: ".$fila['nombreyapellido'];}else{ if($_SESSION['rol']=="admin"){ echo "Este usuario no tiene ventas";}else{ echo "Sin ventas por el momento";}}?></h3>
+                            <h3 class="title-list"><?php if(isset($fila['nombreyapellido'])){ if($_SESSION['id_usuario']===$id_usuario){ echo "Mis ventas";}else{ echo "Ventas de: ".$fila['nombreyapellido'];}}?></h3>
                         </div>
                     
                         <section class="container">
@@ -86,51 +86,107 @@
                                     <?php } ?>
         
                                 <section class="section-list">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Id</th>
-                                                <th scope="col">Nombre y apellido</th>
-                                                <th scope="col">Fecha de venta</th>
-                                                <th scope="col">Detalles</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-        
-                                            <!-- // -->
-                                            <?php
-                                                if($resultado->num_rows>0){
-                                                    while($fila=$resultado->fetch_assoc()){
-                                            ?>
-                                                        <tr>
-                                                            <td><?php echo $fila["id_venta"]; ?></td>
-                                                            <td><?php echo $fila["nombreyapellido"]; ?></td>
-                                                            <td><?php echo $fila["fecha_venta"]; ?></td>
-                                                            <td>
-                                                                <div class="d-sm-inline-block">
-                                                                    <form action="detalle.php" method="post">
-                                                                        <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
-                                                                        <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
-                                                                    </form>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                            <!-- // -->
-                                            <?php
-                                                    }
-                                                }else{
-                                            ?>
+                                    <?php
+                                        if($_SESSION['rol']=="admin"){?>
+
+                                            <table class="table table-striped">
+                                                <thead>
                                                     <tr>
-                                                        <td scope="5"></td>
-                                                        <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Ventas en la tabla</div>
+                                                        <th scope="col">Id</th>
+                                                        <th scope="col">Nombre y apellido</th>
+                                                        <th scope="col">Fecha de venta</th>
+                                                        <th scope="col">Monto</th>
+                                                        <th scope="col">Detalles</th>
                                                     </tr>
-                                            <!-- // -->
-                                            <?php
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </section>
+                                                </thead>
+                                                <tbody>
+                
+                                                    <!-- // -->
+                                                    <?php
+                                                        if($resultado->num_rows>0){
+                                                            while($fila=$resultado->fetch_assoc()){
+                                                    ?>
+                                                                <tr>
+                                                                    <td><?php echo $fila["id_venta"]; ?></td>
+                                                                    <td><?php echo $fila["nombreyapellido"]; ?></td>
+                                                                    <td><?php echo $fila["fecha_venta"]; ?></td>
+                                                                    <td><?php echo $fila["monto"]; ?></td>
+                                                                    <td>
+                                                                        <div class="d-sm-inline-block">
+                                                                            <form action="detalle.php" method="post">
+                                                                                <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
+                                                                                <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                    <!-- // -->
+                                                    <?php
+                                                            }
+                                                        }else{
+                                                    ?>
+                                                            <tr>
+                                                                <td scope="5"></td>
+                                                                <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Ventas en la tabla</div>
+                                                            </tr>
+                                                    <!-- // -->
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+
+                                    <?php } elseif($_SESSION['rol']=="vendedor"){ ?>
+
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Id</th>
+                                                        <th scope="col">Fecha de venta</th>
+                                                        <th scope="col">Monto</th>
+                                                        <th scope="col">Detalles</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                
+                                                    <!-- // -->
+                                                    <?php
+                                                        if($resultado->num_rows>0){
+                                                            while($fila=$resultado->fetch_assoc()){
+                                                    ?>
+                                                                <tr>
+                                                                    <td><?php echo $fila["id_venta"]; ?></td>
+                                                                    <td><?php echo $fila["fecha_venta"]; ?></td>
+                                                                    <td><?php echo $fila["monto"]; ?></td>
+                                                                    <td>
+                                                                        <div class="d-sm-inline-block">
+                                                                            <form action="detalle.php" method="post">
+                                                                                <input type="hidden" name="id_venta" id="id_venta" value="<?php echo $fila["id_venta"];?>">
+                                                                                <button class="btn btn-primary p-1" type="submit">Ver Detalle</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                    <!-- // -->
+                                                    <?php
+                                                            }
+                                                        }else{
+                                                    ?>
+                                                            <tr>
+                                                                <td scope="5"></td>
+                                                                <div class="text-center alert alert-danger alert-dismissible fade show rounded-4 shadow-sm" role="alert">No existen Ventas en la tabla</div>
+                                                            </tr>
+                                                    <!-- // -->
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        </section>
+
+                                    <?php }?>
                             </div>
                         </section>
                     </div>
@@ -142,11 +198,16 @@
     
 </body>
 </html>
-
 <!-- // -->
 <?php
-                //admin
-                } elseif($_SESSION['rol']=="admin"){
+                }else {
+                    header("Location: ../../complementario/error404.php");
+                }
+                exit;
+
+    //admin
+    }elseif(isset($_SESSION['rol']) && !empty($_SESSION['rol']) && $_SESSION['rol']=="admin") {
+            require_once "../../conexion.php";
 
                     $sql="SELECT venta.*, concat(usuario.nombre, ' ', usuario.apellido) AS nombreyapellido, beneficio.nombre FROM venta, usuario, beneficio, producto, detalle_venta WHERE (venta.id_usuario=usuario.id_usuario) AND (detalle_venta.id_venta=venta.id_venta) AND (detalle_venta.id_producto=producto.id_producto) AND (producto.id_beneficio=beneficio.id_beneficio) AND beneficio.creador=? ORDER BY venta.fecha_venta DESC";
                     $stmt=$conex->prepare($sql);
@@ -276,15 +337,11 @@
 
 </body>
 </html>
+
 <!-- // -->
 <?php
-                }else {
-                    header("Location: ../../complementario/error404.php");
-                }
-                exit;
-
     //pendiente
-    }else {
+    }else{
         header("Location: ../../complementario/error404.php");
     }
     exit;

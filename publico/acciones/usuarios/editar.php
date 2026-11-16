@@ -13,7 +13,9 @@
 
         $id_usuario=$_POST['id_usuario'];
         $nombre=$_POST['nombre'];
+        $old_nombre=$_POST['old_nombre'];
         $apellido=$_POST['apellido'];
+        $old_apellido=$_POST['old_apellido'];
         $dni=$_POST['dni'];
         $telefono=$_POST['telefono'];
         $email=$_POST['email'];
@@ -28,9 +30,23 @@
             $stmt->bind_param("ssssssssi", $nombre, $apellido, $dni, $telefono, $email, $direccion, $password_hash, $rol, $id_usuario);
 
             if ($stmt->execute()){
+                if($rol=="admin"){
+                    $old_nombreyapellido=$old_nombre. " ". $old_apellido;
+                    $nombreyapellido=$nombre. " ". $apellido;
+                    $sql2="UPDATE beneficio SET creador = ? WHERE creador = ?";
+                    $stmt2 = $conex->prepare($sql2);
+                    $stmt2->bind_param("ss", $nombreyapellido, $old_nombreyapellido);
+                    if ($stmt2->execute()){
+                        header("Location:../../../vistas/usuarios/lista.php?mensaje=advertencia");
+                        exit;
+                    }
+
+                }
                 header("Location:../../../vistas/usuarios/lista.php?mensaje=editado");
+                exit;
             } else{
                 header("Location:../../../vistas/usuarios/form.php?mensaje=error1");
+                exit;
             }
         } else {
             $sql = "UPDATE usuario SET nombre = ?, apellido = ?, dni = ?, telefono = ?, email = ?, direccion = ?, rol = ? WHERE id_usuario = ?";
@@ -38,9 +54,22 @@
             $stmt->bind_param("sssssssi", $nombre, $apellido, $dni, $telefono, $email, $direccion, $rol, $id_usuario);
 
             if ($stmt->execute()){
+                if($rol=="admin"){
+                    $old_nombreyapellido=$old_nombre. " ". $old_apellido;
+                    $nombreyapellido=$nombre. " ". $apellido;
+                    $sql2="UPDATE beneficio SET creador = ? WHERE creador = ?";
+                    $stmt2 = $conex->prepare($sql2);
+                    $stmt2->bind_param("ss", $nombreyapellido, $old_nombreyapellido);
+                    if ($stmt2->execute()){
+                        header("Location:../../../vistas/usuarios/lista.php?mensaje=advertencia");
+                        exit;
+                    }
+                }
                 header("Location:../../../vistas/usuarios/lista.php?mensaje=editado");
+                exit;
             } else{
                 header("Location:../../../vistas/usuarios/form.php?mensaje=error1");
+                exit;
             }
         }
 

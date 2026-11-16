@@ -81,6 +81,8 @@
                             <form action="../../publico/acciones/usuarios/editar.php" method="post" class="row g-3">
                 
                                 <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $fila['id_usuario']; ?>">
+                                <input type="hidden" id="old_nombre" name="old_nombre" value="<?php echo $fila['nombre']; ?>">
+                                <input type="hidden" id="old_apellido" name="old_apellido" value="<?php echo $fila['apellido']; ?>">
                 
                                 <div class="col-12 col-md-6">
                                     <label for="nombre" class="form-label">Nombre</label>

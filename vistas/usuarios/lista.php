@@ -47,7 +47,12 @@
                         <!-- // -->
                         <?php if (isset($_GET['mensaje'])){ ?>
                             <div class="container mt-4">
-                                <?php if ($_GET['mensaje'] == 'creado'){ ?>
+                                <?php if ($_GET['mensaje'] == 'advertencia'){ ?>
+                                    <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
+                                        <strong>¡Éxito!</strong> El usuario fue creado correctamente. Vuelva a iniciar sesión para concretar los cambios
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php }elseif ($_GET['mensaje'] == 'creado'){ ?>
                                     <div class="alert alert-success alert-dismissible fade show rounded-4 shadow-sm" role="alert">
                                         <strong>¡Éxito!</strong> El usuario fue creado correctamente.
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

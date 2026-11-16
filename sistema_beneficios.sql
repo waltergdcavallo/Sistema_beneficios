@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2026 a las 02:00:57
+-- Tiempo de generación: 16-11-2026 a las 01:13:58
 -- Versión del servidor: 10.11.16-MariaDB
 -- Versión de PHP: 8.3.36
 
@@ -37,6 +37,20 @@ CREATE TABLE `beneficio` (
   `descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
+--
+-- Volcado de datos para la tabla `beneficio`
+--
+
+INSERT INTO `beneficio` (`id_beneficio`, `nombre`, `fecha_inicio`, `fecha_fin`, `estado`, `creador`, `descripcion`) VALUES
+(1, 'prueba 1', '2026-11-15', '2026-11-16', 1, 'Admin Sistema', 'aa'),
+(2, 'prueba 2', '2026-11-15', '2026-11-26', 1, 'Admin Sistema', 'bb'),
+(3, 'prueba 3', '2026-11-27', '2026-11-30', 1, 'Admin Sistema', 'cc'),
+(4, 'prueba 4', '2026-11-04', '2026-11-05', 0, 'Admin Sistema', 'dd'),
+(5, 'prueba 5', '2026-11-21', '2026-12-02', 1, 'Admin Sistema', 'ee'),
+(6, 'prueba 6', '2026-12-04', '2026-12-06', 1, 'Admin Sistema', 'ff'),
+(7, 'prueba 7', '2026-11-25', '2026-12-06', 1, 'Admin Sistema', 'gg'),
+(8, 'prueba 8', '2026-11-05', '2026-12-01', 1, 'Admin Sistema', 'hh');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +65,16 @@ CREATE TABLE `detalle_venta` (
   `fecha_entrega` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
+--
+-- Volcado de datos para la tabla `detalle_venta`
+--
+
+INSERT INTO `detalle_venta` (`id_detalle_venta`, `id_venta`, `id_producto`, `cant_prod`, `fecha_entrega`) VALUES
+(1, 1, 1, 2, '2026-11-19'),
+(2, 2, 1, 1, '2026-11-16'),
+(3, 3, 1, 1, '2026-11-16'),
+(4, 4, 1, 2, '2026-11-13');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +87,15 @@ CREATE TABLE `historial` (
   `id_beneficio` int(11) NOT NULL,
   `fecha_inscripto` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial`
+--
+
+INSERT INTO `historial` (`id_historial`, `id_usuario`, `id_beneficio`, `fecha_inscripto`) VALUES
+(1, 1, 1, '2026-11-15'),
+(2, 2, 1, '2026-11-15'),
+(4, 1, 6, '2026-11-15');
 
 -- --------------------------------------------------------
 
@@ -78,6 +111,13 @@ CREATE TABLE `producto` (
   `stock_actual` int(11) DEFAULT NULL,
   `id_beneficio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock_inicial`, `stock_actual`, `id_beneficio`) VALUES
+(1, 'chocolate', 200.00, 5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +142,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `dni`, `telefono`, `email`, `direccion`, `password_hash`, `rol`) VALUES
-(1, 'administrador', 'sistema', '1', '1', 'admin@email.com', '', '$2y$10$UPtG/RlmWJjVYj2OjW5ANOrg55UF5Rd1IW70TPRXbv8Efe.UmUDLu', 'admin');
+(1, 'Admin', 'Sistema', '10000000', '1', 'admin@gmail.com', '', '$2y$10$oULr4JNgecQ0tvDMr34NA.eZoxmKXwkEoyfsJUXS644n./peTG.52', 'admin'),
+(2, 'Vendedor', 'Sistema', '10000000', '1', 'vendedor@gmail.com', '', '$2y$10$sMnS5jpef9VX3w5UWJYRSOp50dz3IG1RKrDxvVBbT.PP77dGRmk7a', 'vendedor'),
+(3, 'pendiente', 'sistema', '1', '1', 'pendiente@gmail.com', '', '$2y$10$s2u/JxmenWV031sguVIj8OlPZQv6JSCsPJr8aqmFZC1TKMPtbmtyG', 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -118,6 +160,16 @@ CREATE TABLE `venta` (
   `fecha_venta` date DEFAULT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+
+--
+-- Volcado de datos para la tabla `venta`
+--
+
+INSERT INTO `venta` (`id_venta`, `monto`, `entregado`, `pagado`, `fecha_venta`, `id_usuario`) VALUES
+(1, 400.00, 0, 1, '2026-11-15', 2),
+(2, 200.00, 1, 1, '2026-11-15', 2),
+(3, 200.00, 1, 1, '2026-11-15', 2),
+(4, 200.00, 0, 1, '2026-11-15', 2);
 
 --
 -- Índices para tablas volcadas
@@ -173,37 +225,37 @@ ALTER TABLE `venta`
 -- AUTO_INCREMENT de la tabla `beneficio`
 --
 ALTER TABLE `beneficio`
-  MODIFY `id_beneficio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_beneficio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_venta`
 --
 ALTER TABLE `detalle_venta`
-  MODIFY `id_detalle_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detalle_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `historial`
 --
 ALTER TABLE `historial`
-  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_historial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_venta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

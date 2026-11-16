@@ -36,6 +36,14 @@
 
         <?php include("../../complementario/encabezado.php") ?>
 
+            <section class="container">
+                <div class="row">
+                    <div class="col-2 section-list">
+                        <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
+                    </div>
+                </div>
+            </section>
+
             <section class="container my-5 section-detail shadow">
         
                     <div class="text-center mb-4">
@@ -112,14 +120,6 @@
                         </form>
                     </div>
 
-            </section>
-
-            <section class="container">
-                <div class="row">
-                    <div class="col-2 section-list">
-                        <a href="../inicio.php" class="btn btn-primary">Regresar al inicio</a>
-                    </div>
-                </div>
             </section>
 
     <div class="m-4 p-4"></div>

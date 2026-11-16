@@ -11,7 +11,7 @@
         require_once "../conexion.php";
         
         if($_SESSION['rol'] =="admin"){
-            $sql="SELECT id_beneficio, nombre FROM beneficio WHERE estado=1  ORDER BY fecha_inicio DESC";
+            $sql="SELECT id_beneficio, nombre FROM beneficio WHERE estado=1 ORDER BY fecha_inicio DESC";
             $stmt=$conex->prepare($sql);
             if($stmt->execute()){
                 $resultado=$stmt->get_result();
@@ -75,58 +75,61 @@
                                     <!-- // -->
                                     <?php
                                     if ($resultado->num_rows > 0) {
+                                        $i=0;
                                         while ($fila = $resultado->fetch_assoc()) { 
+                                            if($i<6){
                                         
-                                            $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
-                                            $stmt2 = $conex->prepare($sql2);
-                                            $beneficio = $fila['id_beneficio'];
-                                            $usuario = $_SESSION['id_usuario'];
-                                            $stmt2->bind_param("ii", $beneficio, $usuario);
-                                            $stmt2->execute();
-                                            $resultado2 = $stmt2->get_result();
-                                            ?>
-                                            
-                                            <div class="col-12 col-md-6 col-lg-4 card-beneficio" filtro="<?php if($resultado2->num_rows > 0){ echo "true";}else{ echo "false";}?>">
-                                                <div class="card h-100 shadow-sm border-0 rounded-4 p-3 transition-card card-list">
-                                                    <div class="card-body d-flex flex-column justify-content-between">
-                                                        <div>
-                                                        <h4 class="card-title fw-bold text-dark mb-2">Beneficio <?php echo $fila['nombre']; ?></h4>
-                                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                                <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-semibold">
-                                                                    Activo
-                                                                </span>
-                                                                <!-- // -->
-                                                                <?php if ($resultado2->num_rows > 0){ ?>
-                                                                    <div class="d-flex align-items-center gap-2">
-                                                                        <a href="ventas/form.php?id_beneficio=<?php echo $fila['id_beneficio']; ?>" class="btn btn-sm btn-confirm px-3 py-1 rounded-pill">Vender</a>
-                                                                    </div>
-                                                                <?php }?>
+                                                $sql2 = "SELECT * FROM historial WHERE id_beneficio=? AND id_usuario=?";
+                                                $stmt2 = $conex->prepare($sql2);
+                                                $beneficio = $fila['id_beneficio'];
+                                                $usuario = $_SESSION['id_usuario'];
+                                                $stmt2->bind_param("ii", $beneficio, $usuario);
+                                                $stmt2->execute();
+                                                $resultado2 = $stmt2->get_result();
+                                                ?>
+                                                
+                                                <div class="col-12 col-md-6 col-lg-4 card-beneficio" filtro="<?php if($resultado2->num_rows > 0){ echo "true";}else{ echo "false";}?>">
+                                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-3 transition-card card-list">
+                                                        <div class="card-body d-flex flex-column justify-content-between">
+                                                            <div>
+                                                            <h4 class="card-title fw-bold text-dark mb-2">Beneficio <?php echo $fila['nombre']; ?></h4>
+                                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-semibold">
+                                                                        Activo
+                                                                    </span>
+                                                                    <!-- // -->
+                                                                    <?php if ($resultado2->num_rows > 0){ ?>
+                                                                        <div class="d-flex align-items-center gap-2">
+                                                                            <a href="ventas/form.php?id_beneficio=<?php echo $fila['id_beneficio']; ?>" class="btn btn-sm btn-confirm px-3 py-1 rounded-pill">Vender</a>
+                                                                        </div>
+                                                                    <?php }?>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- // -->
-                                                        <?php
-                                                        
-                                                        if ($resultado2->num_rows > 0) {
-                                                            echo "<span class='badge bg-light text-dark border mb-2'>inscripto</span>";
-                                                        } else { ?>
-                                                            <form action="../publico/acciones/historial/crear.php" method="post">
-                                                                <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                            <!-- // -->
+                                                            <?php
+                                                            
+                                                            if ($resultado2->num_rows > 0) {
+                                                                echo "<span class='badge bg-light text-dark border mb-2'>inscripto</span>";
+                                                            } else { ?>
+                                                                <form action="../publico/acciones/historial/crear.php" method="post">
+                                                                    <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo $_SESSION['id_usuario']?>">
+                                                                    <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
+                                                                    <button type="submit" class="btn btn-register w-100 mb-1" onclick="return confirm('¿Estás seguro de anotarte?');">Anotarse</button>
+                                                                </form>
+                                                            <?php } ?>
+                                                            <form action="../vistas/beneficios/detalle.php" method="post">
                                                                 <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
-                                                                <button type="submit" class="btn btn-register w-100 mb-1" onclick="return confirm('¿Estás seguro de anotarte?');">Anotarse</button>
+                                                                <button type="submit" class="btn btn-confirm w-100 py-2">
+                                                                    Ver detalle
+                                                                </button>
                                                             </form>
-                                                        <?php } ?>
-                                                        <form action="../vistas/beneficios/detalle.php" method="post">
-                                                            <input type="hidden" id="id_beneficio" name="id_beneficio" value="<?php echo $fila['id_beneficio']?>">
-                                                            <button type="submit" class="btn btn-confirm w-100 py-2">
-                                                                Ver detalle
-                                                            </button>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         <!-- // -->
                                         <?php 
-                                        }
+                                        $i=$i+1;
+                                        } }
                                     } else {
                                         echo "<p class='col-12 text-white'>No existen beneficios activos por el momento</p>";
                                     }
@@ -525,14 +528,14 @@
         
                             <div class="row mb-5">
                                 <div class="col-12">
-                                    <div class="p-4 p-md-5 bg-white rounded-4 shadow-sm border text-center">
+                                    <div class="p-4 p-md-5 bg-white rounded-4 shadow-sm border text-center section-dashboard">
                                         <div class="mb-3">
-                                            <span class="badge bg-warning text-dark px-4 py-2 rounded-pill fs-6 fw-semibold">
-                                                ⏳ Cuenta en proceso de revisión
+                                            <span class="badge bg-warning px-4 py-2 rounded-pill fs-6 fw-semibold text-white">
+                                                Cuenta en proceso de revisión
                                             </span>
                                         </div>
-                                        <h1 class="display-6 fw-bold text-dark mb-3">¡Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreyapellido']); ?>!</h1>
-                                        <p class="text-muted lead mx-auto" style="max-width: 700px;">
+                                        <h1 class="display-6 fw-bold mb-3 text-white">¡Bienvenido, <?php echo htmlspecialchars($_SESSION['nombreyapellido']); ?>!</h1>
+                                        <p class="text-white lead mx-auto" style="max-width: 700px;">
                                             Tu registro se ha completado con éxito. Actualmente, tu cuenta se encuentra <strong>pendiente de aprobación por un administrador</strong>. En breve podrás acceder a todas las funcionalidades del sistema.
                                         </p>
                                     </div>
@@ -547,39 +550,36 @@
                             </div>
 
                             <div class="row g-4 mb-5">
-                                <!-- Card 1 -->
                                 <div class="col-12 col-md-4">
-                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center info-card">
                                         <div class="card-body">
                                             <div class="mb-3 text-primary fs-1">🎁</div>
-                                            <h4 class="fw-bold h5 text-dark">Gestión de Beneficios</h4>
-                                            <p class="text-muted small">
+                                            <h4 class="fw-bold h5 text-white">Gestión de Beneficios</h4>
+                                            <p class="text-white small">
                                                 Explora todos los beneficios activos disponibles, anótate a los que te interesen y haz un seguimiento detallado desde tu panel personal.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Card 2 -->
                                 <div class="col-12 col-md-4">
-                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center info-card">
                                         <div class="card-body">
                                             <div class="mb-3 text-success fs-1">📈</div>
-                                            <h4 class="fw-bold h5 text-dark">Control de Ventas</h4>
-                                            <p class="text-muted small">
+                                            <h4 class="fw-bold h5 text-white">Control de Ventas</h4>
+                                            <p class="text-white small">
                                                 Registra tus operaciones de forma ágil, consulta el listado de ventas realizadas en el día y mantén tus reportes organizados en tiempo real.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Card 3 -->
                                 <div class="col-12 col-md-4">
-                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center bg-white">
+                                    <div class="card h-100 shadow-sm border-0 rounded-4 p-4 text-center info-card">
                                         <div class="card-body">
                                             <div class="mb-3 text-warning fs-1">🛡️</div>
-                                            <h4 class="fw-bold h5 text-dark">Seguridad y Roles</h4>
-                                            <p class="text-muted small">
+                                            <h4 class="fw-bold h5 text-white">Seguridad y Roles</h4>
+                                            <p class="text-white small">
                                                 Un entorno seguro con control de acceso por roles (Administradores y Usuarios) para garantizar la correcta supervisión de los datos.
                                             </p>
                                         </div>
