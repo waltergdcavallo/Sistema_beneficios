@@ -1,6 +1,14 @@
 Usuario admin inicial:
 
-email:admin@email.com
-contraseña:password
+email:admin@gmail.com
+contraseña:12345678
 
-Camiar cuanto antes la información.
+Usuario vendedor inicial:
+
+email:vendedor@gmail.com
+contraseña:12345678
+
+Usuario pendiente inicial:
+
+email:pendiente@gmail.com
+contraseña:12345678
