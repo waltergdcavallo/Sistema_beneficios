@@ -7,7 +7,7 @@
   
         //admin
         if($_SESSION['rol']=="admin"){
-            require_once "../conexion.php";
+            require_once __DIR__ ."/../conexion.php";
 
 ?>
             <head>
@@ -51,7 +51,7 @@
 <?php
         //vendedor
         }elseif($_SESSION['rol']=="vendedor"){
-            require_once "../conexion.php";
+            require_once __DIR__ ."/../conexion.php";
 ?>
             <head>
                 <link rel="stylesheet" href="../sass/main.css">
@@ -84,7 +84,7 @@
 <?php
         //pendiente
         }elseif($_SESSION['rol']=="pendiente"){
-            require_once "../conexion.php";
+            require_once __DIR__ ."/../conexion.php";
 ?>
             <head>
                 <link rel="stylesheet" href="../sass/main.css">
@@ -111,7 +111,7 @@
         }
         //no logueado
 }else {
-    require_once "../conexion.php";
+    require_once __DIR__ ."/../conexion.php";
 ?>
     <head>
         <link rel="stylesheet" href="../sass/main.css">
